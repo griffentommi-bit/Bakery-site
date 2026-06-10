@@ -43,9 +43,7 @@ color:#ff4f87;
 font-weight:bold;
 }
 
-section{
-padding:20px;
-}
+section{padding:20px;}
 
 button{
 background:#ff7aa2;
@@ -72,6 +70,7 @@ margin:10px 0;
 .warning{
 color:red;
 font-size:12px;
+white-space:pre-line;
 }
 </style>
 </head>
@@ -154,12 +153,13 @@ font-size:12px;
 </div>
 </section>
 
-<!-- EVERYTHING BOX -->
+<!-- CUSTOM BOXES -->
 <section>
 <h2>Custom Boxes</h2>
 
 <div class="products">
 
+<!-- EVERYTHING BOX -->
 <div class="card">
 <h3>Everything Deal Box</h3>
 <p class="price">$55–$60</p>
@@ -177,9 +177,10 @@ Cookies <input type="number" id="e_cookie" value="0">
 
 <button onclick="addEverything()">Add Box</button>
 
-<p><b>Customizable:</b> theme colors, style, packaging, toppings, chocolate type</p>
+<p><b>Customizable:</b> theme colors, style, packaging, toppings</p>
 </div>
 
+<!-- PARTY TRAY -->
 <div class="card">
 <h3>Party Tray</h3>
 <p class="price">$100–$120</p>
@@ -197,7 +198,7 @@ Cookies <input type="number" id="p_cookie" value="0">
 
 <button onclick="addParty()">Add Tray</button>
 
-<p><b>Customizable:</b> theme colors, event style, packaging, decorations, flavors</p>
+<p><b>Customizable:</b> theme colors, event style, packaging, decorations</p>
 </div>
 
 </div>
@@ -219,7 +220,7 @@ Cookies <input type="number" id="p_cookie" value="0">
 
 <input type="date" id="date" required>
 
-<textarea id="orderDetails" rows="6" placeholder="Your cart..."></textarea>
+<textarea id="orderDetails" rows="8" placeholder="Your cart..."></textarea>
 
 <div id="cartBox">
 <h3>Total: $<span id="total">0.00</span></h3>
@@ -235,11 +236,19 @@ Cookies <input type="number" id="p_cookie" value="0">
 // ===== CART =====
 let cart = {};
 
+// FIXED SIZE DISPLAY
 function addItem(name, price, selectId){
-let qty = parseInt(document.getElementById(selectId).value);
-let key = name + " x" + qty;
 
-cart[key] = {qty:qty, price:price};
+let select = document.getElementById(selectId);
+let qty = parseInt(select.value);
+let sizeText = select.options[select.selectedIndex].text;
+
+let key = `${name} (${sizeText})`;
+
+cart[key] = {
+qty: qty,
+price: price
+};
 
 render();
 }
@@ -257,7 +266,8 @@ let cookie = +document.getElementById("e_cookie").value;
 let totalItems = mini+pop+rice+pretzel+straw+cookie;
 
 if(totalItems > 24){
-document.getElementById("e_warn").innerText = "Max 24 items allowed!";
+document.getElementById("e_warn").innerText =
+"⚠ Max 24 items allowed!";
 return;
 }
 
@@ -268,7 +278,8 @@ let price =
 
 cart["Everything Box"] = {
 qty:1,
-price:price
+price:price,
+items: totalItems
 };
 
 render();
@@ -287,7 +298,8 @@ let cookie = +document.getElementById("p_cookie").value;
 let totalItems = mini+pop+rice+pretzel+straw+cookie;
 
 if(totalItems > 72){
-document.getElementById("p_warn").innerText = "Max 72 items allowed!";
+document.getElementById("p_warn").innerText =
+"⚠ Max 72 items allowed!";
 return;
 }
 
@@ -298,22 +310,27 @@ let price =
 
 cart["Party Tray"] = {
 qty:1,
-price:price
+price:price,
+items: totalItems
 };
 
 render();
 }
 
-// ===== RENDER CART =====
+// ===== RENDER CART (FIXED ITEM DISPLAY) =====
 function render(){
 
 let text = "";
 let total = 0;
 
 for(let item in cart){
+
 let t = cart[item].qty * cart[item].price;
 total += t;
-text += `${item} = $${t.toFixed(2)}\n`;
+
+text += `🍰 ${item}\n`;
+text += `   Items: ${cart[item].items ?? cart[item].qty}\n`;
+text += `   Subtotal: $${t.toFixed(2)}\n\n`;
 }
 
 document.getElementById("orderDetails").value = text;
@@ -324,10 +341,10 @@ document.getElementById("total").innerText = total.toFixed(2);
 document.getElementById("orderForm").addEventListener("submit", function(e){
 e.preventDefault();
 
-let name = name.value;
-let email = email.value;
-let method = method.value;
-let date = date.value;
+let name = document.getElementById("name").value;
+let email = document.getElementById("email").value;
+let method = document.getElementById("method").value;
+let date = document.getElementById("date").value;
 
 let order = document.getElementById("orderDetails").value;
 let time = new Date().toLocaleString();
