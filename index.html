@@ -35,25 +35,24 @@ color:#333;
 
 .hero{
 text-align:center;
-padding:40px 20px;
+padding:30px;
 }
 
 .products{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
 gap:15px;
 padding:20px;
 }
 
 .card{
 background:white;
-padding:20px;
+padding:15px;
 border-radius:12px;
 box-shadow:0 2px 8px rgba(0,0,0,.1);
 }
 
 .price{
-font-size:20px;
 font-weight:bold;
 color:#ff4f87;
 }
@@ -63,7 +62,7 @@ padding:20px;
 }
 
 form{
-max-width:600px;
+max-width:500px;
 margin:auto;
 display:flex;
 flex-direction:column;
@@ -71,7 +70,7 @@ gap:10px;
 }
 
 input,select,textarea{
-padding:12px;
+padding:10px;
 border-radius:8px;
 border:1px solid #ccc;
 }
@@ -87,7 +86,7 @@ cursor:pointer;
 
 .review{
 background:white;
-padding:15px;
+padding:10px;
 margin-bottom:10px;
 border-radius:10px;
 }
@@ -96,17 +95,23 @@ footer{
 background:#ff7aa2;
 color:white;
 text-align:center;
-padding:20px;
+padding:15px;
 margin-top:20px;
 }
 </style>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  emailjs.init("9KMyS9KkzLNPVBOle");
+</script>
+
 </head>
 
 <body>
 
 <header>
 <h1>Sweeten The Deal</h1>
-<p>Custom treats made with love ❤️</p>
+<p>Custom flavors available upon request</p>
 </header>
 
 <nav>
@@ -117,8 +122,8 @@ margin-top:20px;
 </nav>
 
 <section class="hero">
-<h2>Custom Flavors Available Upon Request</h2>
-<p>Pickup or delivery available throughout the Chicago area.</p>
+<h2>Chicago Area Desserts 🍰</h2>
+<p>Pickup or delivery available</p>
 </section>
 
 <section id="products">
@@ -129,154 +134,137 @@ margin-top:20px;
 <div class="card">
 <h3>Mini Cakes</h3>
 <p class="price">$7 each</p>
-<p>Custom flavors available upon request.</p>
 </div>
 
 <div class="card">
 <h3>Cake Pops</h3>
 <p class="price">$2.50 each</p>
-<p>Custom flavors available upon request.</p>
 </div>
 
 <div class="card">
 <h3>Dipped Rice Krispies</h3>
 <p class="price">$2 each</p>
-<p>Custom flavors available upon request.</p>
 </div>
 
 <div class="card">
 <h3>Dipped Pretzels</h3>
 <p class="price">$1.50 each</p>
-<p>Custom flavors available upon request.</p>
 </div>
 
 <div class="card">
 <h3>Cookies</h3>
 <p class="price">$3 each</p>
-<p>Custom flavors available upon request.</p>
 </div>
 
 <div class="card">
-<h3>Half Dozen Cookie Box</h3>
+<h3>Cookie Box (6)</h3>
 <p class="price">$15</p>
-<p>6 cookies.</p>
 </div>
 
 <div class="card">
-<h3>Full Dozen Cookie Box</h3>
+<h3>Cookie Box (12)</h3>
 <p class="price">$30</p>
-<p>12 cookies.</p>
 </div>
 
 <div class="card">
 <h3>Dessert Box</h3>
 <p class="price">$25</p>
-<p>
-Includes an assortment of:
-<br>• Cake Pops
-<br>• Dipped Rice Krispies
-<br>• Dipped Pretzels
-<br><br>
-Mini cakes and cookies can be added for an additional charge.
-</p>
+<p>Assorted cake pops, rice krispies, pretzels</p>
 </div>
 
 <div class="card">
 <h3>Everything Deal Box</h3>
 <p class="price">$55</p>
-<p>
-Includes:
-<br>• 6 Cake Pops
-<br>• 6 Dipped Rice Krispies
-<br>• 6 Dipped Pretzels
-<br>• 2 Mini Cakes
-<br>• 2 Cookies
-</p>
+<p>6 of all desserts + 2 mini cakes + 2 cookies</p>
 </div>
 
 <div class="card">
 <h3>Party Tray</h3>
 <p class="price">$110</p>
-<p>
-Includes a dozen of everything:
-<br>• 12 Mini Cakes
-<br>• 12 Cookies
-<br>• 12 Cake Pops
-<br>• 12 Dipped Rice Krispies
-<br>• 12 Dipped Pretzels
-</p>
+<p>Dozen of everything</p>
 </div>
 
 </div>
 </section>
 
 <section id="order">
-<h2>Order Request</h2>
+<h2>Place Order</h2>
 
-<form>
-<input type="text" placeholder="Full Name" required>
-<input type="email" placeholder="Email Address" required>
+<form id="orderForm">
 
-<select required>
-<option>Select Pickup or Delivery</option>
-<option>Pickup</option>
-<option>Delivery (Chicago Area)</option>
+<input type="text" id="name" placeholder="Full Name" required>
+<input type="email" id="email" placeholder="Email Address" required>
+
+<select id="method">
+<option value="Pickup">Pickup</option>
+<option value="Delivery (Chicago Area)">Delivery (Chicago Area)</option>
 </select>
 
-<input type="date">
+<input type="date" id="date" required>
 
-<textarea rows="5" placeholder="Tell us what you'd like to order and any custom flavor requests"></textarea>
+<textarea id="orderDetails" placeholder="What would you like to order?" required></textarea>
 
-<button type="submit">Submit Order Request</button>
+<button type="submit">Send Order</button>
+
 </form>
-
 </section>
 
 <section id="reviews">
-<h2>Customer Reviews</h2>
-
-<div class="review">
-⭐️⭐️⭐️⭐️⭐️
-<br>
-Review coming soon...
-</div>
-
-<div class="review">
-⭐️⭐️⭐️⭐️⭐️
-<br>
-Review coming soon...
-</div>
-
-<div class="review">
-⭐️⭐️⭐️⭐️⭐️
-<br>
-Review coming soon...
-</div>
-
+<h2>Reviews</h2>
+<p>⭐ More reviews coming soon...</p>
 </section>
 
 <section id="contact">
-<h2>Contact Us</h2>
+<h2>Contact</h2>
 
-<p>
-📧 Email:
-<a href="mailto:griffentommi@gmail.com">
-griffentommi@gmail.com
-</a>
-</p>
-
-<p>
-📸 Instagram:
-<a href="https://www.instagram.com/Tommi_Griffen" target="_blank">
-@Tommi_Griffen
-</a>
-</p>
+<p>📧 Email: griffentommi@gmail.com</p>
+<p>📸 Instagram: @Tommi_Griffen</p>
 
 </section>
 
 <footer>
 <p>© 2026 Sweeten The Deal</p>
 </footer>
+
+<script>
+document.getElementById("orderForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const method = document.getElementById("method").value;
+    const date = document.getElementById("date").value;
+    const order = document.getElementById("orderDetails").value;
+
+    // EMAIL SEND
+    emailjs.send("service_5mueiya", "template_3701r98", {
+        name: name,
+        email: email,
+        method: method,
+        date: date,
+        order: order
+    });
+
+    // INSTAGRAM MESSAGE
+    const message =
+`Sweeten The Deal Order:
+
+Name: ${name}
+Email: ${email}
+Method: ${method}
+Date: ${date}
+
+Order:
+${order}`;
+
+    const igLink = "https://instagram.com/direct/new/?text=" + encodeURIComponent(message);
+
+    window.open(igLink, "_blank");
+
+    alert("Order sent successfully!");
+    this.reset();
+});
+</script>
 
 </body>
 </html>
