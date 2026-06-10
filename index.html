@@ -3,72 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sweeten The Deal Bakery</title>
-
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-
-<script>
-(function(){
-  emailjs.init("9KMyS9KkzLNPVBOle");
-})();
-</script>
+<title>Sweeten The Deal</title>
 
 <style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background: #fff7f2;
+body{
+font-family:Arial,sans-serif;
+margin:0;
+background:#fff7f2;
+color:#333;
 }
 
-header {
-    background: #ff7aa2;
-    color: white;
-    text-align: center;
-    padding: 25px;
+header{
+background:#ff7aa2;
+color:white;
+text-align:center;
+padding:30px;
 }
 
-.products {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    padding: 20px;
-    gap: 15px;
+nav{
+background:#ffe3ec;
+padding:12px;
+text-align:center;
 }
 
-.card {
-    background: white;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+nav a{
+margin:0 10px;
+text-decoration:none;
+font-weight:bold;
+color:#333;
 }
 
-.price {
-    font-weight: bold;
-    color: #ff4f87;
+.hero{
+text-align:center;
+padding:40px 20px;
 }
 
-button {
-    background: #ff7aa2;
-    border: none;
-    padding: 10px;
-    color: white;
-    border-radius: 8px;
-    width: 100%;
-    cursor: pointer;
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:15px;
+padding:20px;
 }
 
-form {
-    max-width: 400px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 20px;
+.card{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 2px 8px rgba(0,0,0,.1);
 }
 
-input, textarea {
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
+.price{
+font-size:20px;
+font-weight:bold;
+color:#ff4f87;
+}
+
+section{
+padding:20px;
+}
+
+form{
+max-width:600px;
+margin:auto;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+input,select,textarea{
+padding:12px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+button{
+background:#ff7aa2;
+color:white;
+border:none;
+padding:12px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.review{
+background:white;
+padding:15px;
+margin-bottom:10px;
+border-radius:10px;
+}
+
+footer{
+background:#ff7aa2;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:20px;
 }
 </style>
 </head>
@@ -77,68 +106,177 @@ input, textarea {
 
 <header>
 <h1>Sweeten The Deal</h1>
-<p>Custom Desserts • Chicago, IL</p>
+<p>Custom treats made with love ❤️</p>
 </header>
 
-<section class="products">
+<nav>
+<a href="#products">Products</a>
+<a href="#order">Order</a>
+<a href="#reviews">Reviews</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<section class="hero">
+<h2>Custom Flavors Available Upon Request</h2>
+<p>Pickup or delivery available throughout the Chicago area.</p>
+</section>
+
+<section id="products">
+<h2>Our Menu</h2>
+
+<div class="products">
 
 <div class="card">
 <h3>Mini Cakes</h3>
 <p class="price">$7 each</p>
-<button onclick="selectItem('Mini Cakes')">Order</button>
+<p>Custom flavors available upon request.</p>
 </div>
 
 <div class="card">
-<h3>Cookie Box</h3>
-<p class="price">$12 per box</p>
-<button onclick="selectItem('Cookie Box')">Order</button>
+<h3>Cake Pops</h3>
+<p class="price">$2.50 each</p>
+<p>Custom flavors available upon request.</p>
+</div>
+
+<div class="card">
+<h3>Dipped Rice Krispies</h3>
+<p class="price">$2 each</p>
+<p>Custom flavors available upon request.</p>
+</div>
+
+<div class="card">
+<h3>Dipped Pretzels</h3>
+<p class="price">$1.50 each</p>
+<p>Custom flavors available upon request.</p>
+</div>
+
+<div class="card">
+<h3>Cookies</h3>
+<p class="price">$3 each</p>
+<p>Custom flavors available upon request.</p>
+</div>
+
+<div class="card">
+<h3>Half Dozen Cookie Box</h3>
+<p class="price">$15</p>
+<p>6 cookies.</p>
+</div>
+
+<div class="card">
+<h3>Full Dozen Cookie Box</h3>
+<p class="price">$30</p>
+<p>12 cookies.</p>
 </div>
 
 <div class="card">
 <h3>Dessert Box</h3>
-<p class="price">$20 per box</p>
-<button onclick="selectItem('Dessert Box')">Order</button>
+<p class="price">$25</p>
+<p>
+Includes an assortment of:
+<br>• Cake Pops
+<br>• Dipped Rice Krispies
+<br>• Dipped Pretzels
+<br><br>
+Mini cakes and cookies can be added for an additional charge.
+</p>
+</div>
+
+<div class="card">
+<h3>Everything Deal Box</h3>
+<p class="price">$55</p>
+<p>
+Includes:
+<br>• 6 Cake Pops
+<br>• 6 Dipped Rice Krispies
+<br>• 6 Dipped Pretzels
+<br>• 2 Mini Cakes
+<br>• 2 Cookies
+</p>
 </div>
 
 <div class="card">
 <h3>Party Tray</h3>
-<p class="price">$35 per tray</p>
-<button onclick="selectItem('Party Tray')">Order</button>
+<p class="price">$110</p>
+<p>
+Includes a dozen of everything:
+<br>• 12 Mini Cakes
+<br>• 12 Cookies
+<br>• 12 Cake Pops
+<br>• 12 Dipped Rice Krispies
+<br>• 12 Dipped Pretzels
+</p>
+</div>
+
+</div>
+</section>
+
+<section id="order">
+<h2>Order Request</h2>
+
+<form>
+<input type="text" placeholder="Full Name" required>
+<input type="email" placeholder="Email Address" required>
+
+<select required>
+<option>Select Pickup or Delivery</option>
+<option>Pickup</option>
+<option>Delivery (Chicago Area)</option>
+</select>
+
+<input type="date">
+
+<textarea rows="5" placeholder="Tell us what you'd like to order and any custom flavor requests"></textarea>
+
+<button type="submit">Submit Order Request</button>
+</form>
+
+</section>
+
+<section id="reviews">
+<h2>Customer Reviews</h2>
+
+<div class="review">
+⭐️⭐️⭐️⭐️⭐️
+<br>
+Review coming soon...
+</div>
+
+<div class="review">
+⭐️⭐️⭐️⭐️⭐️
+<br>
+Review coming soon...
+</div>
+
+<div class="review">
+⭐️⭐️⭐️⭐️⭐️
+<br>
+Review coming soon...
 </div>
 
 </section>
 
-<form id="orderForm">
-<h2 style="text-align:center;">Place Order</h2>
+<section id="contact">
+<h2>Contact Us</h2>
 
-<input type="text" id="name" placeholder="Your Name" required>
-<input type="text" id="item" placeholder="Item" required>
-<input type="number" id="quantity" placeholder="Quantity" required>
-<textarea id="details" placeholder="Custom details"></textarea>
+<p>
+📧 Email:
+<a href="mailto:griffentommi@gmail.com">
+griffentommi@gmail.com
+</a>
+</p>
 
-<button type="submit">Send Order</button>
-</form>
+<p>
+📸 Instagram:
+<a href="https://www.instagram.com/Tommi_Griffen" target="_blank">
+@Tommi_Griffen
+</a>
+</p>
 
-<script>
-function selectItem(item){
-    document.getElementById("item").value = item;
-    window.location.href = "#orderForm";
-}
+</section>
 
-document.getElementById("orderForm").addEventListener("submit", function(e){
-    e.preventDefault();
-
-    emailjs.send("service_5mueiya", "template_3701r98", {
-        name: document.getElementById("name").value,
-        item: document.getElementById("item").value,
-        quantity: document.getElementById("quantity").value,
-        details: document.getElementById("details").value
-    });
-
-    alert("Order sent successfully!");
-    this.reset();
-});
-</script>
+<footer>
+<p>© 2026 Sweeten The Deal</p>
+</footer>
 
 </body>
 </html>
