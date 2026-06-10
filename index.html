@@ -49,6 +49,8 @@ width:100%;
 margin-top:5px;
 }
 
+textarea{width:100%;}
+
 #cartBox{
 text-align:center;
 font-size:18px;
@@ -75,27 +77,19 @@ margin:10px 0;
 <div class="card">
 <h3>Mini Cakes</h3>
 <p class="price">$7</p>
-<p class="desc">
-Soft mini cakes that can be fully customized with flavor, frosting, colors, and decoration style for any theme or event.
-</p>
-
+<p class="desc">Mini cakes fully customizable with flavor, frosting, colors, and theme design.</p>
 <select id="miniSize">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-<option value="6">Half Dozen</option>
-<option value="12">Dozen</option>
+<option value="1">1</option><option value="2">2</option><option value="3">3</option>
+<option value="4">4</option><option value="5">5</option>
+<option value="6">Half Dozen</option><option value="12">Dozen</option>
 </select>
-
 <button onclick="addItem('Mini Cake',7,'miniSize')">Add</button>
 </div>
 
 <div class="card">
 <h3>Cake Pops</h3>
 <p class="price">$2.50</p>
-<p class="desc">Chocolate dipped cake pops with drizzle and custom toppings.</p>
+<p class="desc">Chocolate dipped cake pops with drizzle and toppings.</p>
 <select id="popSize">
 <option value="1">1</option><option value="2">2</option><option value="3">3</option>
 <option value="4">4</option><option value="5">5</option>
@@ -119,7 +113,7 @@ Soft mini cakes that can be fully customized with flavor, frosting, colors, and 
 <div class="card">
 <h3>Pretzels</h3>
 <p class="price">$1.50</p>
-<p class="desc">Chocolate dipped pretzels.</p>
+<p class="desc">Chocolate dipped pretzels with drizzle designs.</p>
 <select id="pretzelSize">
 <option value="1">1</option><option value="2">2</option><option value="3">3</option>
 <option value="4">4</option><option value="5">5</option>
@@ -131,7 +125,7 @@ Soft mini cakes that can be fully customized with flavor, frosting, colors, and 
 <div class="card">
 <h3>Dipped Strawberries</h3>
 <p class="price">$3</p>
-<p class="desc">Chocolate strawberries with drizzle designs.</p>
+<p class="desc">Fresh strawberries dipped in chocolate with designs.</p>
 <select id="berrySize">
 <option value="1">1</option><option value="2">2</option><option value="3">3</option>
 <option value="4">4</option><option value="5">5</option>
@@ -143,13 +137,52 @@ Soft mini cakes that can be fully customized with flavor, frosting, colors, and 
 <div class="card">
 <h3>Cookies</h3>
 <p class="price">$3</p>
-<p class="desc">Soft baked cookies with flavors and icing options.</p>
+<p class="desc">Soft baked cookies with flavor and icing options.</p>
 <select id="cookieSize">
 <option value="1">1</option><option value="2">2</option><option value="3">3</option>
 <option value="4">4</option><option value="5">5</option>
 <option value="6">Half Dozen</option><option value="12">Dozen</option>
 </select>
 <button onclick="addItem('Cookie',3,'cookieSize')">Add</button>
+</div>
+
+</div>
+</section>
+
+<!-- BOXES -->
+<section>
+<h2>Dessert Boxes</h2>
+
+<div class="products">
+
+<div class="card">
+<h3>Everything Box</h3>
+<p><b>Limit: 24 items</b></p>
+
+Mini Cakes <input type="number" id="e_mini" value="0">
+Cake Pops <input type="number" id="e_pop" value="0">
+Rice Krispies <input type="number" id="e_rice" value="0">
+Pretzels <input type="number" id="e_pretzel" value="0">
+Strawberries <input type="number" id="e_straw" value="0">
+Cookies <input type="number" id="e_cookie" value="0">
+
+<p class="warning" id="e_warn"></p>
+<button onclick="addEverything()">Add Everything Box</button>
+</div>
+
+<div class="card">
+<h3>Party Tray</h3>
+<p><b>Limit: 72 items</b></p>
+
+Mini Cakes <input type="number" id="p_mini" value="0">
+Cake Pops <input type="number" id="p_pop" value="0">
+Rice Krispies <input type="number" id="p_rice" value="0">
+Pretzels <input type="number" id="p_pretzel" value="0">
+Strawberries <input type="number" id="p_straw" value="0">
+Cookies <input type="number" id="p_cookie" value="0">
+
+<p class="warning" id="p_warn"></p>
+<button onclick="addParty()">Add Party Tray</button>
 </div>
 
 </div>
@@ -209,6 +242,36 @@ if(["601","602","603","604","605","607","608"].some(z=>zip.startsWith(z))) retur
 return 40;
 }
 
+function addEverything(){
+
+let total =
+(+e_mini.value + +e_pop.value + +e_rice.value +
++e_pretzel.value + +e_straw.value + +e_cookie.value);
+
+if(total > 24){
+document.getElementById("e_warn").innerText="Max 24 items";
+return;
+}
+
+cart["Everything Box"]={qty:1,price:50,items:total};
+render();
+}
+
+function addParty(){
+
+let total =
+(+p_mini.value + +p_pop.value + +p_rice.value +
++p_pretzel.value + +p_straw.value + +p_cookie.value);
+
+if(total > 72){
+document.getElementById("p_warn").innerText="Max 72 items";
+return;
+}
+
+cart["Party Tray"]={qty:1,price:100,items:total};
+render();
+}
+
 function render(){
 
 let subtotal=0;
@@ -242,8 +305,8 @@ window.open(cashapp+"?note="+encodeURIComponent(msg),"_blank");
 
 function sendOrder(){
 
-let name = prompt("Enter your name:");
-let email = prompt("Enter your email:");
+let name = prompt("Name:");
+let email = prompt("Email:");
 
 if(!name || !email){
 alert("Missing info");
