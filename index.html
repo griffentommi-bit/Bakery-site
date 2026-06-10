@@ -75,19 +75,27 @@ margin:10px 0;
 <div class="card">
 <h3>Mini Cakes</h3>
 <p class="price">$7</p>
-<p class="desc">Soft mini cakes with frosting and custom themes.</p>
+<p class="desc">
+Soft mini cakes that can be fully customized with flavor, frosting, colors, and decoration style for any theme or event.
+</p>
+
 <select id="miniSize">
-<option value="1">1</option><option value="2">2</option><option value="3">3</option>
-<option value="4">4</option><option value="5">5</option>
-<option value="6">Half Dozen</option><option value="12">Dozen</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">Half Dozen</option>
+<option value="12">Dozen</option>
 </select>
+
 <button onclick="addItem('Mini Cake',7,'miniSize')">Add</button>
 </div>
 
 <div class="card">
 <h3>Cake Pops</h3>
 <p class="price">$2.50</p>
-<p class="desc">Chocolate dipped cake pops with drizzle designs.</p>
+<p class="desc">Chocolate dipped cake pops with drizzle and custom toppings.</p>
 <select id="popSize">
 <option value="1">1</option><option value="2">2</option><option value="3">3</option>
 <option value="4">4</option><option value="5">5</option>
@@ -123,7 +131,7 @@ margin:10px 0;
 <div class="card">
 <h3>Dipped Strawberries</h3>
 <p class="price">$3</p>
-<p class="desc">Chocolate strawberries with drizzle.</p>
+<p class="desc">Chocolate strawberries with drizzle designs.</p>
 <select id="berrySize">
 <option value="1">1</option><option value="2">2</option><option value="3">3</option>
 <option value="4">4</option><option value="5">5</option>
@@ -135,7 +143,7 @@ margin:10px 0;
 <div class="card">
 <h3>Cookies</h3>
 <p class="price">$3</p>
-<p class="desc">Soft baked cookies with flavors.</p>
+<p class="desc">Soft baked cookies with flavors and icing options.</p>
 <select id="cookieSize">
 <option value="1">1</option><option value="2">2</option><option value="3">3</option>
 <option value="4">4</option><option value="5">5</option>
@@ -175,14 +183,14 @@ margin:10px 0;
 
 <script>
 
-let cart={};
-let deliveryFee=0;
-let finalTotal=0;
-let deposit=0;
+let cart = {};
+let deliveryFee = 0;
+let finalTotal = 0;
+let deposit = 0;
 
 function addItem(name,price,id){
-let qty=+document.getElementById(id).value;
-cart[name+"("+qty+")"]={qty,price};
+let qty = +document.getElementById(id).value;
+cart[name+" ("+qty+")"] = {qty,price};
 render();
 }
 
@@ -234,8 +242,13 @@ window.open(cashapp+"?note="+encodeURIComponent(msg),"_blank");
 
 function sendOrder(){
 
-let name=prompt("Name:");
-let email=prompt("Email:");
+let name = prompt("Enter your name:");
+let email = prompt("Enter your email:");
+
+if(!name || !email){
+alert("Missing info");
+return;
+}
 
 render();
 
@@ -256,8 +269,13 @@ deposit:deposit.toFixed(2),
 deliveryFee:deliveryFee.toFixed(2),
 method,address,zip
 })
-.then(()=>alert("Order sent!"))
-.catch(err=>alert("Failed - check EmailJS"));
+.then(()=>{
+alert("Order sent!");
+})
+.catch((err)=>{
+console.log("EMAILJS ERROR:",err);
+alert("EmailJS Failed: " + JSON.stringify(err));
+});
 
 }
 
