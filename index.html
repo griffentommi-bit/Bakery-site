@@ -38,16 +38,8 @@ border-radius:12px;
 box-shadow:0 2px 8px rgba(0,0,0,0.1);
 }
 
-.price{
-color:#ff4f87;
-font-weight:bold;
-}
-
-.desc{
-font-size:12px;
-color:#666;
-margin:6px 0;
-}
+.price{color:#ff4f87;font-weight:bold;}
+.desc{font-size:12px;color:#666;margin:6px 0;}
 
 section{padding:20px;}
 
@@ -76,7 +68,6 @@ margin:10px 0;
 .warning{
 color:red;
 font-size:12px;
-white-space:pre-line;
 }
 </style>
 </head>
@@ -94,12 +85,10 @@ white-space:pre-line;
 
 <div class="products">
 
-<!-- MINI CAKES -->
 <div class="card">
 <h3>Mini Cakes</h3>
 <p class="price">$7 each</p>
-<p class="desc">Soft vanilla mini cakes topped with smooth frosting and custom themed decorations.</p>
-
+<p class="desc">Soft mini cakes with custom frosting and designs.</p>
 <select id="miniSize">
 <option value="1">1</option>
 <option value="2">2</option>
@@ -109,16 +98,13 @@ white-space:pre-line;
 <option value="6">Half Dozen</option>
 <option value="12">Dozen</option>
 </select>
-
 <button onclick="addItem('Mini Cake',7,'miniSize')">Add</button>
 </div>
 
-<!-- CAKE POPS -->
 <div class="card">
 <h3>Cake Pops</h3>
 <p class="price">$2.50 each</p>
-<p class="desc">Chocolate-covered cake bites with sprinkles, drizzle, or custom color coating.</p>
-
+<p class="desc">Chocolate dipped cake bites with drizzle and toppings.</p>
 <select id="popSize">
 <option value="1">1</option>
 <option value="2">2</option>
@@ -128,18 +114,13 @@ white-space:pre-line;
 <option value="6">Half Dozen</option>
 <option value="12">Dozen</option>
 </select>
-
 <button onclick="addItem('Cake Pop',2.5,'popSize')">Add</button>
 </div>
 
-<!-- RICE KRISPIES -->
 <div class="card">
 <h3>Dipped Rice Krispies</h3>
 <p class="price">$2 each</p>
-<p class="desc">
-Fresh marshmallow rice treats dipped in chocolate and fully customizable with drizzle colors, toppings, and themed decorations for any occasion.
-</p>
-
+<p class="desc">Marshmallow rice treats dipped in chocolate with custom toppings.</p>
 <select id="krispieSize">
 <option value="1">1</option>
 <option value="2">2</option>
@@ -149,16 +130,13 @@ Fresh marshmallow rice treats dipped in chocolate and fully customizable with dr
 <option value="6">Half Dozen</option>
 <option value="12">Dozen</option>
 </select>
-
 <button onclick="addItem('Rice Krispie',2,'krispieSize')">Add</button>
 </div>
 
-<!-- PRETZELS -->
 <div class="card">
 <h3>Pretzels</h3>
 <p class="price">$1.50 each</p>
-<p class="desc">Crunchy pretzels dipped in chocolate and decorated with themed toppings.</p>
-
+<p class="desc">Chocolate dipped pretzels with themed decorations.</p>
 <select id="pretzelSize">
 <option value="1">1</option>
 <option value="2">2</option>
@@ -168,16 +146,13 @@ Fresh marshmallow rice treats dipped in chocolate and fully customizable with dr
 <option value="6">Half Dozen</option>
 <option value="12">Dozen</option>
 </select>
-
 <button onclick="addItem('Pretzel',1.5,'pretzelSize')">Add</button>
 </div>
 
-<!-- STRAWBERRIES -->
 <div class="card">
 <h3>Dipped Strawberries</h3>
 <p class="price">$3 each</p>
-<p class="desc">Fresh strawberries dipped in chocolate with drizzle designs and optional toppings.</p>
-
+<p class="desc">Fresh strawberries dipped in chocolate with drizzle designs.</p>
 <select id="berrySize">
 <option value="1">1</option>
 <option value="2">2</option>
@@ -187,16 +162,13 @@ Fresh marshmallow rice treats dipped in chocolate and fully customizable with dr
 <option value="6">Half Dozen</option>
 <option value="12">Dozen</option>
 </select>
-
 <button onclick="addItem('Strawberry',3,'berrySize')">Add</button>
 </div>
 
-<!-- COOKIES -->
 <div class="card">
 <h3>Cookies</h3>
 <p class="price">$3 each</p>
-<p class="desc">Soft baked cookies with chocolate chips or custom flavors and icing designs.</p>
-
+<p class="desc">Soft baked cookies with custom flavors and icing.</p>
 <select id="cookieSize">
 <option value="1">1</option>
 <option value="2">2</option>
@@ -206,25 +178,21 @@ Fresh marshmallow rice treats dipped in chocolate and fully customizable with dr
 <option value="6">Half Dozen</option>
 <option value="12">Dozen</option>
 </select>
-
 <button onclick="addItem('Cookie',3,'cookieSize')">Add</button>
 </div>
 
 </div>
 </section>
 
-<!-- CUSTOM BOXES -->
+<!-- BOXES -->
 <section>
 <h2>Custom Boxes</h2>
 
 <div class="products">
 
-<!-- EVERYTHING BOX -->
 <div class="card">
-<h3>Everything Deal Box</h3>
-<p class="price">$55–$60</p>
-
-<p><b>Limit: 24 items max</b></p>
+<h3>Everything Box</h3>
+<p><b>Limit: 24 items</b></p>
 
 Mini Cakes <input type="number" id="e_mini" value="0">
 Cake Pops <input type="number" id="e_pop" value="0">
@@ -234,18 +202,12 @@ Strawberries <input type="number" id="e_straw" value="0">
 Cookies <input type="number" id="e_cookie" value="0">
 
 <p class="warning" id="e_warn"></p>
-
 <button onclick="addEverything()">Add Box</button>
-
-<p><b>Customizable:</b> theme colors, packaging style, toppings, chocolate type, drizzle style</p>
 </div>
 
-<!-- PARTY TRAY -->
 <div class="card">
 <h3>Party Tray</h3>
-<p class="price">$100–$120</p>
-
-<p><b>Limit: 72 items max</b></p>
+<p><b>Limit: 72 items</b></p>
 
 Mini Cakes <input type="number" id="p_mini" value="0">
 Cake Pops <input type="number" id="p_pop" value="0">
@@ -255,10 +217,7 @@ Strawberries <input type="number" id="p_straw" value="0">
 Cookies <input type="number" id="p_cookie" value="0">
 
 <p class="warning" id="p_warn"></p>
-
 <button onclick="addParty()">Add Tray</button>
-
-<p><b>Customizable:</b> event theme, packaging, decoration style, flavor mix, presentation</p>
 </div>
 
 </div>
@@ -266,166 +225,121 @@ Cookies <input type="number" id="p_cookie" value="0">
 
 <!-- ORDER -->
 <section>
-<h2>Your Order</h2>
+<h2>Checkout</h2>
 
-<form id="orderForm">
-
-<input type="text" id="name" placeholder="Name" required>
-<input type="email" id="email" placeholder="Email" required>
-
-<select id="method">
-<option>Pickup</option>
-<option>Delivery (Chicago)</option>
+<select id="method" onchange="toggleAddress()">
+<option value="pickup">Pickup</option>
+<option value="delivery">Delivery</option>
 </select>
 
-<input type="date" id="date" required>
+<input id="address" placeholder="Address" style="display:none;">
+<input id="zip" placeholder="ZIP Code" style="display:none;">
 
-<textarea id="orderDetails" rows="8" placeholder="Your cart..."></textarea>
+<textarea id="orderDetails" rows="8"></textarea>
 
 <div id="cartBox">
 <h3>Total: $<span id="total">0.00</span></h3>
+<p>Deposit (50%): $<span id="depositDisplay">0.00</span></p>
+<p>Remaining: $<span id="remainingDisplay">0.00</span></p>
+<p>Delivery Fee: $<span id="deliveryFeeDisplay">0.00</span></p>
 </div>
 
-<button type="submit">Send Order</button>
+<button id="payDepositBtn" onclick="payDeposit()">Pay Deposit Now</button>
+<button onclick="sendOrder()">Send Order</button>
 
-</form>
 </section>
 
 <script>
 
 let cart = {};
+let deliveryFee = 0;
+let deposit = 0;
+let finalTotal = 0;
 
-// ADD ITEM
 function addItem(name, price, selectId){
-
-let select = document.getElementById(selectId);
-let qty = parseInt(select.value);
-let sizeText = select.options[select.selectedIndex].text;
-
-let key = `${name} (${sizeText})`;
-
-cart[key] = {
-qty: qty,
-price: price
-};
-
+let qty = +document.getElementById(selectId).value;
+let key = name + " (" + qty + ")";
+cart[key] = {qty, price};
 render();
 }
 
-// EVERYTHING BOX
+function toggleAddress(){
+let m = document.getElementById("method").value;
+document.getElementById("address").style.display = m==="delivery"?"block":"none";
+document.getElementById("zip").style.display = m==="delivery"?"block":"none";
+}
+
+function calculateDelivery(){
+let zip = document.getElementById("zip").value;
+if(!zip) return 0;
+
+if(zip.startsWith("606")) return 10;
+if(["601","602","603","604","605","607","608"].some(z=>zip.startsWith(z))) return 20;
+return 40;
+}
+
 function addEverything(){
+let total = 0;
+["e_mini","e_pop","e_rice","e_pretzel","e_straw","e_cookie"].forEach(id=>{
+total += +document.getElementById(id).value;
+});
+if(total>24) return alert("Max 24 items");
 
-let mini = +document.getElementById("e_mini").value;
-let pop = +document.getElementById("e_pop").value;
-let rice = +document.getElementById("e_rice").value;
-let pretzel = +document.getElementById("e_pretzel").value;
-let straw = +document.getElementById("e_straw").value;
-let cookie = +document.getElementById("e_cookie").value;
-
-let total = mini+pop+rice+pretzel+straw+cookie;
-
-if(total > 24){
-document.getElementById("e_warn").innerText = "Max 24 items allowed!";
-return;
-}
-
-document.getElementById("e_warn").innerText = "";
-
-let price =
-(mini*7)+(pop*2.5)+(rice*2)+(pretzel*1.5)+(straw*3)+(cookie*3);
-
-cart["Everything Box"] = {qty:1, price:price, items: total};
-
+cart["Everything Box"]={qty:1,price:50,items:total};
 render();
 }
 
-// PARTY TRAY
 function addParty(){
+let total = 0;
+["p_mini","p_pop","p_rice","p_pretzel","p_straw","p_cookie"].forEach(id=>{
+total += +document.getElementById(id).value;
+});
+if(total>72) return alert("Max 72 items");
 
-let mini = +document.getElementById("p_mini").value;
-let pop = +document.getElementById("p_pop").value;
-let rice = +document.getElementById("p_rice").value;
-let pretzel = +document.getElementById("p_pretzel").value;
-let straw = +document.getElementById("p_straw").value;
-let cookie = +document.getElementById("p_cookie").value;
-
-let total = mini+pop+rice+pretzel+straw+cookie;
-
-if(total > 72){
-document.getElementById("p_warn").innerText = "Max 72 items allowed!";
-return;
-}
-
-document.getElementById("p_warn").innerText = "";
-
-let price =
-(mini*7)+(pop*2.5)+(rice*2)+(pretzel*1.5)+(straw*3)+(cookie*3);
-
-cart["Party Tray"] = {qty:1, price:price, items: total};
-
+cart["Party Tray"]={qty:1,price:100,items:total};
 render();
 }
 
-// CART DISPLAY
 function render(){
 
-let text = "";
-let total = 0;
+let subtotal=0;
+let text="";
 
-for(let item in cart){
-
-let t = cart[item].qty * cart[item].price;
-total += t;
-
-text += `🍰 ${item}\n`;
-text += `Items: ${cart[item].items ?? cart[item].qty}\n`;
-text += `Subtotal: $${t.toFixed(2)}\n\n`;
+for(let i in cart){
+subtotal+=cart[i].qty*cart[i].price;
+text+=`🍰 ${i}\nItems:${cart[i].items||cart[i].qty}\n\n`;
 }
 
-document.getElementById("orderDetails").value = text;
-document.getElementById("total").innerText = total.toFixed(2);
+if(document.getElementById("method").value==="delivery"){
+deliveryFee=calculateDelivery();
+}else{
+deliveryFee=0;
 }
 
-// SEND ORDER
-document.getElementById("orderForm").addEventListener("submit", function(e){
-e.preventDefault();
+finalTotal=subtotal+deliveryFee;
+deposit=finalTotal*0.5;
 
-let name = document.getElementById("name").value;
-let email = document.getElementById("email").value;
-let method = document.getElementById("method").value;
-let date = document.getElementById("date").value;
+document.getElementById("orderDetails").value=text;
+document.getElementById("total").innerText=finalTotal.toFixed(2);
+document.getElementById("depositDisplay").innerText=deposit.toFixed(2);
+document.getElementById("remainingDisplay").innerText=(finalTotal-deposit).toFixed(2);
+document.getElementById("deliveryFeeDisplay").innerText=deliveryFee.toFixed(2);
+}
 
-let order = document.getElementById("orderDetails").value;
-let time = new Date().toLocaleString();
+function payDeposit(){
 
-emailjs.send("service_5mueiya","template_3701r98",{
-name,email,method,date,order,time
-})
-.then(()=>{
-
-let msg =
-`🍰 ORDER 🍰
-
-${order}
-
-TOTAL: $${document.getElementById("total").innerText}`;
-
-let ig = "https://instagram.com/direct/new/?text=" + encodeURIComponent(msg);
-window.open(ig,"_blank");
-
-alert("Order sent!");
-
-cart = {};
 render();
-document.getElementById("orderForm").reset();
 
-})
-.catch(err=>{
-alert("Failed");
-console.log(err);
-});
+let cashapp="https://cash.app/$TommiGriffen";
+let msg=`Deposit: $${deposit.toFixed(2)}\nTotal:${finalTotal.toFixed(2)}`;
 
-});
+window.open(cashapp+"?note="+encodeURIComponent(msg),"_blank");
+}
+
+function sendOrder(){
+alert("Order sent (connect emailjs if needed)");
+}
+
 </script>
 
 </body>
