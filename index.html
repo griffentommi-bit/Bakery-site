@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sweeten The Deal Bakery</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: #fff7f2;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background: #ff7aa2;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 5px;
+}
+
+header p {
+    font-size: 1.1em;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    background: #ffe3ec;
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+nav a:hover {
+    background: #ffb3d9;
+}
+
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #ffe3ec, #fff7f2);
+}
+
+.hero h1, .hero h2 {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    color: #ff7aa2;
+}
+
+.hero p {
+    font-size: 1.2em;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(255, 122, 162, 0.2);
+}
+
+.card h3 {
+    color: #ff7aa2;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.card p {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+button {
+    background: #ff7aa2;
+    border: none;
+    padding: 12px 25px;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1em;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #ff5585;
+}
+
+footer {
+    text-align: center;
+    padding: 25px 20px;
+    background: #ff7aa2;
+    color: white;
+    margin-top: 40px;
+}
+
+.section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Form Styles */
+.form-container {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ffe3ec;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #ff7aa2;
+    box-shadow: 0 0 5px rgba(255, 122, 162, 0.2);
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-button {
+    background: #ff7aa2;
+    padding: 15px 40px;
+    font-size: 1.1em;
+    width: 100%;
+}
+
+.form-button:hover {
+    background: #ff5585;
+}
+
+.success-message {
+    display: none;
+    background: #4caf50;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.about-content {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+    
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    nav a {
+        display: block;
+        text-align: center;
+    }
+    
+    .hero h1, .hero h2 {
+        font-size: 1.8em;
+    }
+}
+</style>
+
+</head>
+<body>
+
+<header>
+<h1>🧁 Sweeten The Deal</h1>
+<p>Custom Treats & Dessert Boxes • Chicago, IL</p>
+</header>
+
+<nav>
+<a href="#shop">Shop</a>
+<a href="#about">About</a>
+<a href="#custom-order">Custom Order</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<section class="hero">
+<h1>Fresh. Custom. Delicious.</h1>
+<p>Order custom desserts made just for your event.</p>
+</section>
+
+<section id="shop" class="products">
+
+<div class="card" onclick="addToCart('Mini Cakes', '$7 each')">
+<h3>🎂 Mini Cakes</h3>
+<p>$7 each — custom flavors available</p>
+<p style="font-size: 0.9em; color: #999;">Click to select</p>
+<button onclick="event.stopPropagation(); scrollToForm()">Order Now</button>
+</div>
+
+<div class="card" onclick="addToCart('Cookie Box', 'Assorted')">
+<h3>🍪 Cookie Box</h3>
+<p>Assorted cookies with custom flavors</p>
+<p style="font-size: 0.9em; color: #999;">Click to select</p>
+<button onclick="event.stopPropagation(); scrollToForm()">Order Now</button>
+</div>
+
+<div class="card" onclick="addToCart('Dessert Box', 'Premium Mix')">
+<h3>🍰 Dessert Box</h3>
+<p>Includes brownies, cookies & mini cakes</p>
+<p style="font-size: 0.9em; color: #999;">Click to select</p>
+<button onclick="event.stopPropagation(); scrollToForm()">Order Now</button>
+</div>
+
+<div class="card" onclick="addToCart('Custom Treat Tray', 'Custom')">
+<h3>🎉 Custom Treat Tray</h3>
+<p>Perfect for parties & events</p>
+<p style="font-size: 0.9em; color: #999;">Click to select</p>
+<button onclick="event.stopPropagation(); scrollToForm()">Order Now</button>
+</div>
+
+</section>
+
+<section id="about" class="section">
+<div class="about-content">
+<h2 style="color: #ff7aa2; margin-bottom: 20px;">About Us</h2>
+<p>We create custom desserts for birthdays, weddings, baby showers, and more. Everything is made fresh to match your theme and taste. With years of experience in custom baking, we pride ourselves on quality ingredients and creative designs.</p>
+</div>
+</section>
+
+<section id="custom-order" class="section">
+<h2 style="color: #ff7aa2; text-align: center; margin-bottom: 20px;">📝 Custom Order Form</h2>
+<div class="form-container">
+<div class="success-message" id="successMessage">
+✓ Thank you! Your order has been submitted. I'll contact you soon!
+</div>
+<form id="orderForm" onsubmit="submitForm(event)">
+
+<div class="form-group">
+<label for="name">Your Name *</label>
+<input type="text" id="name" name="name" required placeholder="Enter your full name">
+</div>
+
+<div class="form-group">
+<label for="email">Email Address *</label>
+<input type="email" id="email" name="email" required placeholder="your@email.com">
+</div>
+
+<div class="form-group">
+<label for="phone">Phone Number *</label>
+<input type="tel" id="phone" name="phone" required placeholder="(123) 456-7890">
+</div>
+
+<div class="form-group">
+<label for="event-date">When do you need it? *</label>
+<input type="date" id="event-date" name="event-date" required>
+</div>
+
+<div class="form-group">
+<label for="product">What are you interested in? *</label>
+<select id="product" name="product" required>
+<option value="">-- Select a product --</option>
+<option value="Mini Cakes">🎂 Mini Cakes</option>
+<option value="Cookie Box">🍪 Cookie Box</option>
+<option value="Dessert Box">🍰 Dessert Box</option>
+<option value="Custom Treat Tray">🎉 Custom Treat Tray</option>
+<option value="Other">📋 Something Custom</option>
+</select>
+</div>
+
+<div class="form-group">
+<label for="quantity">Quantity/Size *</label>
+<input type="text" id="quantity" name="quantity" required placeholder="e.g., 24 cookies, 12 cupcakes, etc.">
+</div>
+
+<div class="form-group">
+<label for="flavors">Flavor Preferences</label>
+<textarea id="flavors" name="flavors" placeholder="Tell me about your favorite flavors, dietary restrictions, theme ideas, etc."></textarea>
+</div>
+
+<div class="form-group">
+<label for="details">Order Details *</label>
+<textarea id="details" name="details" required placeholder="Describe what you're looking for. Include event type, theme, colors, any special requests..."></textarea>
+</div>
+
+<div class="form-group">
+<label for="budget">Budget Range</label>
+<input type="text" id="budget" name="budget" placeholder="e.g., $50-100">
+</div>
+
+<button type="submit" class="form-button">Submit Order Request</button>
+
+</form>
+</div>
+</section>
+
+<section id="contact" class="section">
+<h2 style="color: #ff7aa2; text-align: center; margin-bottom: 20px;">Get In Touch</h2>
+<div class="about-content" style="text-align: center;">
+<p style="font-size: 1.1em; margin-bottom: 15px;">📧 Email: <strong>your-email@example.com</strong></p>
+<p style="font-size: 1.1em; margin-bottom: 15px;">📱 Instagram: <strong>@sweetenthedeal</strong></p>
+<p style="font-size: 1.1em;">Or fill out the Custom Order Form above!</p>
+</div>
+</section>
+
+<footer>
+<p>© 2026 Sweeten The Deal Bakery</p>
+<p>Made with ❤️ in Chicago, IL</p>
+</footer>
+
+<script>
+function scrollToForm() {
+    document.getElementById('custom-order').scrollIntoView({ behavior: 'smooth' });
+}
+
+function addToCart(product, type) {
+    document.getElementById('product').value = product;
+    scrollToForm();
+}
+
+function submitForm(event) {
+    event.preventDefault();
+    
+    // Collect form data
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        eventDate: document.getElementById('event-date').value,
+        product: document.getElementById('product').value,
+        quantity: document.getElementById('quantity').value,
+        flavors: document.getElementById('flavors').value,
+        details: document.getElementById('details').value,
+        budget: document.getElementById('budget').value,
+        submittedAt: new Date().toLocaleString()
+    };
+    
+    // For now, log to console (you'll need to add backend integration)
+    console.log('Order submitted:', formData);
+    
+    // Show success message
+    const successMsg = document.getElementById('successMessage');
+    successMsg.style.display = 'block';
+    
+    // Reset form
+    document.getElementById('orderForm').reset();
+    
+    // Hide success message after 5 seconds
+    setTimeout(() => {
+        successMsg.style.display = 'none';
+    }, 5000);
+    
+    // Optional: You can send this data to a backend service here
+    // sendToBackend(formData);
+}
+</script>
+
+</body>
+</html>
