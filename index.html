@@ -11,18 +11,8 @@ emailjs.init("9KMyS9KkzLNPVBOle");
 </script>
 
 <style>
-body{
-font-family:Arial;
-margin:0;
-background:#fff7f2;
-}
-
-header{
-background:#ff7aa2;
-color:white;
-text-align:center;
-padding:25px;
-}
+body{font-family:Arial;margin:0;background:#fff7f2;}
+header{background:#ff7aa2;color:white;text-align:center;padding:25px;}
 
 .products{
 display:grid;
@@ -65,10 +55,7 @@ font-size:18px;
 margin:10px 0;
 }
 
-.warning{
-color:red;
-font-size:12px;
-}
+.warning{color:red;font-size:12px;}
 </style>
 </head>
 
@@ -81,102 +68,78 @@ font-size:12px;
 
 <!-- MENU -->
 <section>
-<h2>Our Menu</h2>
+<h2>Menu</h2>
 
 <div class="products">
 
 <div class="card">
 <h3>Mini Cakes</h3>
-<p class="price">$7 each</p>
-<p class="desc">Soft mini cakes with custom frosting and designs.</p>
+<p class="price">$7</p>
+<p class="desc">Soft mini cakes with frosting and custom themes.</p>
 <select id="miniSize">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-<option value="6">Half Dozen</option>
-<option value="12">Dozen</option>
+<option value="1">1</option><option value="2">2</option><option value="3">3</option>
+<option value="4">4</option><option value="5">5</option>
+<option value="6">Half Dozen</option><option value="12">Dozen</option>
 </select>
 <button onclick="addItem('Mini Cake',7,'miniSize')">Add</button>
 </div>
 
 <div class="card">
 <h3>Cake Pops</h3>
-<p class="price">$2.50 each</p>
-<p class="desc">Chocolate dipped cake bites with drizzle and toppings.</p>
+<p class="price">$2.50</p>
+<p class="desc">Chocolate dipped cake pops with drizzle designs.</p>
 <select id="popSize">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-<option value="6">Half Dozen</option>
-<option value="12">Dozen</option>
+<option value="1">1</option><option value="2">2</option><option value="3">3</option>
+<option value="4">4</option><option value="5">5</option>
+<option value="6">Half Dozen</option><option value="12">Dozen</option>
 </select>
 <button onclick="addItem('Cake Pop',2.5,'popSize')">Add</button>
 </div>
 
 <div class="card">
 <h3>Dipped Rice Krispies</h3>
-<p class="price">$2 each</p>
-<p class="desc">Marshmallow rice treats dipped in chocolate with custom toppings.</p>
+<p class="price">$2</p>
+<p class="desc">Chocolate dipped rice treats with custom toppings.</p>
 <select id="krispieSize">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-<option value="6">Half Dozen</option>
-<option value="12">Dozen</option>
+<option value="1">1</option><option value="2">2</option><option value="3">3</option>
+<option value="4">4</option><option value="5">5</option>
+<option value="6">Half Dozen</option><option value="12">Dozen</option>
 </select>
 <button onclick="addItem('Rice Krispie',2,'krispieSize')">Add</button>
 </div>
 
 <div class="card">
 <h3>Pretzels</h3>
-<p class="price">$1.50 each</p>
-<p class="desc">Chocolate dipped pretzels with themed decorations.</p>
+<p class="price">$1.50</p>
+<p class="desc">Chocolate dipped pretzels.</p>
 <select id="pretzelSize">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-<option value="6">Half Dozen</option>
-<option value="12">Dozen</option>
+<option value="1">1</option><option value="2">2</option><option value="3">3</option>
+<option value="4">4</option><option value="5">5</option>
+<option value="6">Half Dozen</option><option value="12">Dozen</option>
 </select>
 <button onclick="addItem('Pretzel',1.5,'pretzelSize')">Add</button>
 </div>
 
 <div class="card">
 <h3>Dipped Strawberries</h3>
-<p class="price">$3 each</p>
-<p class="desc">Fresh strawberries dipped in chocolate with drizzle designs.</p>
+<p class="price">$3</p>
+<p class="desc">Chocolate strawberries with drizzle.</p>
 <select id="berrySize">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-<option value="6">Half Dozen</option>
-<option value="12">Dozen</option>
+<option value="1">1</option><option value="2">2</option><option value="3">3</option>
+<option value="4">4</option><option value="5">5</option>
+<option value="6">Half Dozen</option><option value="12">Dozen</option>
 </select>
 <button onclick="addItem('Strawberry',3,'berrySize')">Add</button>
 </div>
 
 <div class="card">
 <h3>Cookies</h3>
-<p class="price">$3 each</p>
-<p class="desc">Soft baked cookies with custom flavors and icing.</p>
+<p class="price">$3</p>
+<p class="desc">Soft baked cookies with flavors.</p>
 <select id="cookieSize">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-<option value="6">Half Dozen</option>
-<option value="12">Dozen</option>
+<option value="1">1</option><option value="2">2</option><option value="3">3</option>
+<option value="4">4</option><option value="5">5</option>
+<option value="6">Half Dozen</option><option value="12">Dozen</option>
 </select>
 <button onclick="addItem('Cookie',3,'cookieSize')">Add</button>
 </div>
@@ -184,46 +147,7 @@ font-size:12px;
 </div>
 </section>
 
-<!-- BOXES -->
-<section>
-<h2>Custom Boxes</h2>
-
-<div class="products">
-
-<div class="card">
-<h3>Everything Box</h3>
-<p><b>Limit: 24 items</b></p>
-
-Mini Cakes <input type="number" id="e_mini" value="0">
-Cake Pops <input type="number" id="e_pop" value="0">
-Rice Krispies <input type="number" id="e_rice" value="0">
-Pretzels <input type="number" id="e_pretzel" value="0">
-Strawberries <input type="number" id="e_straw" value="0">
-Cookies <input type="number" id="e_cookie" value="0">
-
-<p class="warning" id="e_warn"></p>
-<button onclick="addEverything()">Add Box</button>
-</div>
-
-<div class="card">
-<h3>Party Tray</h3>
-<p><b>Limit: 72 items</b></p>
-
-Mini Cakes <input type="number" id="p_mini" value="0">
-Cake Pops <input type="number" id="p_pop" value="0">
-Rice Krispies <input type="number" id="p_rice" value="0">
-Pretzels <input type="number" id="p_pretzel" value="0">
-Strawberries <input type="number" id="p_straw" value="0">
-Cookies <input type="number" id="p_cookie" value="0">
-
-<p class="warning" id="p_warn"></p>
-<button onclick="addParty()">Add Tray</button>
-</div>
-
-</div>
-</section>
-
-<!-- ORDER -->
+<!-- CHECKOUT -->
 <section>
 <h2>Checkout</h2>
 
@@ -244,60 +168,37 @@ Cookies <input type="number" id="p_cookie" value="0">
 <p>Delivery Fee: $<span id="deliveryFeeDisplay">0.00</span></p>
 </div>
 
-<button id="payDepositBtn" onclick="payDeposit()">Pay Deposit Now</button>
+<button onclick="payDeposit()">Pay Deposit Now</button>
 <button onclick="sendOrder()">Send Order</button>
 
 </section>
 
 <script>
 
-let cart = {};
-let deliveryFee = 0;
-let deposit = 0;
-let finalTotal = 0;
+let cart={};
+let deliveryFee=0;
+let finalTotal=0;
+let deposit=0;
 
-function addItem(name, price, selectId){
-let qty = +document.getElementById(selectId).value;
-let key = name + " (" + qty + ")";
-cart[key] = {qty, price};
+function addItem(name,price,id){
+let qty=+document.getElementById(id).value;
+cart[name+"("+qty+")"]={qty,price};
 render();
 }
 
 function toggleAddress(){
-let m = document.getElementById("method").value;
-document.getElementById("address").style.display = m==="delivery"?"block":"none";
-document.getElementById("zip").style.display = m==="delivery"?"block":"none";
+let m=document.getElementById("method").value;
+document.getElementById("address").style.display=m==="delivery"?"block":"none";
+document.getElementById("zip").style.display=m==="delivery"?"block":"none";
 }
 
 function calculateDelivery(){
-let zip = document.getElementById("zip").value;
+let zip=document.getElementById("zip").value;
 if(!zip) return 0;
 
 if(zip.startsWith("606")) return 10;
 if(["601","602","603","604","605","607","608"].some(z=>zip.startsWith(z))) return 20;
 return 40;
-}
-
-function addEverything(){
-let total = 0;
-["e_mini","e_pop","e_rice","e_pretzel","e_straw","e_cookie"].forEach(id=>{
-total += +document.getElementById(id).value;
-});
-if(total>24) return alert("Max 24 items");
-
-cart["Everything Box"]={qty:1,price:50,items:total};
-render();
-}
-
-function addParty(){
-let total = 0;
-["p_mini","p_pop","p_rice","p_pretzel","p_straw","p_cookie"].forEach(id=>{
-total += +document.getElementById(id).value;
-});
-if(total>72) return alert("Max 72 items");
-
-cart["Party Tray"]={qty:1,price:100,items:total};
-render();
 }
 
 function render(){
@@ -307,14 +208,12 @@ let text="";
 
 for(let i in cart){
 subtotal+=cart[i].qty*cart[i].price;
-text+=`🍰 ${i}\nItems:${cart[i].items||cart[i].qty}\n\n`;
+text+=`🍰 ${i}\n`;
 }
 
 if(document.getElementById("method").value==="delivery"){
 deliveryFee=calculateDelivery();
-}else{
-deliveryFee=0;
-}
+}else deliveryFee=0;
 
 finalTotal=subtotal+deliveryFee;
 deposit=finalTotal*0.5;
@@ -327,17 +226,39 @@ document.getElementById("deliveryFeeDisplay").innerText=deliveryFee.toFixed(2);
 }
 
 function payDeposit(){
-
 render();
-
 let cashapp="https://cash.app/$TommiGriffen";
-let msg=`Deposit: $${deposit.toFixed(2)}\nTotal:${finalTotal.toFixed(2)}`;
-
+let msg=`Deposit: $${deposit.toFixed(2)} Total: $${finalTotal.toFixed(2)}`;
 window.open(cashapp+"?note="+encodeURIComponent(msg),"_blank");
 }
 
 function sendOrder(){
-alert("Order sent (connect emailjs if needed)");
+
+let name=prompt("Name:");
+let email=prompt("Email:");
+
+render();
+
+let method=document.getElementById("method").value;
+let address=document.getElementById("address").value;
+let zip=document.getElementById("zip").value;
+
+if(method==="delivery" && (!address||!zip)){
+alert("Enter delivery info");
+return;
+}
+
+emailjs.send("service_5mueiya","template_3701r98",{
+name,email,
+order:document.getElementById("orderDetails").value,
+total:finalTotal.toFixed(2),
+deposit:deposit.toFixed(2),
+deliveryFee:deliveryFee.toFixed(2),
+method,address,zip
+})
+.then(()=>alert("Order sent!"))
+.catch(err=>alert("Failed - check EmailJS"));
+
 }
 
 </script>
