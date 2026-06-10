@@ -238,14 +238,19 @@ document.getElementById("orderForm").addEventListener("submit", function(e){
 
     // EMAIL SEND
     emailjs.send("service_5mueiya", "template_3701r98", {
-        name: name,
-        email: email,
-        method: method,
-        date: date,
-        order: order
-    });
+    name: name,
+    email: email,
+    method: method,
+    date: date,
+    order: order
+})
+.then(function(response) {
+    console.log("Email sent!", response.status);
 
-    // INSTAGRAM MESSAGE
+    alert("Order sent successfully!");
+    document.getElementById("orderForm").reset();
+
+    // Instagram opens ONLY after success
     const message =
 `Sweeten The Deal Order:
 
@@ -258,11 +263,12 @@ Order:
 ${order}`;
 
     const igLink = "https://instagram.com/direct/new/?text=" + encodeURIComponent(message);
-
     window.open(igLink, "_blank");
 
-    alert("Order sent successfully!");
-    this.reset();
+})
+.catch(function(error) {
+    console.log("FAILED...", error);
+    alert("Email failed. Please try again or DM Instagram.");
 });
 </script>
 
