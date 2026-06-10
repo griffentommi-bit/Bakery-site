@@ -134,58 +134,127 @@ margin-top:20px;
 <div class="card">
 <h3>Mini Cakes</h3>
 <p class="price">$7 each</p>
+<p>
+Soft mini cakes made fresh daily.
+<br><br>
+<b>Customizable:</b> flavor, frosting color, sprinkles, theme
+</p>
+<button onclick="addToOrder('Mini Cake (custom flavor/frosting/theme)')">Add to Order</button>
 </div>
 
 <div class="card">
 <h3>Cake Pops</h3>
 <p class="price">$2.50 each</p>
+<p>
+Chocolate-dipped cake pops, decorated for any event.
+<br><br>
+<b>Customizable:</b> coating color, drizzle, sprinkles, theme
+</p>
+<button onclick="addToOrder('Cake Pops (custom coating/decor)')">Add to Order</button>
 </div>
 
 <div class="card">
 <h3>Dipped Rice Krispies</h3>
 <p class="price">$2 each</p>
+<p>
+Crunchy rice krispies dipped in chocolate.
+<br><br>
+<b>Customizable:</b> chocolate type, drizzle color, toppings
+</p>
+<button onclick="addToOrder('Dipped Rice Krispies (custom toppings)')">Add to Order</button>
 </div>
 
 <div class="card">
 <h3>Dipped Pretzels</h3>
 <p class="price">$1.50 each</p>
+<p>
+Sweet & salty pretzels dipped in chocolate.
+<br><br>
+<b>Customizable:</b> chocolate type, drizzle, sprinkles
+</p>
+<button onclick="addToOrder('Dipped Pretzels (custom chocolate/toppings)')">Add to Order</button>
+</div>
+
+<div class="card">
+<h3>Dipped Strawberries</h3>
+<p class="price">$3 each</p>
+<p>
+Fresh strawberries dipped in chocolate.
+<br><br>
+<b>Customizable:</b> chocolate type, toppings, drizzle colors
+</p>
+<button onclick="addToOrder('Dipped Strawberries (custom chocolate/toppings)')">Add to Order</button>
 </div>
 
 <div class="card">
 <h3>Cookies</h3>
 <p class="price">$3 each</p>
+<p>
+Fresh baked cookies made to order.
+<br><br>
+<b>Customizable:</b> flavor, chips, toppings
+</p>
+<button onclick="addToOrder('Cookies (custom flavor/toppings)')">Add to Order</button>
 </div>
 
 <div class="card">
-<h3>Cookie Box (6)</h3>
+<h3>Cookie Box (Half Dozen)</h3>
 <p class="price">$15</p>
+<p>
+6 assorted cookies.
+<br><br>
+<b>Customizable:</b> flavor mix, toppings, packaging style
+</p>
+<button onclick="addToOrder('Cookie Box (6 cookies - custom mix)')">Add to Order</button>
 </div>
 
 <div class="card">
-<h3>Cookie Box (12)</h3>
-<p class="price">$30</p>
+<h3>Cookie Box (Dozen)</h3>
+<p class="price">$28</p>
+<p>
+12 assorted cookies.
+<br><br>
+<b>Customizable:</b> full flavor selection, mix ratios, toppings
+</p>
+<button onclick="addToOrder('Cookie Box (12 cookies - custom mix)')">Add to Order</button>
 </div>
 
 <div class="card">
 <h3>Dessert Box</h3>
-<p class="price">$25</p>
-<p>Assorted cake pops, rice krispies, pretzels</p>
+<p class="price">$25–$35</p>
+<p>
+Includes cake pops, rice krispies, pretzels + optional strawberries.
+<br><br>
+<b>Customizable:</b> item mix, chocolate types, add strawberries, theme colors
+</p>
+<button onclick="addToOrder('Dessert Box (custom mix)')">Add to Order</button>
 </div>
 
 <div class="card">
 <h3>Everything Deal Box</h3>
-<p class="price">$55</p>
-<p>6 of all desserts + 2 mini cakes + 2 cookies</p>
+<p class="price">$55–$60</p>
+<p>
+Includes all desserts in a balanced mix.
+<br><br>
+<b>Customizable:</b> quantities, colors, theme, strawberry add-on
+</p>
+<button onclick="addToOrder('Everything Deal Box (custom mix)')">Add to Order</button>
 </div>
 
 <div class="card">
 <h3>Party Tray</h3>
-<p class="price">$110</p>
-<p>Dozen of everything</p>
+<p class="price">$100–$120</p>
+<p>
+Large event tray with bulk quantities of everything.
+<br><br>
+<b>Customizable:</b> full dessert selection, colors, theme, event style
+</p>
+<button onclick="addToOrder('Party Tray (fully custom event order)')">Add to Order</button>
 </div>
 
 </div>
 </section>
+
 
 <section id="order">
 <h2>Place Order</h2>
@@ -271,6 +340,18 @@ ${order}`;
     alert("Email failed. Please try again or DM Instagram.");
 });
 </script>
+<script>
+function addToOrder(item){
+    const orderBox = document.getElementById("orderDetails");
 
+    if(orderBox.value.trim() === ""){
+        orderBox.value = item;
+    } else {
+        orderBox.value += "\n- " + item;
+    }
+
+    document.getElementById("order").scrollIntoView({behavior:"smooth"});
+}
+</script>
 </body>
 </html>
