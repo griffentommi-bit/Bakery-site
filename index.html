@@ -5,42 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sweeten The Deal</title>
 
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+emailjs.init("9KMyS9KkzLNPVBOle");
+</script>
+
 <style>
 body{
-font-family:Arial,sans-serif;
+font-family:Arial;
 margin:0;
 background:#fff7f2;
-color:#333;
 }
 
 header{
 background:#ff7aa2;
 color:white;
 text-align:center;
-padding:30px;
-}
-
-nav{
-background:#ffe3ec;
-padding:12px;
-text-align:center;
-}
-
-nav a{
-margin:0 10px;
-text-decoration:none;
-font-weight:bold;
-color:#333;
-}
-
-.hero{
-text-align:center;
-padding:30px;
+padding:25px;
 }
 
 .products{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:15px;
 padding:20px;
 }
@@ -49,309 +35,332 @@ padding:20px;
 background:white;
 padding:15px;
 border-radius:12px;
-box-shadow:0 2px 8px rgba(0,0,0,.1);
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
 }
 
 .price{
-font-weight:bold;
 color:#ff4f87;
+font-weight:bold;
 }
 
 section{
 padding:20px;
 }
 
-form{
-max-width:500px;
-margin:auto;
-display:flex;
-flex-direction:column;
-gap:10px;
-}
-
-input,select,textarea{
-padding:10px;
-border-radius:8px;
-border:1px solid #ccc;
-}
-
 button{
 background:#ff7aa2;
 color:white;
 border:none;
-padding:12px;
+padding:8px;
 border-radius:8px;
 cursor:pointer;
+margin-top:5px;
 }
 
-.review{
-background:white;
-padding:10px;
-margin-bottom:10px;
-border-radius:10px;
+select,input{
+padding:6px;
+width:100%;
+margin-top:5px;
 }
 
-footer{
-background:#ff7aa2;
-color:white;
+#cartBox{
 text-align:center;
-padding:15px;
-margin-top:20px;
+font-size:18px;
+margin:10px 0;
+}
+
+.warning{
+color:red;
+font-size:12px;
 }
 </style>
-
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-<script>
-  emailjs.init("9KMyS9KkzLNPVBOle");
-</script>
-
 </head>
 
 <body>
 
 <header>
-<h1>Sweeten The Deal</h1>
-<p>Custom flavors available upon request</p>
+<h1>Sweeten The Deal 🍰</h1>
+<p>Custom desserts made in Chicago</p>
 </header>
 
-<nav>
-<a href="#products">Products</a>
-<a href="#order">Order</a>
-<a href="#reviews">Reviews</a>
-<a href="#contact">Contact</a>
-</nav>
-
-<section class="hero">
-<h2>Chicago Area Desserts 🍰</h2>
-<p>Pickup or delivery available</p>
-</section>
-
-<section id="products">
+<!-- MENU -->
+<section>
 <h2>Our Menu</h2>
 
 <div class="products">
 
 <div class="card">
 <h3>Mini Cakes</h3>
-<p class="price">$7 each</p>
-<p>
-Soft mini cakes made fresh daily.
-<br><br>
-<b>Customizable:</b> flavor, frosting color, sprinkles, theme
-</p>
-<button onclick="addToOrder('Mini Cake (custom flavor/frosting/theme)')">Add to Order</button>
+<p class="price">$7</p>
+<select id="miniSize">
+<option value="1">1</option>
+<option value="6">Half Dozen</option>
+<option value="12">Dozen</option>
+</select>
+<button onclick="addItem('Mini Cake',7,'miniSize')">Add</button>
 </div>
 
 <div class="card">
 <h3>Cake Pops</h3>
-<p class="price">$2.50 each</p>
-<p>
-Chocolate-dipped cake pops, decorated for any event.
-<br><br>
-<b>Customizable:</b> coating color, drizzle, sprinkles, theme
-</p>
-<button onclick="addToOrder('Cake Pops (custom coating/decor)')">Add to Order</button>
+<p class="price">$2.50</p>
+<select id="popSize">
+<option value="6">Half Dozen</option>
+<option value="12">Dozen</option>
+</select>
+<button onclick="addItem('Cake Pop',2.5,'popSize')">Add</button>
 </div>
 
 <div class="card">
-<h3>Dipped Rice Krispies</h3>
-<p class="price">$2 each</p>
-<p>
-Crunchy rice krispies dipped in chocolate.
-<br><br>
-<b>Customizable:</b> chocolate type, drizzle color, toppings
-</p>
-<button onclick="addToOrder('Dipped Rice Krispies (custom toppings)')">Add to Order</button>
+<h3>Rice Krispies</h3>
+<p class="price">$2</p>
+<select id="krispieSize">
+<option value="6">Half Dozen</option>
+<option value="12">Dozen</option>
+</select>
+<button onclick="addItem('Rice Krispie',2,'krispieSize')">Add</button>
 </div>
 
 <div class="card">
-<h3>Dipped Pretzels</h3>
-<p class="price">$1.50 each</p>
-<p>
-Sweet & salty pretzels dipped in chocolate.
-<br><br>
-<b>Customizable:</b> chocolate type, drizzle, sprinkles
-</p>
-<button onclick="addToOrder('Dipped Pretzels (custom chocolate/toppings)')">Add to Order</button>
+<h3>Pretzels</h3>
+<p class="price">$1.50</p>
+<select id="pretzelSize">
+<option value="6">Half Dozen</option>
+<option value="12">Dozen</option>
+</select>
+<button onclick="addItem('Pretzel',1.5,'pretzelSize')">Add</button>
 </div>
 
 <div class="card">
-<h3>Dipped Strawberries</h3>
-<p class="price">$3 each</p>
-<p>
-Fresh strawberries dipped in chocolate.
-<br><br>
-<b>Customizable:</b> chocolate type, toppings, drizzle colors
-</p>
-<button onclick="addToOrder('Dipped Strawberries (custom chocolate/toppings)')">Add to Order</button>
+<h3>Strawberries</h3>
+<p class="price">$3</p>
+<select id="berrySize">
+<option value="6">Half Dozen</option>
+<option value="12">Dozen</option>
+</select>
+<button onclick="addItem('Strawberry',3,'berrySize')">Add</button>
 </div>
 
 <div class="card">
 <h3>Cookies</h3>
-<p class="price">$3 each</p>
-<p>
-Fresh baked cookies made to order.
-<br><br>
-<b>Customizable:</b> flavor, chips, toppings
-</p>
-<button onclick="addToOrder('Cookies (custom flavor/toppings)')">Add to Order</button>
-</div>
-
-<div class="card">
-<h3>Cookie Box (Half Dozen)</h3>
-<p class="price">$15</p>
-<p>
-6 assorted cookies.
-<br><br>
-<b>Customizable:</b> flavor mix, toppings, packaging style
-</p>
-<button onclick="addToOrder('Cookie Box (6 cookies - custom mix)')">Add to Order</button>
-</div>
-
-<div class="card">
-<h3>Cookie Box (Dozen)</h3>
-<p class="price">$28</p>
-<p>
-12 assorted cookies.
-<br><br>
-<b>Customizable:</b> full flavor selection, mix ratios, toppings
-</p>
-<button onclick="addToOrder('Cookie Box (12 cookies - custom mix)')">Add to Order</button>
-</div>
-
-<div class="card">
-<h3>Dessert Box</h3>
-<p class="price">$25–$35</p>
-<p>
-Includes cake pops, rice krispies, pretzels + optional strawberries.
-<br><br>
-<b>Customizable:</b> item mix, chocolate types, add strawberries, theme colors
-</p>
-<button onclick="addToOrder('Dessert Box (custom mix)')">Add to Order</button>
-</div>
-
-<div class="card">
-<h3>Everything Deal Box</h3>
-<p class="price">$55–$60</p>
-<p>
-Includes all desserts in a balanced mix.
-<br><br>
-<b>Customizable:</b> quantities, colors, theme, strawberry add-on
-</p>
-<button onclick="addToOrder('Everything Deal Box (custom mix)')">Add to Order</button>
-</div>
-
-<div class="card">
-<h3>Party Tray</h3>
-<p class="price">$100–$120</p>
-<p>
-Large event tray with bulk quantities of everything.
-<br><br>
-<b>Customizable:</b> full dessert selection, colors, theme, event style
-</p>
-<button onclick="addToOrder('Party Tray (fully custom event order)')">Add to Order</button>
+<p class="price">$3</p>
+<select id="cookieSize">
+<option value="2">2</option>
+<option value="6">Half Dozen</option>
+<option value="12">Dozen</option>
+</select>
+<button onclick="addItem('Cookie',3,'cookieSize')">Add</button>
 </div>
 
 </div>
 </section>
 
+<!-- EVERYTHING BOX -->
+<section>
+<h2>Custom Boxes</h2>
 
-<section id="order">
-<h2>Place Order</h2>
+<div class="products">
+
+<div class="card">
+<h3>Everything Deal Box</h3>
+<p class="price">$55–$60</p>
+
+<p><b>Limit: 24 items max</b></p>
+
+Mini Cakes <input type="number" id="e_mini" value="0">
+Cake Pops <input type="number" id="e_pop" value="0">
+Rice Krispies <input type="number" id="e_rice" value="0">
+Pretzels <input type="number" id="e_pretzel" value="0">
+Strawberries <input type="number" id="e_straw" value="0">
+Cookies <input type="number" id="e_cookie" value="0">
+
+<p class="warning" id="e_warn"></p>
+
+<button onclick="addEverything()">Add Box</button>
+
+<p><b>Customizable:</b> theme colors, style, packaging, toppings, chocolate type</p>
+</div>
+
+<div class="card">
+<h3>Party Tray</h3>
+<p class="price">$100–$120</p>
+
+<p><b>Limit: 72 items max</b></p>
+
+Mini Cakes <input type="number" id="p_mini" value="0">
+Cake Pops <input type="number" id="p_pop" value="0">
+Rice Krispies <input type="number" id="p_rice" value="0">
+Pretzels <input type="number" id="p_pretzel" value="0">
+Strawberries <input type="number" id="p_straw" value="0">
+Cookies <input type="number" id="p_cookie" value="0">
+
+<p class="warning" id="p_warn"></p>
+
+<button onclick="addParty()">Add Tray</button>
+
+<p><b>Customizable:</b> theme colors, event style, packaging, decorations, flavors</p>
+</div>
+
+</div>
+</section>
+
+<!-- ORDER -->
+<section>
+<h2>Your Order</h2>
 
 <form id="orderForm">
 
-<input type="text" id="name" placeholder="Full Name" required>
-<input type="email" id="email" placeholder="Email Address" required>
+<input type="text" id="name" placeholder="Name" required>
+<input type="email" id="email" placeholder="Email" required>
 
 <select id="method">
-<option value="Pickup">Pickup</option>
-<option value="Delivery (Chicago Area)">Delivery (Chicago Area)</option>
+<option>Pickup</option>
+<option>Delivery (Chicago)</option>
 </select>
 
 <input type="date" id="date" required>
 
-<textarea id="orderDetails" placeholder="What would you like to order?" required></textarea>
+<textarea id="orderDetails" rows="6" placeholder="Your cart..."></textarea>
+
+<div id="cartBox">
+<h3>Total: $<span id="total">0.00</span></h3>
+</div>
 
 <button type="submit">Send Order</button>
 
 </form>
 </section>
 
-<section id="reviews">
-<h2>Reviews</h2>
-<p>⭐ More reviews coming soon...</p>
-</section>
-
-<section id="contact">
-<h2>Contact</h2>
-
-<p>📧 Email: griffentommi@gmail.com</p>
-<p>📸 Instagram: @Tommi_Griffen</p>
-
-</section>
-
-<footer>
-<p>© 2026 Sweeten The Deal</p>
-</footer>
-
 <script>
+
+// ===== CART =====
+let cart = {};
+
+function addItem(name, price, selectId){
+let qty = parseInt(document.getElementById(selectId).value);
+let key = name + " x" + qty;
+
+cart[key] = {qty:qty, price:price};
+
+render();
+}
+
+// ===== EVERYTHING BOX (24 LIMIT) =====
+function addEverything(){
+
+let mini = +document.getElementById("e_mini").value;
+let pop = +document.getElementById("e_pop").value;
+let rice = +document.getElementById("e_rice").value;
+let pretzel = +document.getElementById("e_pretzel").value;
+let straw = +document.getElementById("e_straw").value;
+let cookie = +document.getElementById("e_cookie").value;
+
+let totalItems = mini+pop+rice+pretzel+straw+cookie;
+
+if(totalItems > 24){
+document.getElementById("e_warn").innerText = "Max 24 items allowed!";
+return;
+}
+
+document.getElementById("e_warn").innerText = "";
+
+let price =
+(mini*7)+(pop*2.5)+(rice*2)+(pretzel*1.5)+(straw*3)+(cookie*3);
+
+cart["Everything Box"] = {
+qty:1,
+price:price
+};
+
+render();
+}
+
+// ===== PARTY TRAY (72 LIMIT) =====
+function addParty(){
+
+let mini = +document.getElementById("p_mini").value;
+let pop = +document.getElementById("p_pop").value;
+let rice = +document.getElementById("p_rice").value;
+let pretzel = +document.getElementById("p_pretzel").value;
+let straw = +document.getElementById("p_straw").value;
+let cookie = +document.getElementById("p_cookie").value;
+
+let totalItems = mini+pop+rice+pretzel+straw+cookie;
+
+if(totalItems > 72){
+document.getElementById("p_warn").innerText = "Max 72 items allowed!";
+return;
+}
+
+document.getElementById("p_warn").innerText = "";
+
+let price =
+(mini*7)+(pop*2.5)+(rice*2)+(pretzel*1.5)+(straw*3)+(cookie*3);
+
+cart["Party Tray"] = {
+qty:1,
+price:price
+};
+
+render();
+}
+
+// ===== RENDER CART =====
+function render(){
+
+let text = "";
+let total = 0;
+
+for(let item in cart){
+let t = cart[item].qty * cart[item].price;
+total += t;
+text += `${item} = $${t.toFixed(2)}\n`;
+}
+
+document.getElementById("orderDetails").value = text;
+document.getElementById("total").innerText = total.toFixed(2);
+}
+
+// ===== SEND ORDER =====
 document.getElementById("orderForm").addEventListener("submit", function(e){
-    e.preventDefault();
+e.preventDefault();
 
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const method = document.getElementById("method").value;
-    const date = document.getElementById("date").value;
-    const order = document.getElementById("orderDetails").value;
+let name = name.value;
+let email = email.value;
+let method = method.value;
+let date = date.value;
 
-    // EMAIL SEND
-    emailjs.send("service_5mueiya", "template_3701r98", {
-    name: name,
-    email: email,
-    method: method,
-    date: date,
-    order: order
+let order = document.getElementById("orderDetails").value;
+let time = new Date().toLocaleString();
+
+emailjs.send("service_5mueiya","template_3701r98",{
+name,email,method,date,order,time
 })
-.then(function(response) {
-    console.log("Email sent!", response.status);
+.then(()=>{
 
-    alert("Order sent successfully!");
-    document.getElementById("orderForm").reset();
+let msg =
+`🍰 ORDER 🍰
 
-    // Instagram opens ONLY after success
-    const message =
-`Sweeten The Deal Order:
+${order}
 
-Name: ${name}
-Email: ${email}
-Method: ${method}
-Date: ${date}
+TOTAL: $${document.getElementById("total").innerText}`;
 
-Order:
-${order}`;
+let ig = "https://instagram.com/direct/new/?text=" + encodeURIComponent(msg);
+window.open(ig,"_blank");
 
-    const igLink = "https://instagram.com/direct/new/?text=" + encodeURIComponent(message);
-    window.open(igLink, "_blank");
+alert("Order sent!");
+
+cart = {};
+render();
+document.getElementById("orderForm").reset();
 
 })
-.catch(function(error) {
-    console.log("FAILED...", error);
-    alert("Email failed. Please try again or DM Instagram.");
+.catch(err=>{
+alert("Failed");
+console.log(err);
+});
+
 });
 </script>
-<script>
-function addToOrder(item){
-    const orderBox = document.getElementById("orderDetails");
 
-    if(orderBox.value.trim() === ""){
-        orderBox.value = item;
-    } else {
-        orderBox.value += "\n- " + item;
-    }
-
-    document.getElementById("order").scrollIntoView({behavior:"smooth"});
-}
-</script>
 </body>
 </html>
