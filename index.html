@@ -1,84 +1,233 @@
-/* --- Global Styles --- */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Treats Bakery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="hero">
+        <h1>🍓 Sweet Treats Bakery 🍓</h1>
+        <p>Made With Love 🧁</p>
+    </header>
+
+    <div class="layout-container">
+        
+        <main class="main-content">
+            
+            <section class="content-section info-section">
+                <h2>👤 Step 1: Customer Information</h2>
+                <div class="card-body">
+                    <div class="form-group">
+                        <input id="customerName" placeholder="Full Name">
+                        <input id="customerPhone" placeholder="Phone Number">
+                    </div>
+                    
+                    <div class="form-group">
+                        <select id="orderType">
+                            <option value="pickup">🚗 Pickup Order</option>
+                            <option value="delivery">📍 Delivery Order</option>
+                        </select>
+                    </div>
+
+                    <div id="deliveryFields">
+                        <input id="address" placeholder="Street Address">
+                        <div class="form-row">
+                            <input id="city" placeholder="City">
+                            <input id="state" placeholder="State">
+                            <input id="zip" placeholder="ZIP">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section menu-section">
+                <h2>🍰 Step 2: Choose Your Sweets</h2>
+                
+                <div class="menu-grid">
+                    <div class="product-card">
+                        <h3>Mini Cakes</h3>
+                        <p class="price">$7.00</p>
+                        <button onclick="addItem('Mini Cake', 7, 1)">Add to Cart</button>
+                    </div>
+
+                    <div class="product-card">
+                        <h3>Cupcakes</h3>
+                        <p class="price">$3.00</p>
+                        <button onclick="addItem('Cupcakes', 3, 1)">Add to Cart</button>
+                    </div>
+
+                    <div class="product-card">
+                        <h3>Cookies</h3>
+                        <p class="price">$3.00</p>
+                        <button onclick="addItem('Cookies', 3, 1)">Add to Cart</button>
+                    </div>
+
+                    <div class="product-card">
+                        <h3>Cake Pops</h3>
+                        <p class="price">$2.50</p>
+                        <button onclick="addItem('Cake Pops', 2.5, 1)">Add to Cart</button>
+                    </div>
+
+                    <div class="product-card">
+                        <h3>Dipped Strawberries</h3>
+                        <p class="price">$1.50</p>
+                        <button onclick="addItem('Strawberries', 1.5, 1)">Add to Cart</button>
+                    </div>
+
+                    <div class="product-card">
+                        <h3>Dipped Oreos</h3>
+                        <p class="price">$1.50</p>
+                        <button onclick="addItem('Oreos', 1.5, 1)">Add to Cart</button>
+                    </div>
+
+                    <div class="product-card">
+                        <h3>Dipped Pretzels</h3>
+                        <p class="price">$1.50</p>
+                        <button onclick="addItem('Pretzels', 1.5, 1)">Add to Cart</button>
+                    </div>
+
+                    <div class="product-card">
+                        <h3>Dipped Rice Krispies</h3>
+                        <p class="price">$1.50</p>
+                        <button onclick="addItem('Rice Krispies', 1.5, 1)">Add to Cart</button>
+                    </div>
+
+                    <div class="product-card special-box">
+                        <h3>💝 Deal Box</h3>
+                        <p class="price">$50.00</p>
+                        <button onclick="addDealBox()">Add Deal Box</button>
+                    </div>
+
+                    <div class="product-card special-box">
+                        <h3>🎉 Party Box</h3>
+                        <p class="price">$125.00</p>
+                        <button onclick="addPartyBox()">Add Party Box</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <aside class="sidebar">
+            <section class="content-section cart-section">
+                <h2>🛒 Step 3: Your Cart</h2>
+                <div class="card-body">
+                    <div id="cartItems">
+                        </div>
+
+                    <div class="cart-summary">
+                        <div class="summary-row"><span>Total:</span> <span id="orderTotal">$0.00</span></div>
+                        <div class="summary-row highlight"><span>Deposit (50%):</span> <span id="depositTotal">$0.00</span></div>
+                        <div class="summary-row"><span>Remaining:</span> <span id="remainingTotal">$0.00</span></div>
+                    </div>
+
+                    <button id="cashappButton" class="checkout-btn">💸 Pay Deposit ($TommiGriffen)</button>
+                </div>
+            </section>
+        </aside>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+/* --- Global Reset & Background --- */
 body {
     font-family: 'Poppins', sans-serif;
-    background: #fff8fa;
+    background-color: #fff9f6; /* Warm, soft cream background */
     margin: 0;
     color: #4a3b40;
 }
 
 /* --- Hero Banner --- */
 .hero {
-    background: linear-gradient(135deg, #ff7ebb, #ff5fa2);
+    background: linear-gradient(135deg, #ff8ebb, #ff5fa2);
     color: white;
     text-align: center;
-    padding: 40px 20px;
+    padding: 50px 20px;
     font-family: 'Pacifico', cursive;
-    box-shadow: 0 4px 15px rgba(255, 95, 162, 0.2);
+    box-shadow: 0 4px 15px rgba(255, 95, 162, 0.15);
 }
 
 .hero h1 {
-    margin: 0 0 10px 0;
-    font-size: 3rem;
+    margin: 0 0 8px 0;
+    font-size: 3.2rem;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
 .hero p {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
-    opacity: 0.9;
+    opacity: 0.95;
+    letter-spacing: 1px;
 }
 
-/* --- Layout Container --- */
+/* --- Organized Sections Layout --- */
 .layout-container {
     max-width: 1200px;
-    margin: 30px auto;
+    margin: 40px auto;
     padding: 0 20px;
     display: grid;
     grid-template-columns: 1fr 380px;
     gap: 30px;
 }
 
-/* --- Cards & Sections --- */
-.card {
-    background: white;
+/* --- Distinct Color-Blocked Sections --- */
+.content-section {
+    background: #ffffff;
+    border-radius: 20px;
     padding: 25px;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(234, 182, 203, 0.15);
-    border: 1px solid rgba(255, 95, 162, 0.1);
-    margin-bottom: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 24px rgba(163, 140, 150, 0.08);
+    border: 1px solid rgba(255, 95, 162, 0.08);
 }
 
-h2 {
-    color: #ff5fa2;
+/* Individual Segment Header Accents */
+.content-section h2 {
     margin-top: 0;
     font-size: 1.4rem;
-    border-bottom: 2px solid #fff0f5;
-    padding-bottom: 10px;
+    padding-bottom: 12px;
     margin-bottom: 20px;
+    font-weight: 600;
 }
 
-.section-title {
-    color: #4a3b40;
-    border: none;
-    font-size: 1.8rem;
-    margin-top: 10px;
+.info-section h2 {
+    color: #4a90e2; /* Clear Blue for Info step */
+    border-bottom: 3px solid #e3f2fd;
 }
 
-/* --- Form Fields --- */
+.menu-section {
+    background: #fffbfe; /* Extra soft pinkish hue for the menu section */
+}
+
+.menu-section h2 {
+    color: #ff5fa2; /* Soft Pink for Menu step */
+    border-bottom: 3px solid #ffe3ee;
+}
+
+.cart-section h2 {
+    color: #27ae60; /* Clear Green for Checkout step */
+    border-bottom: 3px solid #e8f8f0;
+}
+
+/* --- Form Formatting --- */
 .form-group, #deliveryFields {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-bottom: 12px;
+    gap: 15px;
+    margin-bottom: 15px;
 }
 
 #deliveryFields {
-    display: none; /* Controlled by JS */
-    margin-top: 12px;
-    border-top: 1px dashed #ffd3e2;
-    padding-top: 15px;
+    display: none; /* Controlled via script.js */
+    margin-top: 15px;
+    border-top: 2px dashed #e3f2fd;
+    padding-top: 20px;
 }
 
 .form-row {
@@ -89,64 +238,66 @@ h2 {
 
 input, select {
     width: 100%;
-    padding: 12px 15px;
-    border: 1px solid #ffd3e2;
-    border-radius: 10px;
+    padding: 14px 16px;
+    border: 2px solid #edf2f7;
+    border-radius: 12px;
     font-family: inherit;
     font-size: 0.95rem;
     box-sizing: border-box;
-    transition: all 0.3s ease;
-    background-color: #fffbfe;
+    transition: all 0.2s ease;
+    background-color: #fafbfc;
 }
 
 input:focus, select:focus {
     outline: none;
-    border-color: #ff5fa2;
-    box-shadow: 0 0 0 3px rgba(255, 95, 162, 0.15);
+    border-color: #4a90e2;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.1);
 }
 
-/* --- Product Grid --- */
+/* --- Product Grid & Cards --- */
 .menu-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
     gap: 20px;
 }
 
 .product-card {
-    background: white;
-    padding: 20px;
+    background: #ffffff;
+    padding: 24px 20px;
     border-radius: 16px;
     text-align: center;
-    box-shadow: 0 8px 20px rgba(234, 182, 203, 0.1);
-    border: 1px solid rgba(255, 95, 162, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(163, 140, 150, 0.05);
+    border: 1px solid #f7f0f2;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 25px rgba(255, 95, 162, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px rgba(255, 95, 162, 0.12);
+    border-color: rgba(255, 95, 162, 0.2);
 }
 
 .product-card h3 {
-    margin: 0 0 8px 0;
+    margin: 0 0 6px 0;
     font-size: 1.1rem;
     color: #4a3b40;
 }
 
 .product-card .price {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     font-weight: 600;
     color: #ff5fa2;
-    margin: 0 0 15px 0;
+    margin: 0 0 16px 0;
 }
 
-/* Specialty Boxes Styling */
+/* Specialty Boxes */
 .special-box {
-    background: linear-gradient(to bottom right, #ffffff, #fff0f5);
-    border: 1px dashed #ff5fa2;
+    background: linear-gradient(135deg, #ffffff, #fff5f8);
+    border: 2px dashed #ffb6d3;
 }
 
 /* --- Buttons --- */
@@ -155,12 +306,11 @@ button {
     color: white;
     border: none;
     padding: 12px 20px;
-    border-radius: 10px;
+    border-radius: 12px;
     font-family: inherit;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s ease, transform 0.1s ease;
-    width: 100%;
+    transition: all 0.2s ease;
 }
 
 button:hover {
@@ -168,17 +318,17 @@ button:hover {
 }
 
 button:active {
-    transform: scale(0.98);
+    transform: scale(0.97);
 }
 
-/* --- Sidebar & Cart --- */
+/* --- Sticky Sidebar Cart --- */
 .sidebar {
     position: sticky;
-    top: 20px;
+    top: 30px;
     height: fit-content;
 }
 
-.cart-card {
+.cart-section {
     max-height: 85vh;
     display: flex;
     flex-direction: column;
@@ -186,25 +336,23 @@ button:active {
 
 #cartItems {
     overflow-y: auto;
-    max-height: 250px;
-    margin-bottom: 15px;
+    max-height: 280px;
+    margin-bottom: 20px;
     padding-right: 5px;
 }
 
-/* Individual Cart Item */
+/* Individual Added Item Row */
 .cart-item {
-    background: #fffbfe;
-    border: 1px solid #ffd3e2;
-    border-radius: 10px;
-    padding: 12px;
-    margin-bottom: 10px;
+    background: #fdfbfc;
+    border: 1px solid #f0e4e8;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 12px;
     font-size: 0.9rem;
-    position: relative;
 }
 
 .cart-item b {
     color: #4a3b40;
-    font-size: 0.95rem;
 }
 
 .cart-item .item-desc {
@@ -218,58 +366,152 @@ button:active {
 }
 
 .cart-item button {
-    background: #ffecf2;
+    background: #fff0f5;
     color: #ff5fa2;
-    padding: 6px 12px;
+    padding: 6px 14px;
     font-size: 0.8rem;
-    margin-top: 8px;
+    margin-top: 10px;
+    width: auto;
 }
 
 .cart-item button:hover {
     background: #ffcedf;
 }
 
-/* Cart Totals Pricing Breakdowns */
+/* Bottom Totals Summary Breakdowns */
 .cart-summary {
-    border-top: 2px solid #fff0f5;
+    border-top: 2px solid #f7f0f2;
     padding-top: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .summary-row {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     font-size: 0.95rem;
 }
 
 .summary-row.highlight {
-    color: #ff5fa2;
+    color: #27ae60;
     font-weight: 600;
-    font-size: 1.05rem;
-    background: #fff0f5;
-    padding: 6px 10px;
-    border-radius: 8px;
+    font-size: 1.1rem;
+    background: #ebf9f1;
+    padding: 8px 12px;
+    border-radius: 10px;
 }
 
+/* Cashapp Button Accent */
 .checkout-btn {
-    background: #25d366; /* Standout cashapp colors/action color */
     background: linear-gradient(135deg, #2ecc71, #27ae60);
     font-size: 1.05rem;
-    padding: 15px;
-    box-shadow: 0 4px 12px rgba(46, 204, 113, 0.2);
+    padding: 16px;
+    width: 100%;
+    box-shadow: 0 6px 16px rgba(46, 204, 113, 0.25);
 }
 
 .checkout-btn:hover {
     background: #219653;
 }
 
-/* --- Responsive Layout (Mobile Optimization) --- */
-@media (max-width: 900px) {
+/* --- Responsive Adjustments --- */
+@media (max-width: 960px) {
     .layout-container {
         grid-template-columns: 1fr;
+        margin: 20px auto;
     }
     .sidebar {
         position: static;
     }
 }
+let cart = [];
+
+function addItem(name, price, qty){
+    cart.push({
+        id: crypto.randomUUID(),
+        name,
+        price,
+        qty,
+        total: price * qty
+    });
+
+    updateCart();
+}
+
+function addDealBox(){
+    cart.push({
+        id: crypto.randomUUID(),
+        name: "Deal Box",
+        price: 50,
+        qty: 1,
+        total: 50,
+        desc: `6 Strawberries<br>
+6 Oreos<br>
+6 Pretzels<br>
+6 Rice Krispies<br>
+2 Cupcakes<br>
+2 Cookies<br>
+2 Cake Pops<br>
+2 Mini Cakes`
+    });
+
+    updateCart();
+}
+
+function addPartyBox(){
+    cart.push({
+        id: crypto.randomUUID(),
+        name: "Party Box",
+        price: 125,
+        qty: 1,
+        total: 125,
+        desc: `12 of everything`
+    });
+
+    updateCart();
+}
+
+function updateCart(){
+    let container = document.getElementById("cartItems");
+    container.innerHTML = "";
+
+    let total = 0;
+
+    cart.forEach(item => {
+        total += item.total;
+
+        container.innerHTML += `
+        <div class="cart-item">
+            <b>${item.name}</b><br>
+            $${item.price.toFixed(2)} x ${item.qty}<br>
+            Total: $${item.total.toFixed(2)}<br>
+            ${item.desc ? `<div class="item-desc">${item.desc}</div>` : ""}
+            <button onclick="removeItem('${item.id}')">Remove</button>
+        </div>
+        `;
+    });
+
+    document.getElementById("orderTotal").innerText = "$" + total.toFixed(2);
+    document.getElementById("depositTotal").innerText = "$" + (total / 2).toFixed(2);
+    document.getElementById("remainingTotal").innerText = "$" + (total / 2).toFixed(2);
+}
+
+function removeItem(id){
+    cart = cart.filter(i => i.id !== id);
+    updateCart();
+}
+
+document.getElementById("orderType").addEventListener("change", function(){
+    document.getElementById("deliveryFields").style.display =
+        this.value === "delivery" ? "flex" : "none";
+});
+
+document.getElementById("cashappButton").addEventListener("click", function(){
+    if(cart.length === 0){
+        alert("Cart is empty");
+        return;
+    }
+
+    alert("Send deposit to $TommiGriffen");
+    window.open("https://cash.app/$TommiGriffen", "_blank");
+});
