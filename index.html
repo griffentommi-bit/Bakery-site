@@ -109,27 +109,25 @@ button:hover {
 <h3>Menu</h3>
 
 <select id="item">
-  <option value="Mini Cake|7">Mini Cake — $7+</option>
-  <option value="Cupcakes|3">Cupcakes — $3</option>
-  <option value="Cake Pops|2.5">Cake Pops — $2.50</option>
-  <option value="Cookies|3">Cookies — $3</option>
+  <option value="Mini Cake|7">Mini Cake - $7+</option>
+  <option value="Cupcakes|3">Cupcakes - $3</option>
+  <option value="Cake Pops|2.5">Cake Pops - $2.50</option>
+  <option value="Cookies|3">Cookies - $3</option>
 
-  <option value="Dipped Oreos|1.5">Dipped Oreos — $1.50</option>
-  <option value="Dipped Strawberries|1.5">Dipped Strawberries — $1.50</option>
+  <option value="Dipped Oreos|1.5">Dipped Oreos - $1.50</option>
+  <option value="Dipped Strawberries|1.5">Dipped Strawberries - $1.50</option>
 
-  <option value="Deal Box|0">THE DEAL BOX</option>
-  <option value="Party Box|0">PARTY BOX</option>
+  <option value="Deal Box|0">Deal Box</option>
+  <option value="Party Box|0">Party Box</option>
 </select>
 
 <input id="qty" type="number" value="1" min="1" max="12">
 
-<!-- CUSTOMIZATION -->
 <select id="flavor">
-  <option value="">No flavor (default)</option>
+  <option value="">No flavor</option>
   <option value="Vanilla">Vanilla</option>
   <option value="Chocolate">Chocolate</option>
   <option value="Strawberry">Strawberry</option>
-  <option value="Red Velvet">Red Velvet</option>
 </select>
 
 <button onclick="addItem()">Add to Cart</button>
@@ -141,9 +139,7 @@ button:hover {
 
 <div id="cart"></div>
 
-<div class="total-box" id="total">
-Total: $0.00
-</div>
+<div class="total-box" id="total">Total: $0.00</div>
 
 </div>
 
@@ -153,24 +149,22 @@ Total: $0.00
 
 let cart = [];
 
-/* ADD ITEM */
 function addItem() {
 
-  let [name, price] = document.getElementById("item").value.split("|");
-  let qty = parseInt(document.getElementById("qty").value) || 1;
-  let flavor = document.getElementById("flavor").value;
+  const raw = document.getElementById("item").value || "";
+  const parts = raw.split("|");
 
-  cart.push({
-    name,
-    price: parseFloat(price),
-    qty,
-    flavor
-  });
+  const name = parts[0] || "Item";
+  const price = parseFloat(parts[1] || "0");
+
+  const qty = parseInt(document.getElementById("qty").value) || 1;
+  const flavor = document.getElementById("flavor").value || "";
+
+  cart.push({ name, price, qty, flavor });
 
   render();
 }
 
-/* QTY CONTROLS */
 function increase(i) {
   cart[i].qty++;
   render();
@@ -182,19 +176,15 @@ function decrease(i) {
   render();
 }
 
-/* ===== DEAL BOX REAL CONTENTS ===== */
+/* SAFE BOX PRICES */
 function dealBoxPrice() {
-  // 6 dipped items + 2 cake pops + 2 cookies + 2 cupcakes + 2 mini cakes
   return (6*1.5 + 2*2.5 + 2*3 + 2*3 + 2*7) * 0.85;
 }
 
-/* ===== PARTY BOX REAL CONTENTS ===== */
 function partyBoxPrice() {
-  // 12 of everything (simplified average basket logic)
   return (12*1.5 + 12*2.5 + 12*3 + 12*3 + 12*7) * 0.85;
 }
 
-/* RENDER */
 function render() {
 
   let html = "";
@@ -207,17 +197,13 @@ function render() {
     if (item.name === "Deal Box") price = dealBoxPrice();
     if (item.name === "Party Box") price = partyBoxPrice();
 
-    let itemTotal = price * item.qty;
+    const itemTotal = price * item.qty;
     total += itemTotal;
 
     html += `
       <div class="cart-item">
-        <b>${item.name}</b>
-        ${item.flavor ? " - " + item.flavor : ""}
-
-        <div class="small">
-          $${price.toFixed(2)} × ${item.qty} = $${itemTotal.toFixed(2)}
-        </div>
+        <b>${item.name}</b> ${item.flavor ? "(" + item.flavor + ")" : ""}<br>
+        <div class="small">$${price.toFixed(2)} × ${item.qty} = $${itemTotal.toFixed(2)}</div>
 
         <div class="qty-row">
           <button onclick="decrease(${i})">−</button>
@@ -227,8 +213,7 @@ function render() {
     `;
   });
 
-  document.getElementById("cart").innerHTML =
-    html || "Cart is empty";
+  document.getElementById("cart").innerHTML = html || "Cart empty";
 
   document.getElementById("total").innerHTML =
     "Total: $" + total.toFixed(2);
