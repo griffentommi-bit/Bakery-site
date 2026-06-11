@@ -88,6 +88,10 @@ button:hover {
   font-weight: bold;
 }
 
+.hidden {
+  display: none;
+}
+
 </style>
 </head>
 
@@ -123,14 +127,22 @@ button:hover {
 
 <input id="qty" type="number" value="1" min="1" max="12">
 
-<select id="flavor">
-  <option value="">No flavor</option>
-  <option value="Vanilla">Vanilla</option>
-  <option value="Chocolate">Chocolate</option>
-  <option value="Strawberry">Strawberry</option>
+<button onclick="addItem()">Add to Cart</button>
+</div>
+
+<!-- DELIVERY -->
+<div class="card">
+<h3>Delivery Option</h3>
+
+<select id="deliveryType" onchange="toggleDelivery()">
+  <option value="pickup">Pickup</option>
+  <option value="delivery">Delivery</option>
 </select>
 
-<button onclick="addItem()">Add to Cart</button>
+<div id="deliveryBox" class="hidden">
+  <input id="address" placeholder="Street Address">
+  <input id="zip" placeholder="ZIP Code">
+</div>
 </div>
 
 <!-- CART -->
@@ -139,8 +151,17 @@ button:hover {
 
 <div id="cart"></div>
 
-<div class="total-box" id="total">Total: $0.00</div>
+<div class="total-box" id="total">
+Total: $0.00<br>
+Deposit: $0.00
+</div>
 
+</div>
+
+<!-- CHECKOUT -->
+<div class="card">
+<h3>Checkout</h3>
+<button onclick="checkout()">Pay Deposit (CashApp)</button>
 </div>
 
 </div>
@@ -149,6 +170,7 @@ button:hover {
 
 let cart = [];
 
+/* ADD ITEM */
 function addItem() {
 
   const raw = document.getElementById("item").value || "";
@@ -158,13 +180,13 @@ function addItem() {
   const price = parseFloat(parts[1] || "0");
 
   const qty = parseInt(document.getElementById("qty").value) || 1;
-  const flavor = document.getElementById("flavor").value || "";
 
-  cart.push({ name, price, qty, flavor });
+  cart.push({ name, price, qty });
 
   render();
 }
 
+/* QTY */
 function increase(i) {
   cart[i].qty++;
   render();
@@ -176,7 +198,7 @@ function decrease(i) {
   render();
 }
 
-/* SAFE BOX PRICES */
+/* BOX PRICES */
 function dealBoxPrice() {
   return (6*1.5 + 2*2.5 + 2*3 + 2*3 + 2*7) * 0.85;
 }
@@ -185,6 +207,22 @@ function partyBoxPrice() {
   return (12*1.5 + 12*2.5 + 12*3 + 12*3 + 12*7) * 0.85;
 }
 
+/* DELIVERY */
+function deliveryFee() {
+
+  if (document.getElementById("deliveryType").value !== "delivery") {
+    return 0;
+  }
+
+  let zip = document.getElementById("zip").value || "";
+
+  if (zip.startsWith("606")) return 5;
+  if (zip.startsWith("607") || zip.startsWith("608")) return 8;
+
+  return 10;
+}
+
+/* RENDER */
 function render() {
 
   let html = "";
@@ -197,12 +235,12 @@ function render() {
     if (item.name === "Deal Box") price = dealBoxPrice();
     if (item.name === "Party Box") price = partyBoxPrice();
 
-    const itemTotal = price * item.qty;
+    let itemTotal = price * item.qty;
     total += itemTotal;
 
     html += `
       <div class="cart-item">
-        <b>${item.name}</b> ${item.flavor ? "(" + item.flavor + ")" : ""}<br>
+        <b>${item.name}</b><br>
         <div class="small">$${price.toFixed(2)} × ${item.qty} = $${itemTotal.toFixed(2)}</div>
 
         <div class="qty-row">
@@ -213,10 +251,59 @@ function render() {
     `;
   });
 
-  document.getElementById("cart").innerHTML = html || "Cart empty";
+  total += deliveryFee();
 
-  document.getElementById("total").innerHTML =
-    "Total: $" + total.toFixed(2);
+  let deposit = total / 2;
+
+  document.getElementById("cart").innerHTML =
+    html || "Cart empty";
+
+  document.getElementById("total").innerHTML = `
+    Total: $${total.toFixed(2)}<br>
+    Deposit: $${deposit.toFixed(2)}
+  `;
+}
+
+/* DELIVERY UI TOGGLE */
+function toggleDelivery() {
+  const box = document.getElementById("deliveryBox");
+  box.className =
+    document.getElementById("deliveryType").value === "delivery"
+      ? ""
+      : "hidden";
+}
+
+/* CHECKOUT */
+function checkout() {
+
+  if (cart.length === 0) return alert("Cart is empty");
+
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
+
+  if (!name || !phone) {
+    alert("Fill out info");
+    return;
+  }
+
+  let total = 0;
+
+  cart.forEach(i => {
+
+    let price = i.price;
+
+    if (i.name === "Deal Box") price = dealBoxPrice();
+    if (i.name === "Party Box") price = partyBoxPrice();
+
+    total += price * i.qty;
+  });
+
+  total += deliveryFee();
+
+  let deposit = total / 2;
+
+  window.location.href =
+    "https://cash.app/$TommiGriffen/" + deposit.toFixed(2);
 }
 
 </script>
