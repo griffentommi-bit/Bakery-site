@@ -7,87 +7,123 @@
 
 <style>
 
-/* BASE */
+/* ===== GLOBAL ===== */
 body {
   margin: 0;
-  font-family: Arial;
-  background: #fafafa;
+  font-family: system-ui, -apple-system, Arial;
+  background: #f4f4f8;
+  color: #222;
 }
 
-/* HEADER */
+/* ===== HEADER (APP STYLE) ===== */
 header {
-  background: white;
-  padding: 15px;
+  background: linear-gradient(135deg, #ff4da6, #ff7ac6);
+  color: white;
+  padding: 18px;
   text-align: center;
   font-size: 22px;
-  font-weight: bold;
-  border-bottom: 1px solid #eee;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 .logo {
-  width: 90px;
+  width: 70px;
   display: block;
   margin: 10px auto;
 }
 
-/* 🚨 HARD FIX: FORCE SINGLE COLUMN */
+/* ===== SINGLE COLUMN APP FEED ===== */
 .container {
-  max-width: 650px;
+  max-width: 720px;
   margin: auto;
-  padding: 15px;
-  display: block; /* kills side-by-side forever */
+  padding: 14px;
 }
 
-/* SECTIONS */
-.section {
+/* ===== CARD SYSTEM (REAL APP LOOK) ===== */
+.card {
   background: white;
-  padding: 12px;
+  border-radius: 16px;
+  padding: 14px;
   margin-bottom: 12px;
-  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+/* TITLES */
+h3 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  color: #ff2f92;
 }
 
 /* INPUTS */
 input, select {
   width: 100%;
   padding: 12px;
-  margin-top: 8px;
-  margin-bottom: 10px;
+  border-radius: 12px;
   border: 1px solid #ddd;
-  border-radius: 8px;
+  margin-bottom: 10px;
+  font-size: 14px;
 }
 
-/* BUTTONS */
+/* PRIMARY BUTTON */
 button {
   width: 100%;
   padding: 12px;
-  background: #ff4da6;
-  color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
+  background: #ff2f92;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
   cursor: pointer;
-  margin-top: 6px;
 }
 
 button:hover {
   background: #e60073;
 }
 
-/* CART ITEMS */
-.cart-item {
-  border-bottom: 1px solid #eee;
-  padding: 10px 0;
-}
-
-.summary {
-  background: #f9f9f9;
+/* PRODUCT ROW */
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 10px;
-  border-radius: 8px;
+  border-radius: 12px;
+  background: #fafafa;
+  margin-bottom: 8px;
 }
 
-/* FORCE FULL WIDTH (prevents weird flex leftovers) */
-.section, .cart-item {
-  width: 100%;
-  box-sizing: border-box;
+/* SMALL BUTTONS */
+.small-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  font-size: 18px;
+  padding: 0;
+}
+
+/* CART */
+.cart-item {
+  background: #fafafa;
+  padding: 10px;
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+
+/* SUMMARY */
+.summary {
+  background: #fff0f6;
+  padding: 12px;
+  border-radius: 14px;
+  font-weight: 600;
+}
+
+/* BOX DESCRIPTIONS */
+.box-desc {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 10px;
+  line-height: 1.4;
 }
 
 </style>
@@ -100,37 +136,41 @@ button:hover {
 
 <div class="container">
 
-<!-- CUSTOMER INFO -->
-<div class="section">
-<h3>1. Customer Info</h3>
-
+<!-- CUSTOMER -->
+<div class="card">
+<h3>Customer Info</h3>
 <input id="name" placeholder="Full Name">
 <input id="phone" placeholder="Phone Number">
 <input id="email" placeholder="Email">
 </div>
 
 <!-- MENU -->
-<div class="section">
-<h3>2. Choose Dessert</h3>
+<div class="card">
+<h3>Menu</h3>
 
 <select id="item">
-  <option value="Mini Cake|7">Mini Cake - $7+</option>
-  <option value="Cupcakes|3">Cupcakes - $3</option>
-  <option value="Cake Pops|2.5">Cake Pops - $2.50</option>
-  <option value="Cookies|3">Cookies - $3</option>
+  <option value="Mini Cake|7">Mini Cake — $7+</option>
+  <option value="Cupcakes|3">Cupcakes — $3</option>
+  <option value="Cake Pops|2.5">Cake Pops — $2.50</option>
+  <option value="Cookies|3">Cookies — $3</option>
 
-  <option value="Dipped Item|1.5">Dipped Items - $1.50</option>
+  <option value="Dipped Oreos|1.5">Dipped Oreos — $1.50</option>
+  <option value="Dipped Pretzels|1.5">Dipped Pretzels — $1.50</option>
+  <option value="Dipped Strawberries|1.5">Dipped Strawberries — $1.50</option>
+  <option value="Dipped Rice Krispies|1.5">Dipped Rice Krispies — $1.50</option>
 
   <option value="THE DEAL BOX|0">THE DEAL BOX</option>
   <option value="PARTY BOX|0">PARTY BOX</option>
 </select>
 
 <input type="number" id="qty" value="1" min="1" max="12">
+
+<button onclick="addItem()">Add to Cart</button>
 </div>
 
 <!-- DELIVERY -->
-<div class="section">
-<h3>3. Delivery Option</h3>
+<div class="card">
+<h3>Delivery</h3>
 
 <select id="deliveryType" onchange="toggleAddress()">
   <option value="pickup">Pickup</option>
@@ -143,30 +183,21 @@ button:hover {
 </div>
 </div>
 
-<!-- ADD -->
-<div class="section">
-<h3>4. Add Item</h3>
-<button onclick="addItem()">Add to Cart</button>
-</div>
-
 <!-- CART -->
-<div class="section">
-<h3>5. Your Order</h3>
+<div class="card">
+<h3>Your Order</h3>
 
 <div id="cart"></div>
 
-<hr>
-
 <div class="summary" id="summary">
-<b>Total:</b> $0.00<br>
-<b>Deposit:</b> $0.00
+Total: $0.00<br>
+Deposit: $0.00
 </div>
-
 </div>
 
 <!-- CHECKOUT -->
-<div class="section">
-<h3>6. Checkout</h3>
+<div class="card">
+<h3>Checkout</h3>
 <button onclick="checkout()">Pay Deposit (CashApp)</button>
 </div>
 
@@ -176,45 +207,32 @@ button:hover {
 
 let cart = [];
 
-/* ADD ITEM */
 function addItem() {
 
   let [name, price] = document.getElementById("item").value.split("|");
-  let qty = Math.min(parseInt(document.getElementById("qty").value), 12);
+  let qty = parseInt(document.getElementById("qty").value) || 1;
 
-  cart.push({
-    name,
-    price: parseFloat(price),
-    qty,
-    flavor: ""
-  });
+  cart.push({ name, price: parseFloat(price), qty });
 
   render();
 }
 
-/* + BUTTON */
 function increaseQty(i) {
   cart[i].qty++;
   render();
 }
 
-/* − BUTTON */
 function decreaseQty(i) {
   cart[i].qty--;
-
-  if (cart[i].qty <= 0) {
-    cart.splice(i, 1);
-  }
-
+  if (cart[i].qty <= 0) cart.splice(i, 1);
   render();
 }
 
-/* DEAL BOX */
+/* BOX PRICES */
 function dealBoxPrice() {
   return ((4*6*1.5)+(2*2.5)+(2*3)+(2*3)+(2*7))*0.85;
 }
 
-/* PARTY BOX */
 function partyBoxPrice() {
   return ((8*12*1.5)+(12*2.5)+(12*3)+(12*3)+(12*7))*0.85;
 }
@@ -227,10 +245,11 @@ function deliveryFee() {
 
   if (zip.startsWith("606")) return 5;
   if (zip.startsWith("607") || zip.startsWith("608")) return 8;
+
   return 10;
 }
 
-/* RENDER CART */
+/* RENDER */
 function render() {
 
   let html = "";
@@ -249,40 +268,37 @@ function render() {
     html += `
       <div class="cart-item">
         <b>${item.name}</b><br>
-
         $${price.toFixed(2)} × ${item.qty} = $${itemTotal.toFixed(2)}<br>
 
-        <button onclick="decreaseQty(${i})">−</button>
-        <button onclick="increaseQty(${i})">+</button>
+        <button class="small-btn" onclick="decreaseQty(${i})">−</button>
+        <button class="small-btn" onclick="increaseQty(${i})">+</button>
       </div>
     `;
   });
 
-  let fee = deliveryFee();
-  total += fee;
+  total += deliveryFee();
 
   let deposit = total / 2;
 
   document.getElementById("cart").innerHTML =
-    html || "No items yet";
+    html || "Your cart is empty";
 
   document.getElementById("summary").innerHTML = `
-    <b>Total:</b> $${total.toFixed(2)}<br>
-    <b>Deposit:</b> $${deposit.toFixed(2)}
+    Total: $${total.toFixed(2)}<br>
+    Deposit: $${deposit.toFixed(2)}
   `;
 }
 
-/* CHECKOUT */
 function checkout() {
 
-  if (cart.length === 0) return alert("Cart is empty");
+  if (cart.length === 0) return alert("Cart empty");
 
   let name = document.getElementById("name").value;
   let phone = document.getElementById("phone").value;
   let email = document.getElementById("email").value;
 
   if (!name || !phone || !email) {
-    alert("Please fill out all info");
+    alert("Fill out all info");
     return;
   }
 
@@ -297,13 +313,14 @@ function checkout() {
     total += price * i.qty;
   });
 
+  total += deliveryFee();
+
   let deposit = total / 2;
 
   window.location.href =
     `https://cash.app/$TommiGriffen/${deposit.toFixed(2)}`;
 }
 
-/* DELIVERY TOGGLE */
 function toggleAddress() {
   document.getElementById("addressBox").style.display =
     document.getElementById("deliveryType").value === "delivery"
