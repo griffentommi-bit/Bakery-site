@@ -1,96 +1,275 @@
-let cart = [];
-
-function addItem(name, price, qty){
-    // Fixed: Using crypto.randomUUID() ensures every item has a 100% unique ID
-    cart.push({
-        id: crypto.randomUUID(),
-        name,
-        price,
-        qty,
-        total: price * qty
-    });
-
-    updateCart();
+/* --- Global Styles --- */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fff8fa;
+    margin: 0;
+    color: #4a3b40;
 }
 
-function addDealBox(){
-    // Fixed: Added <br> tags so the description formats nicely on new lines in HTML
-    cart.push({
-        id: crypto.randomUUID(),
-        name: "Deal Box",
-        price: 50,
-        qty: 1,
-        total: 50,
-        desc: `6 Strawberries<br>
-6 Oreos<br>
-6 Pretzels<br>
-6 Rice Krispies<br>
-2 Cupcakes<br>
-2 Cookies<br>
-2 Cake Pops<br>
-2 Mini Cakes`
-    });
-
-    updateCart();
+/* --- Hero Banner --- */
+.hero {
+    background: linear-gradient(135deg, #ff7ebb, #ff5fa2);
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    font-family: 'Pacifico', cursive;
+    box-shadow: 0 4px 15px rgba(255, 95, 162, 0.2);
 }
 
-function addPartyBox(){
-    cart.push({
-        id: crypto.randomUUID(),
-        name: "Party Box",
-        price: 125,
-        qty: 1,
-        total: 125,
-        desc: `12 of everything`
-    });
-
-    updateCart();
+.hero h1 {
+    margin: 0 0 10px 0;
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
-function updateCart(){
-    let container = document.getElementById("cartItems");
-    container.innerHTML = "";
-
-    let total = 0;
-
-    cart.forEach(item => {
-        total += item.total;
-
-        // Fixed: Added .toFixed(2) so prices look like $2.50 instead of $2.5
-        container.innerHTML += `
-        <div class="cart-item">
-            <b>${item.name}</b><br>
-            $${item.price.toFixed(2)} x ${item.qty}<br>
-            Total: $${item.total.toFixed(2)}<br>
-            ${item.desc ? item.desc : ""}
-            <br>
-            <button onclick="removeItem('${item.id}')">Remove</button>
-        </div>
-        `;
-    });
-
-    // Fixed: Applied .toFixed(2) to the bottom totals as well
-    document.getElementById("orderTotal").innerText = "$" + total.toFixed(2);
-    document.getElementById("depositTotal").innerText = "$" + (total / 2).toFixed(2);
-    document.getElementById("remainingTotal").innerText = "$" + (total / 2).toFixed(2);
+.hero p {
+    margin: 0;
+    font-size: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    opacity: 0.9;
 }
 
-function removeItem(id){
-    cart = cart.filter(i => i.id !== id);
-    updateCart();
+/* --- Layout Container --- */
+.layout-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 30px;
 }
 
-document.getElementById("orderType").addEventListener("change", function(){
-    document.getElementById("deliveryFields").style.display =
-        this.value === "delivery" ? "flex" : "none";
-});
+/* --- Cards & Sections --- */
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(234, 182, 203, 0.15);
+    border: 1px solid rgba(255, 95, 162, 0.1);
+    margin-bottom: 25px;
+}
 
-document.getElementById("cashappButton").addEventListener("click", function(){
-    if(cart.length === 0){
-        alert("Cart is empty");
-        return;
+h2 {
+    color: #ff5fa2;
+    margin-top: 0;
+    font-size: 1.4rem;
+    border-bottom: 2px solid #fff0f5;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    color: #4a3b40;
+    border: none;
+    font-size: 1.8rem;
+    margin-top: 10px;
+}
+
+/* --- Form Fields --- */
+.form-group, #deliveryFields {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+#deliveryFields {
+    display: none; /* Controlled by JS */
+    margin-top: 12px;
+    border-top: 1px dashed #ffd3e2;
+    padding-top: 15px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 10px;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ffd3e2;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    background-color: #fffbfe;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #ff5fa2;
+    box-shadow: 0 0 0 3px rgba(255, 95, 162, 0.15);
+}
+
+/* --- Product Grid --- */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(234, 182, 203, 0.1);
+    border: 1px solid rgba(255, 95, 162, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(255, 95, 162, 0.15);
+}
+
+.product-card h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.1rem;
+    color: #4a3b40;
+}
+
+.product-card .price {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ff5fa2;
+    margin: 0 0 15px 0;
+}
+
+/* Specialty Boxes Styling */
+.special-box {
+    background: linear-gradient(to bottom right, #ffffff, #fff0f5);
+    border: 1px dashed #ff5fa2;
+}
+
+/* --- Buttons --- */
+button {
+    background: #ff5fa2;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+    width: 100%;
+}
+
+button:hover {
+    background: #e04b8b;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* --- Sidebar & Cart --- */
+.sidebar {
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+}
+
+.cart-card {
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#cartItems {
+    overflow-y: auto;
+    max-height: 250px;
+    margin-bottom: 15px;
+    padding-right: 5px;
+}
+
+/* Individual Cart Item */
+.cart-item {
+    background: #fffbfe;
+    border: 1px solid #ffd3e2;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+.cart-item b {
+    color: #4a3b40;
+    font-size: 0.95rem;
+}
+
+.cart-item .item-desc {
+    font-size: 0.8rem;
+    color: #8a737b;
+    margin-top: 5px;
+    line-height: 1.4;
+    background: #fff0f5;
+    padding: 6px;
+    border-radius: 6px;
+}
+
+.cart-item button {
+    background: #ffecf2;
+    color: #ff5fa2;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    margin-top: 8px;
+}
+
+.cart-item button:hover {
+    background: #ffcedf;
+}
+
+/* Cart Totals Pricing Breakdowns */
+.cart-summary {
+    border-top: 2px solid #fff0f5;
+    padding-top: 15px;
+    margin-bottom: 15px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.summary-row.highlight {
+    color: #ff5fa2;
+    font-weight: 600;
+    font-size: 1.05rem;
+    background: #fff0f5;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+
+.checkout-btn {
+    background: #25d366; /* Standout cashapp colors/action color */
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    font-size: 1.05rem;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(46, 204, 113, 0.2);
+}
+
+.checkout-btn:hover {
+    background: #219653;
+}
+
+/* --- Responsive Layout (Mobile Optimization) --- */
+@media (max-width: 900px) {
+    .layout-container {
+        grid-template-columns: 1fr;
     }
-
-    alert("Send deposit to $TommiGriffen");
-    window.open("https://cash.app/$TommiGriffen", "_blank");
-});
+    .sidebar {
+        position: static;
+    }
+}
