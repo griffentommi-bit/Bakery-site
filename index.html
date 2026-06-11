@@ -1,30 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sweet Treats Bakery</title>
 
 <style>
-body{font-family:Arial;margin:0;background:#fff7f2;}
-header{background:#ffb6c1;padding:15px;text-align:center;font-size:24px;font-weight:bold;}
-.container{display:flex;gap:20px;padding:20px;max-width:1200px;margin:auto;}
-.box,.cart{background:white;padding:15px;border-radius:10px;}
-.box{flex:1;}
-.cart{flex:1.5;}
-input,select{width:100%;padding:10px;margin:6px 0;}
-button{width:100%;padding:12px;background:#ff69b4;color:white;border:none;cursor:pointer;}
-button:hover{background:#ff1493;}
-.cart-item{border-bottom:1px solid #eee;padding:10px 0;}
-.summary{margin-top:10px;padding:10px;background:#f9f9f9;}
-.logo{width:120px;display:block;margin:10px auto;}
+body {
+  font-family: Arial;
+  margin: 0;
+  background: #fff7f2;
+}
+
+header {
+  background: #ffb6c1;
+  text-align: center;
+  padding: 15px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.box, .cart {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.box {
+  flex: 1;
+}
+
+.cart {
+  flex: 1.5;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: #ff69b4;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ff1493;
+}
+
+.cart-item {
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+
+.summary {
+  margin-top: 10px;
+  padding: 10px;
+  background: #f9f9f9;
+}
+
+.logo {
+  width: 120px;
+  display: block;
+  margin: 10px auto;
+}
 </style>
 </head>
 
 <body>
 
 <header>Sweet Treats Bakery 🍰</header>
-<img class="logo" src="logo.png"/>
+
+<img class="logo" src="logo.png">
 
 <div class="container">
 
@@ -48,7 +108,7 @@ button:hover{background:#ff1493;}
   <option value="PARTY BOX|0">PARTY BOX (dynamic)</option>
 </select>
 
-<input type="number" id="qty" value="1" min="1" max="12"/>
+<input type="number" id="qty" value="1" min="1" max="12">
 
 <button onclick="addToCart()">Add to Cart</button>
 
@@ -60,8 +120,8 @@ button:hover{background:#ff1493;}
 </select>
 
 <div id="addressBox" style="display:none;">
-  <input id="address" placeholder="Address"/>
-  <input id="zip" placeholder="ZIP"/>
+  <input id="address" placeholder="Address">
+  <input id="zip" placeholder="ZIP">
 </div>
 
 </div>
@@ -85,100 +145,88 @@ button:hover{background:#ff1493;}
 
 <script>
 
-let cart=[];
-let depositTotal=0;
+let cart = [];
+let depositTotal = 0;
 
-function addToCart(){
-  let [name,price]=document.getElementById("item").value.split("|");
-  let qty=Math.min(parseInt(document.getElementById("qty").value),12);
+function addToCart() {
+  let [name, price] = document.getElementById("item").value.split("|");
+  let qty = Math.min(parseInt(document.getElementById("qty").value), 12);
 
-  cart.push({name,price:parseFloat(price),qty});
+  cart.push({ name, price: parseFloat(price), qty });
   render();
 }
 
-function deliveryFee(){
-  if(document.getElementById("deliveryType").value!=="delivery") return 0;
-  let zip=document.getElementById("zip").value||"";
-  if(zip.startsWith("606")) return 5;
-  if(zip.startsWith("607")||zip.startsWith("608")) return 8;
+function removeItem(index) {
+  cart.splice(index, 1);
+  render();
+}
+
+function deliveryFee() {
+  if (document.getElementById("deliveryType").value !== "delivery") return 0;
+
+  let zip = document.getElementById("zip").value || "";
+
+  if (zip.startsWith("606")) return 5;
+  if (zip.startsWith("607") || zip.startsWith("608")) return 8;
   return 10;
 }
 
-function calculateDealBox(){
-  let base =
-    (4 * 6 * 1.5) +   // dipped items
-    (2 * 2.5) +       // cake pops
-    (2 * 3) +         // cookies
-    (2 * 3) +         // cupcakes
-    (2 * 7);          // mini cakes
-
-  // force range display $45–$55
-  return Math.max(45, Math.min(55, base * 0.85));
+function dealBoxPrice() {
+  return ((4 * 6 * 1.5) + (2 * 2.5) + (2 * 3) + (2 * 3) + (2 * 7)) * 0.85;
 }
 
-function calculatePartyBox(){
-  let total =
-    (8 * 12 * 1.5) +
-    (12 * 2.5) +
-    (12 * 3) +
-    (12 * 3) +
-    (12 * 7);
-
-  return total * 0.85; // 15% discount
+function partyBoxPrice() {
+  return ((8 * 12 * 1.5) + (12 * 2.5) + (12 * 3) + (12 * 3) + (12 * 7)) * 0.85;
 }
 
-function render(){
-  let html="";
-  let total=0;
+function render() {
+  let html = "";
+  let total = 0;
 
-  cart.forEach((i,idx)=>{
-    let price=i.price;
+  cart.forEach((item, i) => {
 
-    // dynamic boxes
-    if(i.name==="THE DEAL BOX") price=calculateDealBox();
-    if(i.name==="PARTY BOX") price=calculatePartyBox();
+    let price = parseFloat(item.price);
 
-    let itemTotal=price*i.qty;
-    total+=itemTotal;
+    if (item.name === "THE DEAL BOX") price = dealBoxPrice();
+    if (item.name === "PARTY BOX") price = partyBoxPrice();
 
-    html+=`
+    let itemTotal = price * item.qty;
+    total += itemTotal;
+
+    html += `
       <div class="cart-item">
-        <b>${i.name}</b><br>
-        $${price.toFixed(2)} × ${i.qty} = $${itemTotal.toFixed(2)}<br>
-        <button onclick="removeItem(${idx})">Delete</button>
+        <b>${item.name}</b><br>
+        $${price.toFixed(2)} × ${item.qty} = $${itemTotal.toFixed(2)}<br>
+        <button onclick="removeItem(${i})">Delete</button>
       </div>
     `;
   });
 
-  let fee=deliveryFee();
-  total+=fee;
+  let fee = deliveryFee();
+  total += fee;
 
-  depositTotal=total/2;
+  depositTotal = total / 2;
 
-  document.getElementById("cart").innerHTML=html||"Cart empty";
+  document.getElementById("cart").innerHTML = html || "Cart empty";
 
-  document.getElementById("summary").innerHTML=`
+  document.getElementById("summary").innerHTML = `
     <b>Total:</b> $${total.toFixed(2)}<br>
     <b>Deposit:</b> $${depositTotal.toFixed(2)}
   `;
 }
 
-function removeItem(i){
-  cart.splice(i,1);
-  render();
+function checkout() {
+  if (cart.length === 0) return alert("Cart empty");
+
+  window.location.href =
+    `https://cash.app/$TommiGriffen/${depositTotal.toFixed(2)}`;
 }
 
-function checkout(){
-  if(cart.length===0) return alert("Cart empty");
-
-  window.location.href=
-  `https://cash.app/$TommiGriffen/${depositTotal.toFixed(2)}`;
-}
-
-function toggleAddress(){
-  document.getElementById("addressBox").style.display=
-    document.getElementById("deliveryType").value==="delivery"
-    ?"block":"none";
+function toggleAddress() {
+  document.getElementById("addressBox").style.display =
+    document.getElementById("deliveryType").value === "delivery"
+      ? "block"
+      : "none";
 }
 
 </script>
