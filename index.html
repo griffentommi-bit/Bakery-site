@@ -1,345 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sweeten The Deal</title>
-
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-<script>
-emailjs.init("9KMyS9KkzLNPVBOle");
-</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sweet Treats Bakery</title>
 
 <style>
-body{font-family:Arial;margin:0;background:#fff7f2;}
-header{background:#ff7aa2;color:white;text-align:center;padding:25px;}
+body { font-family: Arial; margin:0; background:#fff7f2; }
 
-.products{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-gap:15px;
-padding:20px;
+header {
+  background:#ffb6c1;
+  padding:15px;
+  text-align:center;
+  font-size:24px;
+  font-weight:bold;
 }
 
-.card{
-background:white;
-padding:15px;
-border-radius:12px;
-box-shadow:0 2px 8px rgba(0,0,0,0.1);
+.logo {
+  width:120px;
+  margin:10px auto;
+  display:block;
 }
 
-.price{color:#ff4f87;font-weight:bold;}
-.desc{font-size:12px;color:#666;margin:6px 0;}
-
-section{padding:20px;}
-
-button{
-background:#ff7aa2;
-color:white;
-border:none;
-padding:8px;
-border-radius:8px;
-cursor:pointer;
-margin-top:5px;
+.container {
+  display:flex;
+  gap:20px;
+  padding:20px;
+  max-width:1200px;
+  margin:auto;
 }
 
-select,input{
-padding:6px;
-width:100%;
-margin-top:5px;
+.box, .cart {
+  background:white;
+  padding:15px;
+  border-radius:10px;
 }
 
-textarea{width:100%;}
+.box { flex:1; }
+.cart { flex:1.5; }
 
-#cartBox{
-text-align:center;
-font-size:18px;
-margin:10px 0;
+select, input {
+  width:100%;
+  padding:10px;
+  margin:8px 0;
 }
 
-.warning{color:red;font-size:12px;}
+button {
+  width:100%;
+  padding:12px;
+  background:#ff69b4;
+  color:white;
+  border:none;
+  cursor:pointer;
+}
+
+button:hover { background:#ff1493; }
+
+.cart-item {
+  border-bottom:1px solid #eee;
+  padding:10px 0;
+}
+
+.summary {
+  margin-top:10px;
+  padding:10px;
+  background:#f9f9f9;
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<h1>Sweeten The Deal 🍰</h1>
-<p>Custom desserts made in Chicago</p>
+  Sweet Treats Bakery 🍰
 </header>
 
+<!-- LOGO PLACEHOLDER -->
+<img class="logo" src="logo.png" alt="Bakery Logo"/>
+
+<div class="container">
+
 <!-- MENU -->
-<section>
-<h2>Menu</h2>
+<div class="box">
 
-<div class="products">
+<h3>Menu</h3>
 
-<div class="card">
-<h3>Mini Cakes</h3>
-<p class="price">$7</p>
-<p class="desc">Mini cakes fully customizable with flavor, frosting, colors, and theme design.</p>
-<select id="miniSize">
-<option value="1">1</option><option value="2">2</option><option value="3">3</option>
-<option value="4">4</option><option value="5">5</option>
-<option value="6">Half Dozen</option><option value="12">Dozen</option>
-</select>
-<button onclick="addItem('Mini Cake',7,'miniSize')">Add</button>
-</div>
+<select id="item">
+  <option value="Mini Cake|7">Mini Cake - $7+</option>
+  <option value="Cupcakes|3">Cupcakes - $3 each</option>
+  <option value="Cake Pops|2.5">Cake Pops - $2.50</option>
+  <option value="Cookies|3">Cookies - $3</option>
 
-<div class="card">
-<h3>Cake Pops</h3>
-<p class="price">$2.50</p>
-<p class="desc">Chocolate dipped cake pops with drizzle and toppings.</p>
-<select id="popSize">
-<option value="1">1</option><option value="2">2</option><option value="3">3</option>
-<option value="4">4</option><option value="5">5</option>
-<option value="6">Half Dozen</option><option value="12">Dozen</option>
-</select>
-<button onclick="addItem('Cake Pop',2.5,'popSize')">Add</button>
-</div>
+  <option value="Dipped Oreos|1.5">Dipped Oreos - $1.50</option>
+  <option value="Dipped Pretzels|1.5">Dipped Pretzels - $1.50</option>
+  <option value="Dipped Strawberries|1.5">Dipped Strawberries - $1.50</option>
+  <option value="Dipped Rice Krispies|1.5">Dipped Rice Krispies - $1.50</option>
 
-<div class="card">
-<h3>Dipped Rice Krispies</h3>
-<p class="price">$2</p>
-<p class="desc">Chocolate dipped rice treats with custom toppings.</p>
-<select id="krispieSize">
-<option value="1">1</option><option value="2">2</option><option value="3">3</option>
-<option value="4">4</option><option value="5">5</option>
-<option value="6">Half Dozen</option><option value="12">Dozen</option>
-</select>
-<button onclick="addItem('Rice Krispie',2,'krispieSize')">Add</button>
-</div>
-
-<div class="card">
-<h3>Pretzels</h3>
-<p class="price">$1.50</p>
-<p class="desc">Chocolate dipped pretzels with drizzle designs.</p>
-<select id="pretzelSize">
-<option value="1">1</option><option value="2">2</option><option value="3">3</option>
-<option value="4">4</option><option value="5">5</option>
-<option value="6">Half Dozen</option><option value="12">Dozen</option>
-</select>
-<button onclick="addItem('Pretzel',1.5,'pretzelSize')">Add</button>
-</div>
-
-<div class="card">
-<h3>Dipped Strawberries</h3>
-<p class="price">$3</p>
-<p class="desc">Fresh strawberries dipped in chocolate with designs.</p>
-<select id="berrySize">
-<option value="1">1</option><option value="2">2</option><option value="3">3</option>
-<option value="4">4</option><option value="5">5</option>
-<option value="6">Half Dozen</option><option value="12">Dozen</option>
-</select>
-<button onclick="addItem('Strawberry',3,'berrySize')">Add</button>
-</div>
-
-<div class="card">
-<h3>Cookies</h3>
-<p class="price">$3</p>
-<p class="desc">Soft baked cookies with flavor and icing options.</p>
-<select id="cookieSize">
-<option value="1">1</option><option value="2">2</option><option value="3">3</option>
-<option value="4">4</option><option value="5">5</option>
-<option value="6">Half Dozen</option><option value="12">Dozen</option>
-</select>
-<button onclick="addItem('Cookie',3,'cookieSize')">Add</button>
-</div>
-
-</div>
-</section>
-
-<!-- BOXES -->
-<section>
-<h2>Dessert Boxes</h2>
-
-<div class="products">
-
-<div class="card">
-<h3>Everything Box</h3>
-<p><b>Limit: 24 items</b></p>
-
-Mini Cakes <input type="number" id="e_mini" value="0">
-Cake Pops <input type="number" id="e_pop" value="0">
-Rice Krispies <input type="number" id="e_rice" value="0">
-Pretzels <input type="number" id="e_pretzel" value="0">
-Strawberries <input type="number" id="e_straw" value="0">
-Cookies <input type="number" id="e_cookie" value="0">
-
-<p class="warning" id="e_warn"></p>
-<button onclick="addEverything()">Add Everything Box</button>
-</div>
-
-<div class="card">
-<h3>Party Tray</h3>
-<p><b>Limit: 72 items</b></p>
-
-Mini Cakes <input type="number" id="p_mini" value="0">
-Cake Pops <input type="number" id="p_pop" value="0">
-Rice Krispies <input type="number" id="p_rice" value="0">
-Pretzels <input type="number" id="p_pretzel" value="0">
-Strawberries <input type="number" id="p_straw" value="0">
-Cookies <input type="number" id="p_cookie" value="0">
-
-<p class="warning" id="p_warn"></p>
-<button onclick="addParty()">Add Party Tray</button>
-</div>
-
-</div>
-</section>
-
-<!-- CHECKOUT -->
-<section>
-<h2>Checkout</h2>
-
-<select id="method" onchange="toggleAddress()">
-<option value="pickup">Pickup</option>
-<option value="delivery">Delivery</option>
+  <option value="THE DEAL BOX|67">THE DEAL BOX - $67</option>
+  <option value="PARTY BOX|330">PARTY BOX - $330</option>
 </select>
 
-<input id="address" placeholder="Address" style="display:none;">
-<input id="zip" placeholder="ZIP Code" style="display:none;">
+<input type="number" id="qty" value="1" min="1" max="12"/>
 
-<textarea id="orderDetails" rows="8"></textarea>
+<button onclick="addToCart()">Add to Cart</button>
 
-<div id="cartBox">
-<h3>Total: $<span id="total">0.00</span></h3>
-<p>Deposit (50%): $<span id="depositDisplay">0.00</span></p>
-<p>Remaining: $<span id="remainingDisplay">0.00</span></p>
-<p>Delivery Fee: $<span id="deliveryFeeDisplay">0.00</span></p>
+<hr>
+
+<select id="deliveryType" onchange="toggleAddress()">
+  <option value="pickup">Pickup</option>
+  <option value="delivery">Delivery</option>
+</select>
+
+<div id="addressBox" style="display:none;">
+  <input id="address" placeholder="Address"/>
+  <input id="zip" placeholder="ZIP"/>
 </div>
 
-<button onclick="payDeposit()">Pay Deposit Now</button>
-<button onclick="sendOrder()">Send Order</button>
+</div>
 
-</section>
+<!-- CART -->
+<div class="cart">
+
+<h3>Your Cart</h3>
+<div id="cart"></div>
+
+<div class="summary" id="summary">
+<b>Total:</b> $0.00<br>
+<b>Deposit:</b> $0.00
+</div>
+
+<button onclick="checkout()">Pay Deposit (CashApp)</button>
+
+</div>
+
+</div>
 
 <script>
 
-let cart = {};
-let deliveryFee = 0;
-let finalTotal = 0;
-let deposit = 0;
+let cart = [];
+let depositTotal = 0;
 
-function addItem(name,price,id){
-let qty = +document.getElementById(id).value;
-cart[name+" ("+qty+")"] = {qty,price};
-render();
+function addToCart() {
+  let data = document.getElementById("item").value.split("|");
+  let name = data[0];
+  let price = parseFloat(data[1]);
+  let qty = Math.min(parseInt(document.getElementById("qty").value), 12);
+
+  cart.push({name, price, qty});
+  render();
 }
 
-function toggleAddress(){
-let m=document.getElementById("method").value;
-document.getElementById("address").style.display=m==="delivery"?"block":"none";
-document.getElementById("zip").style.display=m==="delivery"?"block":"none";
+function removeItem(i){
+  cart.splice(i,1);
+  render();
 }
 
-function calculateDelivery(){
-let zip=document.getElementById("zip").value;
-if(!zip) return 0;
-
-if(zip.startsWith("606")) return 10;
-if(["601","602","603","604","605","607","608"].some(z=>zip.startsWith(z))) return 20;
-return 40;
-}
-
-function addEverything(){
-
-let total =
-(+e_mini.value + +e_pop.value + +e_rice.value +
-+e_pretzel.value + +e_straw.value + +e_cookie.value);
-
-if(total > 24){
-document.getElementById("e_warn").innerText="Max 24 items";
-return;
-}
-
-cart["Everything Box"]={qty:1,price:50,items:total};
-render();
-}
-
-function addParty(){
-
-let total =
-(+p_mini.value + +p_pop.value + +p_rice.value +
-+p_pretzel.value + +p_straw.value + +p_cookie.value);
-
-if(total > 72){
-document.getElementById("p_warn").innerText="Max 72 items";
-return;
-}
-
-cart["Party Tray"]={qty:1,price:100,items:total};
-render();
+function deliveryFee(){
+  if(document.getElementById("deliveryType").value !== "delivery") return 0;
+  let zip = document.getElementById("zip").value;
+  if(zip.startsWith("606")) return 5;
+  if(zip.startsWith("607")||zip.startsWith("608")) return 8;
+  return 10;
 }
 
 function render(){
+  let html="";
+  let total=0;
 
-let subtotal=0;
-let text="";
+  cart.forEach((i,index)=>{
+    let t=i.price*i.qty;
+    total+=t;
 
-for(let i in cart){
-subtotal+=cart[i].qty*cart[i].price;
-text+=`🍰 ${i}\n`;
+    html+=`
+      <div class="cart-item">
+        <b>${i.name}</b><br>
+        $${i.price} × ${i.qty} = $${t.toFixed(2)}<br>
+        <button onclick="removeItem(${index})">Remove</button>
+      </div>
+    `;
+  });
+
+  let fee = deliveryFee();
+  total += fee;
+
+  depositTotal = total/2;
+
+  document.getElementById("cart").innerHTML = html || "Cart empty";
+
+  document.getElementById("summary").innerHTML =
+  `<b>Total:</b> $${total.toFixed(2)}<br>
+   <b>Deposit:</b> $${depositTotal.toFixed(2)}`;
 }
 
-if(document.getElementById("method").value==="delivery"){
-deliveryFee=calculateDelivery();
-}else deliveryFee=0;
+function checkout(){
+  if(cart.length===0) return alert("Cart empty");
 
-finalTotal=subtotal+deliveryFee;
-deposit=finalTotal*0.5;
-
-document.getElementById("orderDetails").value=text;
-document.getElementById("total").innerText=finalTotal.toFixed(2);
-document.getElementById("depositDisplay").innerText=deposit.toFixed(2);
-document.getElementById("remainingDisplay").innerText=(finalTotal-deposit).toFixed(2);
-document.getElementById("deliveryFeeDisplay").innerText=deliveryFee.toFixed(2);
-}
-
-function payDeposit(){
-render();
-let cashapp="https://cash.app/$TommiGriffen";
-let msg=`Deposit: $${deposit.toFixed(2)} Total: $${finalTotal.toFixed(2)}`;
-window.open(cashapp+"?note="+encodeURIComponent(msg),"_blank");
-}
-
-function sendOrder(){
-
-let name = prompt("Name:");
-let email = prompt("Email:");
-
-if(!name || !email){
-alert("Missing info");
-return;
-}
-
-render();
-
-let method=document.getElementById("method").value;
-let address=document.getElementById("address").value;
-let zip=document.getElementById("zip").value;
-
-if(method==="delivery" && (!address||!zip)){
-alert("Enter delivery info");
-return;
-}
-
-emailjs.send("service_5mueiya","template_3701r98",{
-name,email,
-order:document.getElementById("orderDetails").value,
-total:finalTotal.toFixed(2),
-deposit:deposit.toFixed(2),
-deliveryFee:deliveryFee.toFixed(2),
-method,address,zip
-})
-.then(()=>{
-alert("Order sent!");
-})
-.catch((err)=>{
-console.log("EMAILJS ERROR:",err);
-alert("EmailJS Failed: " + JSON.stringify(err));
-});
-
+  window.location.href =
+  `https://cash.app/$TommiGriffen/${depositTotal.toFixed(2)}`;
 }
 
 </script>
