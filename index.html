@@ -13,7 +13,6 @@ body {
   background: #f6f6fb;
 }
 
-/* HEADER */
 header {
   background: linear-gradient(135deg, #ff4da6, #ff7ac6);
   color: white;
@@ -23,45 +22,29 @@ header {
   font-weight: bold;
 }
 
-/* CONTAINER */
 .container {
   max-width: 720px;
   margin: auto;
   padding: 12px;
 }
 
-/* PRODUCT GRID (still single column, but styled like cards) */
+/* PRODUCT CARDS */
 .product {
   background: white;
-  border-radius: 16px;
   padding: 12px;
+  border-radius: 14px;
   margin-bottom: 12px;
-  box-shadow: 0 5px 14px rgba(0,0,0,0.07);
-  position: relative;
-  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
 }
 
-/* IMAGE PLACEHOLDER */
-.product img {
-  width: 100%;
-  height: 140px;
-  object-fit: cover;
-  border-radius: 12px;
-}
-
-/* TEXT */
 .name {
-  font-size: 16px;
   font-weight: 700;
-  margin-top: 8px;
 }
 
 .price {
   color: #ff2f92;
-  font-weight: 600;
 }
 
-/* BUTTON */
 button {
   width: 100%;
   padding: 10px;
@@ -73,11 +56,7 @@ button {
   font-weight: bold;
 }
 
-button:hover {
-  background: #e60073;
-}
-
-/* CART BAR (sticky bottom like Uber Eats) */
+/* CART BAR */
 .cart-bar {
   position: fixed;
   bottom: 0;
@@ -88,50 +67,46 @@ button:hover {
   box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
   display: flex;
   justify-content: space-between;
-  align-items: center;
-}
-
-.cart-bar button {
-  width: auto;
-  padding: 10px 16px;
 }
 
 /* CART PAGE */
-.cart-page {
+.page {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #fff;
+  inset: 0;
+  background: white;
   padding: 12px;
   overflow-y: auto;
 }
 
-.cart-item {
+.item {
   background: #f7f7f7;
   padding: 10px;
   border-radius: 12px;
   margin-bottom: 8px;
 }
 
-/* POPUP */
-.popup {
-  display: none;
-  position: fixed;
-  top: 20%;
-  left: 10%;
-  right: 10%;
-  background: white;
-  padding: 14px;
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+.small {
+  font-size: 13px;
+  color: #555;
 }
 
-.popup button {
-  margin-top: 10px;
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  border-radius: 10px;
+  border: 1px solid #ddd;
 }
+
+.summary {
+  background: #fff0f6;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: bold;
+}
+
+.hidden { display:none; }
 
 </style>
 </head>
@@ -143,117 +118,167 @@ button:hover {
 <div class="container">
 
 <!-- PRODUCTS -->
-
 <div class="product">
-  <img src="https://via.placeholder.com/600x300"/>
-  <div class="name">Mini Cake</div>
-  <div class="price">$7+</div>
-  <button onclick="add('Mini Cake',7)">Add</button>
+<div class="name">Mini Cake</div>
+<div class="price">$7+</div>
+<button onclick="add('Mini Cake',7)">Add</button>
 </div>
 
 <div class="product">
-  <img src="https://via.placeholder.com/600x300"/>
-  <div class="name">Cupcakes</div>
-  <div class="price">$3</div>
-  <button onclick="add('Cupcakes',3)">Add</button>
+<div class="name">Cupcakes</div>
+<div class="price">$3</div>
+<button onclick="add('Cupcakes',3)">Add</button>
 </div>
 
 <div class="product">
-  <img src="https://via.placeholder.com/600x300"/>
-  <div class="name">Cake Pops</div>
-  <div class="price">$2.50</div>
-  <button onclick="add('Cake Pops',2.5)">Add</button>
+<div class="name">Cake Pops</div>
+<div class="price">$2.50</div>
+<button onclick="add('Cake Pops',2.5)">Add</button>
 </div>
 
 <div class="product">
-  <img src="https://via.placeholder.com/600x300"/>
-  <div class="name">Dipped Strawberries</div>
-  <div class="price">$1.50</div>
-  <button onclick="add('Dipped Strawberries',1.5)">Add</button>
+<div class="name">Dipped Strawberries</div>
+<div class="price">$1.50</div>
+<button onclick="add('Dipped Strawberries',1.5)">Add</button>
 </div>
 
 <div class="product">
-  <img src="https://via.placeholder.com/600x300"/>
-  <div class="name">Deal Box</div>
-  <div class="price">View Details</div>
-  <button onclick="openPopup('Deal Box')">View Box</button>
+<div class="name">Deal Box</div>
+<div class="price">Bundle</div>
+<button onclick="add('Deal Box',0)">View/Add</button>
 </div>
 
 <div class="product">
-  <img src="https://via.placeholder.com/600x300"/>
-  <div class="name">Party Box</div>
-  <div class="price">View Details</div>
-  <button onclick="openPopup('Party Box')">View Box</button>
+<div class="name">Party Box</div>
+<div class="price">Bundle</div>
+<button onclick="add('Party Box',0)">View/Add</button>
 </div>
 
 </div>
 
 <!-- CART BAR -->
 <div class="cart-bar">
-  <div id="cartTotal">Cart: $0.00</div>
-  <button onclick="openCart()">View Cart</button>
+<div id="cartTotal">Cart: $0.00</div>
+<button onclick="openCart()">Checkout</button>
 </div>
 
 <!-- CART PAGE -->
-<div class="cart-page" id="cartPage">
+<div class="page" id="cartPage">
 
-  <h2>Your Cart</h2>
+<h2>Your Order</h2>
 
-  <div id="cartItems"></div>
+<!-- CUSTOMER -->
+<h3>Customer Info</h3>
+<input id="name" placeholder="Name">
+<input id="phone" placeholder="Phone">
 
-  <h3 id="finalTotal"></h3>
+<!-- DELIVERY -->
+<h3>Delivery</h3>
+<select id="delivery" onchange="toggleAddress()">
+<option value="pickup">Pickup</option>
+<option value="delivery">Delivery</option>
+</select>
 
-  <button onclick="checkout()">Checkout (CashApp)</button>
-  <button onclick="closeCart()">Close</button>
-
+<div id="addressBox" class="hidden">
+<input id="address" placeholder="Address">
+<input id="zip" placeholder="ZIP">
 </div>
 
-<!-- POPUP -->
-<div class="popup" id="popup">
-  <h3 id="popupTitle"></h3>
-  <p id="popupText"></p>
-  <button onclick="closePopup()">Close</button>
+<!-- CART ITEMS -->
+<div id="items"></div>
+
+<!-- SUMMARY -->
+<div class="summary" id="summary"></div>
+
+<button onclick="pay()">Pay Deposit (CashApp)</button>
+<button onclick="closeCart()">Close</button>
+
 </div>
 
 <script>
 
 let cart = [];
 
-/* ADD */
+/* ADD ITEM */
 function add(name, price) {
-  cart.push({name, price, qty:1});
-  updateCart();
+  cart.push({name, price, qty:1, flavor:""});
+  update();
 }
 
-/* UPDATE */
-function updateCart() {
+/* DELIVERY FEE */
+function deliveryFee() {
+  if (document.getElementById("delivery").value !== "delivery") return 0;
+
+  let zip = document.getElementById("zip")?.value || "";
+
+  if (zip.startsWith("606")) return 5;
+  if (zip.startsWith("607") || zip.startsWith("608")) return 8;
+  return 10;
+}
+
+/* BOX PRICES */
+function dealBox() {
+  return (6*1.5 + 2*2.5 + 2*3 + 2*3 + 2*7) * 0.85;
+}
+
+function partyBox() {
+  return (12*1.5 + 12*2.5 + 12*3 + 12*3 + 12*7) * 0.85;
+}
+
+/* UPDATE CART TOTAL BAR */
+function update() {
 
   let total = 0;
 
-  cart.forEach(i => total += i.price * i.qty);
+  cart.forEach(i => {
+    let price = i.price;
+
+    if (i.name === "Deal Box") price = dealBox();
+    if (i.name === "Party Box") price = partyBox();
+
+    total += price * i.qty;
+  });
 
   document.getElementById("cartTotal").innerText =
     "Cart: $" + total.toFixed(2);
 }
 
-/* CART PAGE */
+/* OPEN CART PAGE */
 function openCart() {
 
   let html = "";
   let total = 0;
 
-  cart.forEach(i => {
-    total += i.price * i.qty;
+  cart.forEach((i, index) => {
 
-    html += `<div class="cart-item">
-      <b>${i.name}</b><br>
-      $${i.price} x ${i.qty}
-    </div>`;
+    let price = i.price;
+
+    if (i.name === "Deal Box") price = dealBox();
+    if (i.name === "Party Box") price = partyBox();
+
+    let itemTotal = price * i.qty;
+    total += itemTotal;
+
+    html += `
+      <div class="item">
+        <b>${i.name}</b><br>
+        <div class="small">$${price.toFixed(2)} × ${i.qty} = $${itemTotal.toFixed(2)}</div>
+        <button onclick="removeItem(${index})">Remove</button>
+      </div>
+    `;
   });
 
-  document.getElementById("cartItems").innerHTML = html;
-  document.getElementById("finalTotal").innerText =
-    "Total: $" + total.toFixed(2);
+  total += deliveryFee();
+
+  let deposit = total / 2;
+
+  document.getElementById("items").innerHTML =
+    html || "Cart empty";
+
+  document.getElementById("summary").innerHTML = `
+    Total: $${total.toFixed(2)}<br>
+    Deposit: $${deposit.toFixed(2)}
+  `;
 
   document.getElementById("cartPage").style.display = "block";
 }
@@ -262,31 +287,38 @@ function closeCart() {
   document.getElementById("cartPage").style.display = "none";
 }
 
-/* POPUPS */
-function openPopup(type) {
-
-  document.getElementById("popup").style.display = "block";
-
-  if (type === "Deal Box") {
-    document.getElementById("popupTitle").innerText = "Deal Box";
-    document.getElementById("popupText").innerText =
-      "Includes dipped treats, cupcakes, cake pops, cookies, mini cake (discount bundle)";
-  }
-
-  if (type === "Party Box") {
-    document.getElementById("popupTitle").innerText = "Party Box";
-    document.getElementById("popupText").innerText =
-      "Large bundle with everything in bigger quantities for parties";
-  }
+function removeItem(i) {
+  cart.splice(i,1);
+  update();
+  openCart();
 }
 
-function closePopup() {
-  document.getElementById("popup").style.display = "none";
+function toggleAddress() {
+  document.getElementById("addressBox").className =
+    document.getElementById("delivery").value === "delivery"
+      ? ""
+      : "hidden";
 }
 
 /* CHECKOUT */
-function checkout() {
-  let total = cart.reduce((a,b) => a + b.price, 0);
+function pay() {
+
+  if (cart.length === 0) return alert("Cart empty");
+
+  let total = 0;
+
+  cart.forEach(i => {
+
+    let price = i.price;
+
+    if (i.name === "Deal Box") price = dealBox();
+    if (i.name === "Party Box") price = partyBox();
+
+    total += price * i.qty;
+  });
+
+  total += deliveryFee();
+
   let deposit = total / 2;
 
   window.location.href =
