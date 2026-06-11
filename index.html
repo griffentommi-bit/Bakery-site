@@ -1,54 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sweet Treats Bakery</title>
+
+<style>
+
+/* BASE */
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #fafafa;
+}
+
+/* HEADER */
+header {
+  background: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  border-bottom: 1px solid #eee;
+}
+
+.logo {
+  width: 90px;
+  display: block;
+  margin: 10px auto;
+}
+
+/* 🚨 HARD FIX: FORCE SINGLE COLUMN */
+.container {
+  max-width: 650px;
+  margin: auto;
+  padding: 15px;
+  display: block; /* kills side-by-side forever */
+}
+
+/* SECTIONS */
+.section {
+  background: white;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+}
+
+/* INPUTS */
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+/* BUTTONS */
+button {
+  width: 100%;
+  padding: 12px;
+  background: #ff4da6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+button:hover {
+  background: #e60073;
+}
+
+/* CART ITEMS */
+.cart-item {
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+
+.summary {
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* FORCE FULL WIDTH (prevents weird flex leftovers) */
+.section, .cart-item {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>Sweet Treats Bakery 🍰</header>
+<img class="logo" src="logo.png"/>
+
+<div class="container">
+
+<!-- CUSTOMER INFO -->
+<div class="section">
+<h3>1. Customer Info</h3>
+
+<input id="name" placeholder="Full Name">
+<input id="phone" placeholder="Phone Number">
+<input id="email" placeholder="Email">
+</div>
+
+<!-- MENU -->
+<div class="section">
+<h3>2. Choose Dessert</h3>
+
+<select id="item">
+  <option value="Mini Cake|7">Mini Cake - $7+</option>
+  <option value="Cupcakes|3">Cupcakes - $3</option>
+  <option value="Cake Pops|2.5">Cake Pops - $2.50</option>
+  <option value="Cookies|3">Cookies - $3</option>
+
+  <option value="Dipped Item|1.5">Dipped Items - $1.50</option>
+
+  <option value="THE DEAL BOX|0">THE DEAL BOX</option>
+  <option value="PARTY BOX|0">PARTY BOX</option>
+</select>
+
+<input type="number" id="qty" value="1" min="1" max="12">
+</div>
+
+<!-- DELIVERY -->
+<div class="section">
+<h3>3. Delivery Option</h3>
+
+<select id="deliveryType" onchange="toggleAddress()">
+  <option value="pickup">Pickup</option>
+  <option value="delivery">Delivery</option>
+</select>
+
+<div id="addressBox" style="display:none;">
+  <input id="address" placeholder="Address">
+  <input id="zip" placeholder="ZIP Code">
+</div>
+</div>
+
+<!-- ADD -->
+<div class="section">
+<h3>4. Add Item</h3>
+<button onclick="addItem()">Add to Cart</button>
+</div>
+
+<!-- CART -->
+<div class="section">
+<h3>5. Your Order</h3>
+
+<div id="cart"></div>
+
+<hr>
+
+<div class="summary" id="summary">
+<b>Total:</b> $0.00<br>
+<b>Deposit:</b> $0.00
+</div>
+
+</div>
+
+<!-- CHECKOUT -->
+<div class="section">
+<h3>6. Checkout</h3>
+<button onclick="checkout()">Pay Deposit (CashApp)</button>
+</div>
+
+</div>
+
 <script>
 
 let cart = [];
 
-function addItem(name, price) {
+/* ADD ITEM */
+function addItem() {
 
-  let flavor = "";
+  let [name, price] = document.getElementById("item").value.split("|");
+  let qty = Math.min(parseInt(document.getElementById("qty").value), 12);
 
-  if (name === "Mini Cake") {
-    flavor = document.getElementById("cakeFlavor").value;
-  }
-
-  if (name === "Cupcakes") {
-    flavor = document.getElementById("cupFlavor").value;
-  }
-
-  cart.push({ name, price, flavor, qty: 1 });
-  render();
-}
-
-/* ➕ INCREASE QTY */
-function increaseQty(index) {
-  cart[index].qty += 1;
-  render();
-}
-
-/* ➖ DECREASE QTY */
-function decreaseQty(index) {
-  cart[index].qty -= 1;
-
-  if (cart[index].qty <= 0) {
-    cart.splice(index, 1);
-  }
+  cart.push({
+    name,
+    price: parseFloat(price),
+    qty,
+    flavor: ""
+  });
 
   render();
 }
 
+/* + BUTTON */
+function increaseQty(i) {
+  cart[i].qty++;
+  render();
+}
+
+/* − BUTTON */
+function decreaseQty(i) {
+  cart[i].qty--;
+
+  if (cart[i].qty <= 0) {
+    cart.splice(i, 1);
+  }
+
+  render();
+}
+
+/* DEAL BOX */
 function dealBoxPrice() {
   return ((4*6*1.5)+(2*2.5)+(2*3)+(2*3)+(2*7))*0.85;
 }
 
+/* PARTY BOX */
 function partyBoxPrice() {
   return ((8*12*1.5)+(12*2.5)+(12*3)+(12*3)+(12*7))*0.85;
 }
 
+/* DELIVERY */
+function deliveryFee() {
+  if (document.getElementById("deliveryType").value !== "delivery") return 0;
+
+  let zip = document.getElementById("zip").value || "";
+
+  if (zip.startsWith("606")) return 5;
+  if (zip.startsWith("607") || zip.startsWith("608")) return 8;
+  return 10;
+}
+
+/* RENDER CART */
 function render() {
 
   let html = "";
   let total = 0;
 
-  cart.forEach((item, index) => {
+  cart.forEach((item, i) => {
 
     let price = item.price;
 
@@ -60,19 +248,23 @@ function render() {
 
     html += `
       <div class="cart-item">
-        <b>${item.name}</b> ${item.flavor ? "(" + item.flavor + ")" : ""}<br>
+        <b>${item.name}</b><br>
 
         $${price.toFixed(2)} × ${item.qty} = $${itemTotal.toFixed(2)}<br>
 
-        <button onclick="decreaseQty(${index})">−</button>
-        <button onclick="increaseQty(${index})">+</button>
+        <button onclick="decreaseQty(${i})">−</button>
+        <button onclick="increaseQty(${i})">+</button>
       </div>
     `;
   });
 
+  let fee = deliveryFee();
+  total += fee;
+
   let deposit = total / 2;
 
-  document.getElementById("cart").innerHTML = html || "Cart empty";
+  document.getElementById("cart").innerHTML =
+    html || "No items yet";
 
   document.getElementById("summary").innerHTML = `
     <b>Total:</b> $${total.toFixed(2)}<br>
@@ -80,11 +272,23 @@ function render() {
   `;
 }
 
-function renderTotal() {
+/* CHECKOUT */
+function checkout() {
+
+  if (cart.length === 0) return alert("Cart is empty");
+
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
+  let email = document.getElementById("email").value;
+
+  if (!name || !phone || !email) {
+    alert("Please fill out all info");
+    return;
+  }
+
   let total = 0;
 
   cart.forEach(i => {
-
     let price = i.price;
 
     if (i.name === "THE DEAL BOX") price = dealBoxPrice();
@@ -93,24 +297,21 @@ function renderTotal() {
     total += price * i.qty;
   });
 
-  return total;
-}
-
-function checkout() {
-
-  if (cart.length === 0) return alert("Cart empty");
-
-  let name = document.getElementById("name").value;
-  let phone = document.getElementById("phone").value;
-  let email = document.getElementById("email").value;
-
-  if (!name || !phone || !email) {
-    alert("Fill out info first");
-    return;
-  }
+  let deposit = total / 2;
 
   window.location.href =
-    `https://cash.app/$TommiGriffen/${(renderTotal()/2).toFixed(2)}`;
+    `https://cash.app/$TommiGriffen/${deposit.toFixed(2)}`;
+}
+
+/* DELIVERY TOGGLE */
+function toggleAddress() {
+  document.getElementById("addressBox").style.display =
+    document.getElementById("deliveryType").value === "delivery"
+      ? "block"
+      : "none";
 }
 
 </script>
+
+</body>
+</html>
