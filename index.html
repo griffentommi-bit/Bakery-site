@@ -3,125 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Sweet Treats Bakery</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
 <header class="hero">
-
 <div class="sparkles">
-✨ 🍓 ✨ 🧁 ✨ 🍪 ✨
+🍓 ✨ 🧁 ✨ 🍪 ✨ 🍫
 </div>
-
 <h1>Sweet Treats Bakery</h1>
-
-<p>
-Made With Love 🧁
-</p>
-
+<p>Made With Love 🧁</p>
 </header>
-
 <main>
-
-<!-- CUSTOMER INFO -->
-
 <section class="card">
-
 <h2>Customer Information</h2>
-
 <input id="customerName" type="text" placeholder="Full Name">
-
 <input id="customerPhone" type="tel" placeholder="Phone Number">
-
 <select id="orderType">
 <option value="pickup">Pickup</option>
 <option value="delivery">Delivery</option>
 </select>
-
 <div id="deliveryFields">
-
 <input id="address" type="text" placeholder="Street Address">
-
 <input id="city" type="text" placeholder="City">
-
 <input id="state" type="text" placeholder="State">
-
 <input id="zip" type="text" placeholder="ZIP Code">
-
 </div>
-
 </section>
-
-<!-- MENU -->
-
-<section>
-
-<h2 class="section-title">
-Menu
-</h2>
-
+<h2 class="section-title">Menu</h2>
 <div id="menuContainer">
-
 <!-- MINI CAKES -->
-
 <div class="product-card">
-
 <div class="product-image">🎂</div>
-
 <h3>Mini Cakes</h3>
-
 <p>$7 each</p>
-
 <select class="flavor">
 <option>Vanilla</option>
 <option>Chocolate</option>
 <option>Strawberry</option>
 <option>Red Velvet</option>
 </select>
-
 <div class="quantity-row">
-
 <button onclick="addItem('Mini Cake',7,1)">1 ($7)</button>
 <button onclick="addItem('Mini Cake',7,2)">2 ($14)</button>
 <button onclick="addItem('Mini Cake',7,3)">3 ($21)</button>
 <button onclick="addItem('Mini Cake',7,4)">4 ($28)</button>
 <button onclick="addItem('Mini Cake',7,5)">5 ($35)</button>
-
 </div>
-
 <div class="quantity-row">
-
-<button onclick="addItem('Mini Cake',7,6)">
-Half Dozen ($42)
-</button>
-
-<button onclick="addItem('Mini Cake',7,12)">
-Dozen ($84)
-</button>
-
+<button onclick="addItem('Mini Cake',7,6)">Half Dozen ($42)</button>
+<button onclick="addItem('Mini Cake',7,12)">Dozen ($84)</button>
 </div>
-
 </div>
-
 <!-- CUPCAKES -->
-
 <div class="product-card">
-
 <div class="product-image">🧁</div>
-
 <h3>Cupcakes</h3>
-
 <p>$3 each</p>
-
 <div class="quantity-row">
 <button onclick="addItem('Cupcakes',3,1)">1 ($3)</button>
 <button onclick="addItem('Cupcakes',3,2)">2 ($6)</button>
@@ -129,24 +70,16 @@ Dozen ($84)
 <button onclick="addItem('Cupcakes',3,4)">4 ($12)</button>
 <button onclick="addItem('Cupcakes',3,5)">5 ($15)</button>
 </div>
-
 <div class="quantity-row">
 <button onclick="addItem('Cupcakes',3,6)">Half Dozen ($18)</button>
 <button onclick="addItem('Cupcakes',3,12)">Dozen ($36)</button>
 </div>
-
 </div>
-
 <!-- COOKIES -->
-
 <div class="product-card">
-
 <div class="product-image">🍪</div>
-
 <h3>Cookies</h3>
-
 <p>$3 each</p>
-
 <div class="quantity-row">
 <button onclick="addItem('Cookies',3,1)">1 ($3)</button>
 <button onclick="addItem('Cookies',3,2)">2 ($6)</button>
@@ -154,24 +87,16 @@ Dozen ($84)
 <button onclick="addItem('Cookies',3,4)">4 ($12)</button>
 <button onclick="addItem('Cookies',3,5)">5 ($15)</button>
 </div>
-
 <div class="quantity-row">
 <button onclick="addItem('Cookies',3,6)">Half Dozen ($18)</button>
 <button onclick="addItem('Cookies',3,12)">Dozen ($36)</button>
 </div>
-
 </div>
-
 <!-- CAKE POPS -->
-
 <div class="product-card">
-
 <div class="product-image">🍭</div>
-
 <h3>Cake Pops</h3>
-
 <p>$2.50 each</p>
-
 <div class="quantity-row">
 <button onclick="addItem('Cake Pops',2.5,1)">1 ($2.50)</button>
 <button onclick="addItem('Cake Pops',2.5,2)">2 ($5)</button>
@@ -179,499 +104,465 @@ Dozen ($84)
 <button onclick="addItem('Cake Pops',2.5,4)">4 ($10)</button>
 <button onclick="addItem('Cake Pops',2.5,5)">5 ($12.50)</button>
 </div>
-
 <div class="quantity-row">
 <button onclick="addItem('Cake Pops',2.5,6)">Half Dozen ($15)</button>
 <button onclick="addItem('Cake Pops',2.5,12)">Dozen ($30)</button>
 </div>
-
 </div>
-
-<!-- DIPPED TREATS -->
-
+<!-- DIPPED STRAWBERRIES -->
 <div class="product-card">
 <div class="product-image">🍓</div>
 <h3>Dipped Strawberries</h3>
 <p>$1.50 each</p>
+<div class="quantity-row">
+<button onclick="addItem('Dipped Strawberries',1.5,1)">1 ($1.50)</button>
+<button onclick="addItem('Dipped Strawberries',1.5,2)">2 ($3)</button>
+<button onclick="addItem('Dipped Strawberries',1.5,3)">3 ($4.50)</button>
+<button onclick="addItem('Dipped Strawberries',1.5,4)">4 ($6)</button>
+<button onclick="addItem('Dipped Strawberries',1.5,5)">5 ($7.50)</button>
 </div>
-
+<div class="quantity-row">
+<button onclick="addItem('Dipped Strawberries',1.5,6)">Half Dozen ($9)</button>
+<button onclick="addItem('Dipped Strawberries',1.5,12)">Dozen ($18)</button>
+</div>
+</div>
+<!-- DIPPED OREOS -->
 <div class="product-card">
 <div class="product-image">🍫</div>
 <h3>Dipped Oreos</h3>
 <p>$1.50 each</p>
+<div class="quantity-row">
+<button onclick="addItem('Dipped Oreos',1.5,1)">1 ($1.50)</button>
+<button onclick="addItem('Dipped Oreos',1.5,2)">2 ($3)</button>
+<button onclick="addItem('Dipped Oreos',1.5,3)">3 ($4.50)</button>
+<button onclick="addItem('Dipped Oreos',1.5,4)">4 ($6)</button>
+<button onclick="addItem('Dipped Oreos',1.5,5)">5 ($7.50)</button>
 </div>
-
+<div class="quantity-row">
+<button onclick="addItem('Dipped Oreos',1.5,6)">Half Dozen ($9)</button>
+<button onclick="addItem('Dipped Oreos',1.5,12)">Dozen ($18)</button>
+</div>
+</div>
+<!-- DIPPED PRETZELS -->
 <div class="product-card">
 <div class="product-image">🥨</div>
 <h3>Dipped Pretzels</h3>
 <p>$1.50 each</p>
+<div class="quantity-row">
+<button onclick="addItem('Dipped Pretzels',1.5,1)">1 ($1.50)</button>
+<button onclick="addItem('Dipped Pretzels',1.5,2)">2 ($3)</button>
+<button onclick="addItem('Dipped Pretzels',1.5,3)">3 ($4.50)</button>
+<button onclick="addItem('Dipped Pretzels',1.5,4)">4 ($6)</button>
+<button onclick="addItem('Dipped Pretzels',1.5,5)">5 ($7.50)</button>
 </div>
-
+<div class="quantity-row">
+<button onclick="addItem('Dipped Pretzels',1.5,6)">Half Dozen ($9)</button>
+<button onclick="addItem('Dipped Pretzels',1.5,12)">Dozen ($18)</button>
+</div>
+</div>
+<!-- DIPPED RICE KRISPIES -->
 <div class="product-card">
 <div class="product-image">🌾</div>
 <h3>Dipped Rice Krispies</h3>
 <p>$1.50 each</p>
+<div class="quantity-row">
+<button onclick="addItem('Dipped Rice Krispies',1.5,1)">1 ($1.50)</button>
+<button onclick="addItem('Dipped Rice Krispies',1.5,2)">2 ($3)</button>
+<button onclick="addItem('Dipped Rice Krispies',1.5,3)">3 ($4.50)</button>
+<button onclick="addItem('Dipped Rice Krispies',1.5,4)">4 ($6)</button>
+<button onclick="addItem('Dipped Rice Krispies',1.5,5)">5 ($7.50)</button>
 </div>
-
+<div class="quantity-row">
+<button onclick="addItem('Dipped Rice Krispies',1.5,6)">Half Dozen ($9)</button>
+<button onclick="addItem('Dipped Rice Krispies',1.5,12)">Dozen ($18)</button>
+</div>
+</div>
 <!-- DEAL BOX -->
-
 <div class="product-card box-card">
-
 <h3>💝 The Deal Box</h3>
-
-<p>
-$45-$55 depending on theme
-</p>
-
+<p>$45-$55 depending on theme</p>
 <ul>
-<li>Half dozen strawberries</li>
-<li>Half dozen oreos</li>
-<li>Half dozen pretzels</li>
-<li>Half dozen rice krispies</li>
-<li>2 cupcakes</li>
-<li>2 cookies</li>
-<li>2 cake pops</li>
-<li>2 mini cakes</li>
+<li>6 Dipped Strawberries</li>
+<li>6 Dipped Oreos</li>
+<li>6 Dipped Pretzels</li>
+<li>6 Dipped Rice Krispies</li>
+<li>2 Cupcakes</li>
+<li>2 Cookies</li>
+<li>2 Cake Pops</li>
+<li>2 Mini Cakes</li>
 </ul>
-
-<button onclick="addDealBox()">
-Add Deal Box
-</button>
-
+<button onclick="addDealBox()">Add Deal Box</button>
 </div>
-
 <!-- PARTY BOX -->
-
 <div class="product-card box-card">
-
 <h3>🎉 Party Box</h3>
-
-<p>
-Starting at $125
-</p>
-
+<p>Starting at $125</p>
 <ul>
-<li>Dozen strawberries</li>
-<li>Dozen oreos</li>
-<li>Dozen pretzels</li>
-<li>Dozen rice krispies</li>
-<li>Dozen cupcakes</li>
-<li>Dozen cookies</li>
-<li>Dozen cake pops</li>
-<li>Dozen mini cakes</li>
+<li>12 of Every Dessert</li>
 </ul>
-
-<button onclick="addPartyBox()">
-Add Party Box
-</button>
-
+<button onclick="addPartyBox()">Add Party Box</button>
 </div>
-
 </div>
-
-</section>
-
-<!-- CART -->
-
 <section class="card checkout-card">
-
 <h2>Your Cart</h2>
-
 <div id="cartItems"></div>
-
 <div class="totals">
-
-<div>
-Order Total:
-<span id="orderTotal">$0.00</span>
+<div>Order Total: <span id="orderTotal">$0.00</span></div>
+<div>Deposit Due: <span id="depositTotal">$0.00</span></div>
+<div>Remaining Balance: <span id="remainingTotal">$0.00</span></div>
 </div>
-
-<div>
-Deposit Due:
-<span id="depositTotal">$0.00</span>
-</div>
-
-<div>
-Remaining Balance:
-<span id="remainingTotal">$0.00</span>
-</div>
-
-</div>
-
 <button id="cashappButton">
 Pay Deposit With Cash App
 </button>
-
-<p class="cashapp-tag">
-$TommiGriffen
-</p>
-
+<p class="cashapp-tag">$TommiGriffen</p>
 </section>
-
 </main>
-
 <script src="script.js"></script>
-
 </body>
 </html>
 :root{
---pink:#ff5fa2;
---lightpink:#ffe4f1;
---cream:#fffaf5;
---gold:#ffd166;
---brown:#7b4f35;
---shadow:0 6px 18px rgba(0,0,0,.08);
+  --pink:#ff5fa2;
+  --lightpink:#ffe4f1;
+  --cream:#fffaf5;
+  --gold:#ffd166;
+  --brown:#7b4f35;
+  --shadow:0 8px 20px rgba(0,0,0,.08);
 }
-
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
-
 body{
-font-family:'Poppins',sans-serif;
-background:
-radial-gradient(#ffd1e8 2px, transparent 2px);
-background-size:22px 22px;
-background-color:var(--cream);
-color:#333;
-padding-bottom:100px;
+  font-family:'Poppins',sans-serif;
+  background:
+  radial-gradient(#ffd1e8 2px, transparent 2px);
+  background-size:22px 22px;
+  background-color:var(--cream);
+  color:#333;
+  padding-bottom:120px;
 }
-
 .hero{
-background:linear-gradient(
-135deg,
-#ff5fa2,
-#ff86bc
-);
-color:white;
-text-align:center;
-padding:30px 15px;
-box-shadow:var(--shadow);
+  background:linear-gradient(
+    135deg,
+    #ff5fa2,
+    #ff8fc2
+  );
+  color:white;
+  text-align:center;
+  padding:30px 15px;
+  box-shadow:var(--shadow);
 }
-
 .hero h1{
-font-family:'Pacifico',cursive;
-font-size:48px;
-font-weight:400;
-margin-bottom:8px;
+  font-family:'Pacifico',cursive;
+  font-size:48px;
+  font-weight:400;
+  margin-bottom:8px;
 }
-
 .hero p{
-font-size:18px;
-font-weight:500;
+  font-size:18px;
+  font-weight:500;
 }
-
 .sparkles{
-font-size:24px;
-margin-bottom:12px;
+  font-size:24px;
+  margin-bottom:12px;
 }
-
 main{
-max-width:900px;
-margin:auto;
-padding:15px;
+  max-width:900px;
+  margin:auto;
+  padding:15px;
 }
-
 .section-title{
-margin:15px 0;
-font-size:28px;
-color:var(--pink);
-font-weight:700;
+  margin:20px 0;
+  font-size:30px;
+  color:var(--pink);
+  text-align:center;
+  font-weight:700;
 }
-
 .card{
-background:white;
-padding:18px;
-border-radius:22px;
-margin-bottom:20px;
-box-shadow:var(--shadow);
+  background:white;
+  border-radius:24px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:var(--shadow);
 }
-
 .card h2{
-color:var(--pink);
-margin-bottom:15px;
+  color:var(--pink);
+  margin-bottom:15px;
 }
-
 input,
 select{
-width:100%;
-padding:14px;
-border:2px solid #eee;
-border-radius:14px;
-margin-bottom:12px;
-font-size:15px;
-outline:none;
+  width:100%;
+  padding:14px;
+  margin-bottom:12px;
+  border-radius:14px;
+  border:2px solid #eee;
+  font-size:15px;
+  outline:none;
 }
-
 input:focus,
 select:focus{
-border-color:var(--pink);
+  border-color:var(--pink);
 }
-
 #deliveryFields{
-display:flex;
-flex-direction:column;
+  display:flex;
+  flex-direction:column;
 }
-
 .product-card{
-background:white;
-border-radius:22px;
-padding:18px;
-margin-bottom:18px;
-box-shadow:var(--shadow);
-transition:.25s;
+  background:white;
+  border-radius:24px;
+  padding:20px;
+  margin-bottom:18px;
+  box-shadow:var(--shadow);
+  transition:.25s;
 }
-
 .product-card:hover{
-transform:translateY(-3px);
+  transform:translateY(-3px);
 }
-
 .product-image{
-font-size:60px;
-text-align:center;
-margin-bottom:10px;
+  font-size:60px;
+  text-align:center;
+  margin-bottom:10px;
 }
-
 .product-card h3{
-font-size:24px;
-color:var(--brown);
-margin-bottom:6px;
+  color:var(--brown);
+  font-size:24px;
+  margin-bottom:8px;
 }
-
 .product-card p{
-margin-bottom:12px;
+  margin-bottom:12px;
 }
-
+.flavor{
+  margin-bottom:15px;
+}
 .quantity-row{
-display:flex;
-flex-wrap:wrap;
-gap:8px;
-margin-bottom:10px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:10px;
 }
-
 .quantity-row button{
-flex:1;
-min-width:110px;
+  flex:1;
+  min-width:110px;
 }
-
 button{
-border:none;
-background:var(--pink);
-color:white;
-padding:12px;
-border-radius:14px;
-cursor:pointer;
-font-size:15px;
-font-weight:600;
-transition:.2s;
+  border:none;
+  border-radius:14px;
+  background:var(--pink);
+  color:white;
+  padding:12px;
+  cursor:pointer;
+  font-weight:600;
+  transition:.2s;
 }
-
 button:hover{
-opacity:.92;
-transform:scale(1.02);
+  opacity:.95;
+  transform:scale(1.02);
 }
-
 .box-card{
-background:
-linear-gradient(
-135deg,
-#fff,
-#fff4fa
-);
-border:3px solid #ffd6ea;
+  background:
+  linear-gradient(
+    135deg,
+    #fff,
+    #fff4fa
+  );
+  border:3px solid #ffd6ea;
 }
-
 .box-card ul{
-margin-top:10px;
-margin-left:18px;
-margin-bottom:15px;
+  margin-left:20px;
+  margin-bottom:15px;
 }
-
 .box-card li{
-margin-bottom:6px;
+  margin-bottom:6px;
 }
-
 .checkout-card{
-position:sticky;
-bottom:10px;
-z-index:50;
+  position:relative;
 }
-
 #cartItems{
-margin-top:15px;
+  margin-top:15px;
 }
-
 .cart-item{
-background:#fff5fa;
-padding:12px;
-border-radius:16px;
-margin-bottom:10px;
-border:1px solid #ffd6ea;
+  background:#fff5fa;
+  border:1px solid #ffd6ea;
+  border-radius:18px;
+  padding:14px;
+  margin-bottom:12px;
 }
-
 .cart-item-title{
-font-weight:700;
-font-size:17px;
-color:var(--brown);
+  font-size:18px;
+  font-weight:700;
+  color:var(--brown);
 }
-
 .cart-item-price{
-margin-top:4px;
-color:#555;
+  margin-top:6px;
+  color:#555;
+  white-space:pre-line;
 }
-
 .cart-controls{
-display:flex;
-gap:8px;
-margin-top:10px;
+  display:flex;
+  gap:8px;
+  margin-top:12px;
 }
-
 .cart-controls button{
-flex:1;
+  flex:1;
 }
-
 .totals{
-margin-top:20px;
-padding:15px;
-background:#fff0f6;
-border-radius:18px;
+  margin-top:20px;
+  background:#fff0f6;
+  border-radius:18px;
+  padding:15px;
 }
-
 .totals div{
-display:flex;
-justify-content:space-between;
-margin-bottom:10px;
-font-weight:600;
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+  font-weight:600;
 }
-
 #orderTotal,
 #depositTotal,
 #remainingTotal{
-color:var(--pink);
+  color:var(--pink);
 }
-
 #cashappButton{
-width:100%;
-margin-top:15px;
-padding:16px;
-font-size:18px;
+  width:100%;
+  padding:16px;
+  margin-top:15px;
+  font-size:18px;
 }
-
 .cashapp-tag{
-text-align:center;
-font-weight:700;
-font-size:20px;
-margin-top:12px;
-color:#00c244;
+  text-align:center;
+  font-size:22px;
+  font-weight:700;
+  color:#00c244;
+  margin-top:12px;
 }
-
 .floating-hearts{
-position:fixed;
-pointer-events:none;
-inset:0;
-overflow:hidden;
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
 }
-
 .heart{
-position:absolute;
-font-size:24px;
-animation:floatUp 8s linear infinite;
-opacity:.3;
+  position:absolute;
+  font-size:24px;
+  opacity:.25;
+  animation:floatUp 10s linear infinite;
 }
-
 @keyframes floatUp{
-0%{
-transform:translateY(100vh);
+  0%{
+    transform:translateY(100vh);
+  }
+  100%{
+    transform:translateY(-120vh);
+  }
 }
-100%{
-transform:translateY(-120vh);
-}
-}
-
 @media(max-width:768px){
-
-.hero h1{
-font-size:38px;
-}
-
-.product-card h3{
-font-size:22px;
-}
-
-.quantity-row{
-flex-direction:column;
-}
-
-.quantity-row button{
-width:100%;
-}
-
-.checkout-card{
-position:relative;
-bottom:auto;
-}
-
+  .hero h1{
+    font-size:38px;
+  }
+  .product-card h3{
+    font-size:22px;
+  }
+  .quantity-row{
+    flex-direction:column;
+  }
+  .quantity-row button{
+    width:100%;
+  }
 }
 let cart = [];
 
-/* -------------------
-   CART FUNCTIONS
-------------------- */
+/* ==========================
+   ADD ITEMS
+========================== */
 
 function addItem(name, price, qty) {
 
-  const totalPrice = price * qty;
-
   cart.push({
     id: Date.now() + Math.random(),
-    name,
-    price,
-    qty,
-    totalPrice
+    name: name,
+    price: price,
+    qty: qty,
+    totalPrice: price * qty
   });
 
   updateCart();
 }
 
+/* ==========================
+   DEAL BOX
+========================== */
+
 function addDealBox() {
 
   cart.push({
     id: Date.now() + Math.random(),
+
     name: "💝 Deal Box",
+
+    description:
+`6 Dipped Strawberries
+6 Dipped Oreos
+6 Dipped Pretzels
+6 Dipped Rice Krispies
+2 Cupcakes
+2 Cookies
+2 Cake Pops
+2 Mini Cakes`,
+
     price: 50,
+
     qty: 1,
+
     totalPrice: 50
   });
 
   updateCart();
 }
 
+/* ==========================
+   PARTY BOX
+========================== */
+
 function addPartyBox() {
 
   cart.push({
     id: Date.now() + Math.random(),
+
     name: "🎉 Party Box",
+
+    description:
+`12 Dipped Strawberries
+12 Dipped Oreos
+12 Dipped Pretzels
+12 Dipped Rice Krispies
+12 Cupcakes
+12 Cookies
+12 Cake Pops
+12 Mini Cakes`,
+
     price: 125,
+
     qty: 1,
+
     totalPrice: 125
   });
 
   updateCart();
 }
 
-/* -------------------
-   QUANTITY CONTROLS
-------------------- */
+/* ==========================
+   CART CONTROLS
+========================== */
 
 function increaseQuantity(id) {
 
-  const item = cart.find(x => x.id === id);
+  const item = cart.find(i => i.id === id);
 
   if (!item) return;
 
-  item.qty += 1;
+  item.qty++;
+
   item.totalPrice = item.price * item.qty;
 
   updateCart();
@@ -679,14 +570,16 @@ function increaseQuantity(id) {
 
 function decreaseQuantity(id) {
 
-  const item = cart.find(x => x.id === id);
+  const item = cart.find(i => i.id === id);
 
   if (!item) return;
 
-  item.qty -= 1;
+  item.qty--;
 
   if (item.qty <= 0) {
+
     removeItem(id);
+
     return;
   }
 
@@ -702,67 +595,67 @@ function removeItem(id) {
   updateCart();
 }
 
-/* -------------------
-   DELIVERY LOGIC
-------------------- */
+/* ==========================
+   DELIVERY FEE
+========================== */
 
 function getDeliveryFee() {
 
-  const orderType =
+  const type =
     document.getElementById("orderType").value;
 
-  if (orderType === "pickup") {
-    return 0;
+  if (type === "delivery") {
+    return 10;
   }
 
-  return 10;
+  return 0;
 }
 
-/* -------------------
+/* ==========================
    TOTALS
-------------------- */
+========================== */
 
-function calculateSubtotal() {
+function getSubtotal() {
 
-  let subtotal = 0;
+  let total = 0;
 
   cart.forEach(item => {
-    subtotal += item.totalPrice;
+    total += item.totalPrice;
   });
 
-  return subtotal;
+  return total;
 }
 
-function calculateOrderTotal() {
+function getOrderTotal() {
 
-  return calculateSubtotal() + getDeliveryFee();
+  return getSubtotal() + getDeliveryFee();
 }
 
-function calculateDeposit() {
+function getDeposit() {
 
-  return calculateOrderTotal() * 0.50;
+  return getOrderTotal() * 0.50;
 }
 
-function calculateRemaining() {
+function getRemaining() {
 
-  return calculateOrderTotal() -
-         calculateDeposit();
+  return getOrderTotal() - getDeposit();
 }
 
-/* -------------------
-   RENDER CART
-------------------- */
+/* ==========================
+   UPDATE CART
+========================== */
 
 function updateCart() {
 
-  const cartContainer =
+  const container =
     document.getElementById("cartItems");
 
-  cartContainer.innerHTML = "";
+  container.innerHTML = "";
 
   cart.forEach(item => {
 
-    const div = document.createElement("div");
+    const div =
+      document.createElement("div");
 
     div.className = "cart-item";
 
@@ -779,6 +672,16 @@ function updateCart() {
       <div class="cart-item-price">
         Total: $${item.totalPrice.toFixed(2)}
       </div>
+
+      ${
+        item.description
+        ?
+        `<div class="cart-item-price">
+        ${item.description}
+        </div>`
+        :
+        ""
+      }
 
       <div class="cart-controls">
 
@@ -798,139 +701,192 @@ function updateCart() {
 
     `;
 
-    cartContainer.appendChild(div);
+    container.appendChild(div);
 
   });
 
-  document.getElementById("orderTotal").textContent =
-    "$" + calculateOrderTotal().toFixed(2);
+  document.getElementById(
+    "orderTotal"
+  ).textContent =
+    "$" + getOrderTotal().toFixed(2);
 
-  document.getElementById("depositTotal").textContent =
-    "$" + calculateDeposit().toFixed(2);
+  document.getElementById(
+    "depositTotal"
+  ).textContent =
+    "$" + getDeposit().toFixed(2);
 
-  document.getElementById("remainingTotal").textContent =
-    "$" + calculateRemaining().toFixed(2);
+  document.getElementById(
+    "remainingTotal"
+  ).textContent =
+    "$" + getRemaining().toFixed(2);
 }
 
-/* -------------------
-   DELIVERY FIELDS
-------------------- */
+/* ==========================
+   DELIVERY TOGGLE
+========================== */
 
-const orderType =
-  document.getElementById("orderType");
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
 
-if (orderType) {
-
-  orderType.addEventListener("change", () => {
+    const orderType =
+      document.getElementById("orderType");
 
     const deliveryFields =
       document.getElementById("deliveryFields");
 
-    if (orderType.value === "delivery") {
-      deliveryFields.style.display = "block";
-    } else {
-      deliveryFields.style.display = "none";
-    }
-
-    updateCart();
-  });
-
-}
-
-/* -------------------
-   CHECKOUT
-------------------- */
-
-const cashButton =
-  document.getElementById("cashappButton");
-
-if (cashButton) {
-
-  cashButton.addEventListener("click", () => {
-
-    const name =
-      document.getElementById("customerName").value;
-
-    const phone =
-      document.getElementById("customerPhone").value;
-
-    const orderType =
-      document.getElementById("orderType").value;
-
-    if (!name.trim()) {
-      alert("Please enter your name.");
-      return;
-    }
-
-    if (!phone.trim()) {
-      alert("Please enter your phone number.");
-      return;
-    }
-
-    if (orderType === "delivery") {
-
-      const address =
-        document.getElementById("address").value;
-
-      const city =
-        document.getElementById("city").value;
-
-      const state =
-        document.getElementById("state").value;
-
-      const zip =
-        document.getElementById("zip").value;
-
-      if (
-        !address.trim() ||
-        !city.trim() ||
-        !state.trim() ||
-        !zip.trim()
-      ) {
-        alert(
-          "Please complete delivery information."
-        );
-        return;
-      }
-
-    }
-
-    if (cart.length === 0) {
-      alert("Your cart is empty.");
-      return;
-    }
-
-    const deposit =
-      calculateDeposit().toFixed(2);
-
-    alert(
-      "Deposit Due: $" +
-      deposit +
-      "\nCash App: $TommiGriffen"
-    );
-
-    // Optional Cash App link
-    window.open(
-      "https://cash.app/$TommiGriffen",
-      "_blank"
-    );
-
-  });
-
-}
-
-/* -------------------
-   STARTUP
-------------------- */
-
-window.onload = () => {
-
-  const deliveryFields =
-    document.getElementById("deliveryFields");
-
-  if (deliveryFields) {
     deliveryFields.style.display = "none";
+
+    orderType.addEventListener(
+      "change",
+      () => {
+
+        if (
+          orderType.value === "delivery"
+        ) {
+
+          deliveryFields.style.display =
+            "block";
+
+        } else {
+
+          deliveryFields.style.display =
+            "none";
+
+        }
+
+        updateCart();
+
+      }
+    );
+
   }
+);
+
+/* ==========================
+   CASH APP CHECKOUT
+========================== */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    const cashButton =
+      document.getElementById(
+        "cashappButton"
+      );
+
+    cashButton.addEventListener(
+      "click",
+      () => {
+
+        const name =
+          document.getElementById(
+            "customerName"
+          ).value;
+
+        const phone =
+          document.getElementById(
+            "customerPhone"
+          ).value;
+
+        if (!name.trim()) {
+
+          alert(
+            "Please enter your name."
+          );
+
+          return;
+        }
+
+        if (!phone.trim()) {
+
+          alert(
+            "Please enter your phone number."
+          );
+
+          return;
+        }
+
+        if (cart.length === 0) {
+
+          alert(
+            "Your cart is empty."
+          );
+
+          return;
+        }
+
+        const orderType =
+          document.getElementById(
+            "orderType"
+          ).value;
+
+        if (
+          orderType === "delivery"
+        ) {
+
+          const address =
+            document.getElementById(
+              "address"
+            ).value;
+
+          const city =
+            document.getElementById(
+              "city"
+            ).value;
+
+          const state =
+            document.getElementById(
+              "state"
+            ).value;
+
+          const zip =
+            document.getElementById(
+              "zip"
+            ).value;
+
+          if (
+            !address.trim() ||
+            !city.trim() ||
+            !state.trim() ||
+            !zip.trim()
+          ) {
+
+            alert(
+              "Please complete delivery information."
+            );
+
+            return;
+          }
+
+        }
+
+        const deposit =
+          getDeposit().toFixed(2);
+
+        alert(
+          "Deposit Due: $" +
+          deposit +
+          "\n\nCash App: $TommiGriffen"
+        );
+
+        window.open(
+          "https://cash.app/$TommiGriffen",
+          "_blank"
+        );
+
+      }
+    );
+
+  }
+);
+
+/* ==========================
+   INITIAL LOAD
+========================== */
+
+window.onload = function () {
 
   updateCart();
 
