@@ -1,0 +1,91 @@
+let cart = [];
+
+function addItem(name, price, qty){
+    cart.push({
+        id: crypto.randomUUID(),
+        name,
+        price,
+        qty,
+        total: price * qty
+    });
+
+    updateCart();
+}
+
+function addDealBox(){
+    cart.push({
+        id: crypto.randomUUID(),
+        name: "Deal Box",
+        price: 50,
+        qty: 1,
+        total: 50,
+        desc: `6 Strawberries<br>
+6 Oreos<br>
+6 Pretzels<br>
+6 Rice Krispies<br>
+2 Cupcakes<br>
+2 Cookies<br>
+2 Cake Pops<br>
+2 Mini Cakes`
+    });
+
+    updateCart();
+}
+
+function addPartyBox(){
+    cart.push({
+        id: crypto.randomUUID(),
+        name: "Party Box",
+        price: 125,
+        qty: 1,
+        total: 125,
+        desc: `12 of everything`
+    });
+
+    updateCart();
+}
+
+function updateCart(){
+    let container = document.getElementById("cartItems");
+    container.innerHTML = "";
+
+    let total = 0;
+
+    cart.forEach(item => {
+        total += item.total;
+
+        container.innerHTML += `
+        <div class="cart-item">
+            <b>${item.name}</b><br>
+            $${item.price.toFixed(2)} x ${item.qty}<br>
+            Total: $${item.total.toFixed(2)}<br>
+            ${item.desc ? `<div class="item-desc">${item.desc}</div>` : ""}
+            <button onclick="removeItem('${item.id}')">Remove</button>
+        </div>
+        `;
+    });
+
+    document.getElementById("orderTotal").innerText = "$" + total.toFixed(2);
+    document.getElementById("depositTotal").innerText = "$" + (total / 2).toFixed(2);
+    document.getElementById("remainingTotal").innerText = "$" + (total / 2).toFixed(2);
+}
+
+function removeItem(id){
+    cart = cart.filter(i => i.id !== id);
+    updateCart();
+}
+
+document.getElementById("orderType").addEventListener("change", function(){
+    document.getElementById("deliveryFields").style.display =
+        this.value === "delivery" ? "flex" : "none";
+});
+
+document.getElementById("cashappButton").addEventListener("click", function(){
+    if(cart.length === 0){
+        alert("Cart is empty");
+        return;
+    }
+
+    alert("Send deposit to $TommiGriffen");
+    window.open("https://cash.app/$TommiGriffen", "_blank");
+});
