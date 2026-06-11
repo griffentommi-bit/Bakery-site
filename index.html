@@ -1,305 +1,937 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Sweet Treats Bakery</title>
 
-<style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-body {
-  margin: 0;
-  font-family: system-ui, Arial;
-  background: #f6f6fb;
-}
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-header {
-  background: linear-gradient(135deg, #ff4da6, #ff7ac6);
-  color: white;
-  text-align: center;
-  padding: 16px;
-  font-size: 22px;
-  font-weight: bold;
-}
-
-.container {
-  max-width: 720px;
-  margin: auto;
-  padding: 12px;
-}
-
-/* PRODUCT CARD */
-.product {
-  background: white;
-  padding: 12px;
-  border-radius: 14px;
-  margin-bottom: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-}
-
-.name {
-  font-weight: 700;
-}
-
-.price {
-  color: #ff2f92;
-}
-
-.qty-box {
-  display: flex;
-  gap: 6px;
-  margin-top: 8px;
-}
-
-.qty-box button {
-  flex: 1;
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-  background: #eee;
-  font-weight: bold;
-}
-
-.add-btn {
-  width: 100%;
-  margin-top: 8px;
-  padding: 10px;
-  border: none;
-  border-radius: 10px;
-  background: #ff2f92;
-  color: white;
-  font-weight: bold;
-}
-
-/* CART BAR */
-.cart-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: white;
-  padding: 12px;
-  box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
-  display: flex;
-  justify-content: space-between;
-}
-
-/* CART PAGE */
-.page {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: white;
-  padding: 12px;
-  overflow-y: auto;
-}
-
-.item {
-  background: #f7f7f7;
-  padding: 10px;
-  border-radius: 12px;
-  margin-bottom: 8px;
-}
-
-.small {
-  font-size: 13px;
-  color: #555;
-}
-
-.summary {
-  background: #fff0f6;
-  padding: 12px;
-  border-radius: 12px;
-  font-weight: bold;
-}
-
-button {
-  cursor: pointer;
-}
-
-.hidden { display:none; }
-
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>Sweet Treats Bakery 🍰</header>
+<header class="hero">
 
-<div class="container">
-
-<!-- PRODUCTS -->
-
-<div class="product">
-<div class="name">Mini Cake</div>
-<div class="price">$7 per item</div>
-
-<div class="qty-box">
-<button onclick="setQty('Mini Cake',7,1)">1</button>
-<button onclick="setQty('Mini Cake',7,2)">2</button>
-<button onclick="setQty('Mini Cake',7,5)">5</button>
+<div class="sparkles">
+✨ 🍓 ✨ 🧁 ✨ 🍪 ✨
 </div>
 
-<div class="qty-box">
-<button onclick="setQty('Mini Cake',7,6)">Half Dozen</button>
-<button onclick="setQty('Mini Cake',7,12)">Dozen</button>
-</div>
+<h1>Sweet Treats Bakery</h1>
 
-<button class="add-btn" onclick="add()">Add Selected</button>
-</div>
+<p>
+Made With Love 🧁
+</p>
 
-<div class="product">
-<div class="name">Cupcakes</div>
-<div class="price">$3 per item</div>
+</header>
 
-<div class="qty-box">
-<button onclick="setQty('Cupcakes',3,1)">1</button>
-<button onclick="setQty('Cupcakes',3,2)">2</button>
-<button onclick="setQty('Cupcakes',3,5)">5</button>
-</div>
+<main>
 
-<div class="qty-box">
-<button onclick="setQty('Cupcakes',3,6)">Half Dozen</button>
-<button onclick="setQty('Cupcakes',3,12)">Dozen</button>
-</div>
+<!-- CUSTOMER INFO -->
 
-<button class="add-btn" onclick="add()">Add Selected</button>
-</div>
+<section class="card">
 
-<div class="product">
-<div class="name">Cake Pops</div>
-<div class="price">$2.50 per item</div>
+<h2>Customer Information</h2>
 
-<div class="qty-box">
-<button onclick="setQty('Cake Pops',2.5,1)">1</button>
-<button onclick="setQty('Cake Pops',2.5,2)">2</button>
-<button onclick="setQty('Cake Pops',2.5,5)">5</button>
-</div>
+<input id="customerName" type="text" placeholder="Full Name">
 
-<div class="qty-box">
-<button onclick="setQty('Cake Pops',2.5,6)">Half Dozen</button>
-<button onclick="setQty('Cake Pops',2.5,12)">Dozen</button>
-</div>
+<input id="customerPhone" type="tel" placeholder="Phone Number">
 
-<button class="add-btn" onclick="add()">Add Selected</button>
-</div>
+<select id="orderType">
+<option value="pickup">Pickup</option>
+<option value="delivery">Delivery</option>
+</select>
+
+<div id="deliveryFields">
+
+<input id="address" type="text" placeholder="Street Address">
+
+<input id="city" type="text" placeholder="City">
+
+<input id="state" type="text" placeholder="State">
+
+<input id="zip" type="text" placeholder="ZIP Code">
 
 </div>
 
-<!-- CART BAR -->
-<div class="cart-bar">
-<div id="cartTotal">Cart: $0.00</div>
-<button onclick="openCart()">Checkout</button>
+</section>
+
+<!-- MENU -->
+
+<section>
+
+<h2 class="section-title">
+Menu
+</h2>
+
+<div id="menuContainer">
+
+<!-- MINI CAKES -->
+
+<div class="product-card">
+
+<div class="product-image">🎂</div>
+
+<h3>Mini Cakes</h3>
+
+<p>$7 each</p>
+
+<select class="flavor">
+<option>Vanilla</option>
+<option>Chocolate</option>
+<option>Strawberry</option>
+<option>Red Velvet</option>
+</select>
+
+<div class="quantity-row">
+
+<button onclick="addItem('Mini Cake',7,1)">1 ($7)</button>
+<button onclick="addItem('Mini Cake',7,2)">2 ($14)</button>
+<button onclick="addItem('Mini Cake',7,3)">3 ($21)</button>
+<button onclick="addItem('Mini Cake',7,4)">4 ($28)</button>
+<button onclick="addItem('Mini Cake',7,5)">5 ($35)</button>
+
 </div>
 
-<!-- CART PAGE -->
-<div class="page" id="cartPage">
+<div class="quantity-row">
+
+<button onclick="addItem('Mini Cake',7,6)">
+Half Dozen ($42)
+</button>
+
+<button onclick="addItem('Mini Cake',7,12)">
+Dozen ($84)
+</button>
+
+</div>
+
+</div>
+
+<!-- CUPCAKES -->
+
+<div class="product-card">
+
+<div class="product-image">🧁</div>
+
+<h3>Cupcakes</h3>
+
+<p>$3 each</p>
+
+<div class="quantity-row">
+<button onclick="addItem('Cupcakes',3,1)">1 ($3)</button>
+<button onclick="addItem('Cupcakes',3,2)">2 ($6)</button>
+<button onclick="addItem('Cupcakes',3,3)">3 ($9)</button>
+<button onclick="addItem('Cupcakes',3,4)">4 ($12)</button>
+<button onclick="addItem('Cupcakes',3,5)">5 ($15)</button>
+</div>
+
+<div class="quantity-row">
+<button onclick="addItem('Cupcakes',3,6)">Half Dozen ($18)</button>
+<button onclick="addItem('Cupcakes',3,12)">Dozen ($36)</button>
+</div>
+
+</div>
+
+<!-- COOKIES -->
+
+<div class="product-card">
+
+<div class="product-image">🍪</div>
+
+<h3>Cookies</h3>
+
+<p>$3 each</p>
+
+<div class="quantity-row">
+<button onclick="addItem('Cookies',3,1)">1 ($3)</button>
+<button onclick="addItem('Cookies',3,2)">2 ($6)</button>
+<button onclick="addItem('Cookies',3,3)">3 ($9)</button>
+<button onclick="addItem('Cookies',3,4)">4 ($12)</button>
+<button onclick="addItem('Cookies',3,5)">5 ($15)</button>
+</div>
+
+<div class="quantity-row">
+<button onclick="addItem('Cookies',3,6)">Half Dozen ($18)</button>
+<button onclick="addItem('Cookies',3,12)">Dozen ($36)</button>
+</div>
+
+</div>
+
+<!-- CAKE POPS -->
+
+<div class="product-card">
+
+<div class="product-image">🍭</div>
+
+<h3>Cake Pops</h3>
+
+<p>$2.50 each</p>
+
+<div class="quantity-row">
+<button onclick="addItem('Cake Pops',2.5,1)">1 ($2.50)</button>
+<button onclick="addItem('Cake Pops',2.5,2)">2 ($5)</button>
+<button onclick="addItem('Cake Pops',2.5,3)">3 ($7.50)</button>
+<button onclick="addItem('Cake Pops',2.5,4)">4 ($10)</button>
+<button onclick="addItem('Cake Pops',2.5,5)">5 ($12.50)</button>
+</div>
+
+<div class="quantity-row">
+<button onclick="addItem('Cake Pops',2.5,6)">Half Dozen ($15)</button>
+<button onclick="addItem('Cake Pops',2.5,12)">Dozen ($30)</button>
+</div>
+
+</div>
+
+<!-- DIPPED TREATS -->
+
+<div class="product-card">
+<div class="product-image">🍓</div>
+<h3>Dipped Strawberries</h3>
+<p>$1.50 each</p>
+</div>
+
+<div class="product-card">
+<div class="product-image">🍫</div>
+<h3>Dipped Oreos</h3>
+<p>$1.50 each</p>
+</div>
+
+<div class="product-card">
+<div class="product-image">🥨</div>
+<h3>Dipped Pretzels</h3>
+<p>$1.50 each</p>
+</div>
+
+<div class="product-card">
+<div class="product-image">🌾</div>
+<h3>Dipped Rice Krispies</h3>
+<p>$1.50 each</p>
+</div>
+
+<!-- DEAL BOX -->
+
+<div class="product-card box-card">
+
+<h3>💝 The Deal Box</h3>
+
+<p>
+$45-$55 depending on theme
+</p>
+
+<ul>
+<li>Half dozen strawberries</li>
+<li>Half dozen oreos</li>
+<li>Half dozen pretzels</li>
+<li>Half dozen rice krispies</li>
+<li>2 cupcakes</li>
+<li>2 cookies</li>
+<li>2 cake pops</li>
+<li>2 mini cakes</li>
+</ul>
+
+<button onclick="addDealBox()">
+Add Deal Box
+</button>
+
+</div>
+
+<!-- PARTY BOX -->
+
+<div class="product-card box-card">
+
+<h3>🎉 Party Box</h3>
+
+<p>
+Starting at $125
+</p>
+
+<ul>
+<li>Dozen strawberries</li>
+<li>Dozen oreos</li>
+<li>Dozen pretzels</li>
+<li>Dozen rice krispies</li>
+<li>Dozen cupcakes</li>
+<li>Dozen cookies</li>
+<li>Dozen cake pops</li>
+<li>Dozen mini cakes</li>
+</ul>
+
+<button onclick="addPartyBox()">
+Add Party Box
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CART -->
+
+<section class="card checkout-card">
 
 <h2>Your Cart</h2>
 
-<div id="items"></div>
+<div id="cartItems"></div>
 
-<div class="summary" id="summary"></div>
+<div class="totals">
 
-<button onclick="pay()">Pay Deposit</button>
-<button onclick="closeCart()">Close</button>
+<div>
+Order Total:
+<span id="orderTotal">$0.00</span>
+</div>
+
+<div>
+Deposit Due:
+<span id="depositTotal">$0.00</span>
+</div>
+
+<div>
+Remaining Balance:
+<span id="remainingTotal">$0.00</span>
+</div>
 
 </div>
 
-<script>
+<button id="cashappButton">
+Pay Deposit With Cash App
+</button>
 
-let cart = [];
+<p class="cashapp-tag">
+$TommiGriffen
+</p>
 
-let selected = {
-  name: "",
-  price: 0,
-  qty: 1
-};
+</section>
 
-function setQty(name, price, qty) {
-  selected = { name, price, qty };
-}
+</main>
 
-function add() {
-
-  if (!selected.name) {
-    alert("Select quantity first");
-    return;
-  }
-
-  cart.push({...selected});
-  update();
-
-}
-
-/* UPDATE CART BAR */
-function update() {
-
-  let total = 0;
-
-  cart.forEach(i => total += i.price * i.qty);
-
-  document.getElementById("cartTotal").innerText =
-    "Cart: $" + total.toFixed(2);
-}
-
-/* OPEN CART */
-function openCart() {
-
-  let html = "";
-  let total = 0;
-
-  cart.forEach((i, index) => {
-
-    let itemTotal = i.price * i.qty;
-    total += itemTotal;
-
-    html += `
-      <div class="item">
-        <b>${i.name}</b><br>
-        $${i.price} × ${i.qty} = $${itemTotal.toFixed(2)}<br>
-
-        <button onclick="removeItem(${index})">Remove</button>
-      </div>
-    `;
-  });
-
-  document.getElementById("items").innerHTML =
-    html || "Cart empty";
-
-  document.getElementById("summary").innerHTML =
-    "Total: $" + total.toFixed(2) +
-    "<br>Deposit: $" + (total/2).toFixed(2);
-
-  document.getElementById("cartPage").style.display = "block";
-}
-
-function closeCart() {
-  document.getElementById("cartPage").style.display = "none";
-}
-
-function removeItem(i) {
-  cart.splice(i,1);
-  update();
-  openCart();
-}
-
-/* CHECKOUT */
-function pay() {
-
-  let total = 0;
-
-  cart.forEach(i => {
-    total += i.price * i.qty;
-  });
-
-  let deposit = total / 2;
-
-  window.location.href =
-    "https://cash.app/$TommiGriffen/" + deposit.toFixed(2);
-}
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
+:root{
+--pink:#ff5fa2;
+--lightpink:#ffe4f1;
+--cream:#fffaf5;
+--gold:#ffd166;
+--brown:#7b4f35;
+--shadow:0 6px 18px rgba(0,0,0,.08);
+}
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:
+radial-gradient(#ffd1e8 2px, transparent 2px);
+background-size:22px 22px;
+background-color:var(--cream);
+color:#333;
+padding-bottom:100px;
+}
+
+.hero{
+background:linear-gradient(
+135deg,
+#ff5fa2,
+#ff86bc
+);
+color:white;
+text-align:center;
+padding:30px 15px;
+box-shadow:var(--shadow);
+}
+
+.hero h1{
+font-family:'Pacifico',cursive;
+font-size:48px;
+font-weight:400;
+margin-bottom:8px;
+}
+
+.hero p{
+font-size:18px;
+font-weight:500;
+}
+
+.sparkles{
+font-size:24px;
+margin-bottom:12px;
+}
+
+main{
+max-width:900px;
+margin:auto;
+padding:15px;
+}
+
+.section-title{
+margin:15px 0;
+font-size:28px;
+color:var(--pink);
+font-weight:700;
+}
+
+.card{
+background:white;
+padding:18px;
+border-radius:22px;
+margin-bottom:20px;
+box-shadow:var(--shadow);
+}
+
+.card h2{
+color:var(--pink);
+margin-bottom:15px;
+}
+
+input,
+select{
+width:100%;
+padding:14px;
+border:2px solid #eee;
+border-radius:14px;
+margin-bottom:12px;
+font-size:15px;
+outline:none;
+}
+
+input:focus,
+select:focus{
+border-color:var(--pink);
+}
+
+#deliveryFields{
+display:flex;
+flex-direction:column;
+}
+
+.product-card{
+background:white;
+border-radius:22px;
+padding:18px;
+margin-bottom:18px;
+box-shadow:var(--shadow);
+transition:.25s;
+}
+
+.product-card:hover{
+transform:translateY(-3px);
+}
+
+.product-image{
+font-size:60px;
+text-align:center;
+margin-bottom:10px;
+}
+
+.product-card h3{
+font-size:24px;
+color:var(--brown);
+margin-bottom:6px;
+}
+
+.product-card p{
+margin-bottom:12px;
+}
+
+.quantity-row{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-bottom:10px;
+}
+
+.quantity-row button{
+flex:1;
+min-width:110px;
+}
+
+button{
+border:none;
+background:var(--pink);
+color:white;
+padding:12px;
+border-radius:14px;
+cursor:pointer;
+font-size:15px;
+font-weight:600;
+transition:.2s;
+}
+
+button:hover{
+opacity:.92;
+transform:scale(1.02);
+}
+
+.box-card{
+background:
+linear-gradient(
+135deg,
+#fff,
+#fff4fa
+);
+border:3px solid #ffd6ea;
+}
+
+.box-card ul{
+margin-top:10px;
+margin-left:18px;
+margin-bottom:15px;
+}
+
+.box-card li{
+margin-bottom:6px;
+}
+
+.checkout-card{
+position:sticky;
+bottom:10px;
+z-index:50;
+}
+
+#cartItems{
+margin-top:15px;
+}
+
+.cart-item{
+background:#fff5fa;
+padding:12px;
+border-radius:16px;
+margin-bottom:10px;
+border:1px solid #ffd6ea;
+}
+
+.cart-item-title{
+font-weight:700;
+font-size:17px;
+color:var(--brown);
+}
+
+.cart-item-price{
+margin-top:4px;
+color:#555;
+}
+
+.cart-controls{
+display:flex;
+gap:8px;
+margin-top:10px;
+}
+
+.cart-controls button{
+flex:1;
+}
+
+.totals{
+margin-top:20px;
+padding:15px;
+background:#fff0f6;
+border-radius:18px;
+}
+
+.totals div{
+display:flex;
+justify-content:space-between;
+margin-bottom:10px;
+font-weight:600;
+}
+
+#orderTotal,
+#depositTotal,
+#remainingTotal{
+color:var(--pink);
+}
+
+#cashappButton{
+width:100%;
+margin-top:15px;
+padding:16px;
+font-size:18px;
+}
+
+.cashapp-tag{
+text-align:center;
+font-weight:700;
+font-size:20px;
+margin-top:12px;
+color:#00c244;
+}
+
+.floating-hearts{
+position:fixed;
+pointer-events:none;
+inset:0;
+overflow:hidden;
+}
+
+.heart{
+position:absolute;
+font-size:24px;
+animation:floatUp 8s linear infinite;
+opacity:.3;
+}
+
+@keyframes floatUp{
+0%{
+transform:translateY(100vh);
+}
+100%{
+transform:translateY(-120vh);
+}
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:38px;
+}
+
+.product-card h3{
+font-size:22px;
+}
+
+.quantity-row{
+flex-direction:column;
+}
+
+.quantity-row button{
+width:100%;
+}
+
+.checkout-card{
+position:relative;
+bottom:auto;
+}
+
+}
+let cart = [];
+
+/* -------------------
+   CART FUNCTIONS
+------------------- */
+
+function addItem(name, price, qty) {
+
+  const totalPrice = price * qty;
+
+  cart.push({
+    id: Date.now() + Math.random(),
+    name,
+    price,
+    qty,
+    totalPrice
+  });
+
+  updateCart();
+}
+
+function addDealBox() {
+
+  cart.push({
+    id: Date.now() + Math.random(),
+    name: "💝 Deal Box",
+    price: 50,
+    qty: 1,
+    totalPrice: 50
+  });
+
+  updateCart();
+}
+
+function addPartyBox() {
+
+  cart.push({
+    id: Date.now() + Math.random(),
+    name: "🎉 Party Box",
+    price: 125,
+    qty: 1,
+    totalPrice: 125
+  });
+
+  updateCart();
+}
+
+/* -------------------
+   QUANTITY CONTROLS
+------------------- */
+
+function increaseQuantity(id) {
+
+  const item = cart.find(x => x.id === id);
+
+  if (!item) return;
+
+  item.qty += 1;
+  item.totalPrice = item.price * item.qty;
+
+  updateCart();
+}
+
+function decreaseQuantity(id) {
+
+  const item = cart.find(x => x.id === id);
+
+  if (!item) return;
+
+  item.qty -= 1;
+
+  if (item.qty <= 0) {
+    removeItem(id);
+    return;
+  }
+
+  item.totalPrice = item.price * item.qty;
+
+  updateCart();
+}
+
+function removeItem(id) {
+
+  cart = cart.filter(item => item.id !== id);
+
+  updateCart();
+}
+
+/* -------------------
+   DELIVERY LOGIC
+------------------- */
+
+function getDeliveryFee() {
+
+  const orderType =
+    document.getElementById("orderType").value;
+
+  if (orderType === "pickup") {
+    return 0;
+  }
+
+  return 10;
+}
+
+/* -------------------
+   TOTALS
+------------------- */
+
+function calculateSubtotal() {
+
+  let subtotal = 0;
+
+  cart.forEach(item => {
+    subtotal += item.totalPrice;
+  });
+
+  return subtotal;
+}
+
+function calculateOrderTotal() {
+
+  return calculateSubtotal() + getDeliveryFee();
+}
+
+function calculateDeposit() {
+
+  return calculateOrderTotal() * 0.50;
+}
+
+function calculateRemaining() {
+
+  return calculateOrderTotal() -
+         calculateDeposit();
+}
+
+/* -------------------
+   RENDER CART
+------------------- */
+
+function updateCart() {
+
+  const cartContainer =
+    document.getElementById("cartItems");
+
+  cartContainer.innerHTML = "";
+
+  cart.forEach(item => {
+
+    const div = document.createElement("div");
+
+    div.className = "cart-item";
+
+    div.innerHTML = `
+
+      <div class="cart-item-title">
+        ${item.name}
+      </div>
+
+      <div class="cart-item-price">
+        $${item.price.toFixed(2)} × ${item.qty}
+      </div>
+
+      <div class="cart-item-price">
+        Total: $${item.totalPrice.toFixed(2)}
+      </div>
+
+      <div class="cart-controls">
+
+        <button onclick="decreaseQuantity(${item.id})">
+          ➖
+        </button>
+
+        <button onclick="increaseQuantity(${item.id})">
+          ➕
+        </button>
+
+        <button onclick="removeItem(${item.id})">
+          🗑 Remove
+        </button>
+
+      </div>
+
+    `;
+
+    cartContainer.appendChild(div);
+
+  });
+
+  document.getElementById("orderTotal").textContent =
+    "$" + calculateOrderTotal().toFixed(2);
+
+  document.getElementById("depositTotal").textContent =
+    "$" + calculateDeposit().toFixed(2);
+
+  document.getElementById("remainingTotal").textContent =
+    "$" + calculateRemaining().toFixed(2);
+}
+
+/* -------------------
+   DELIVERY FIELDS
+------------------- */
+
+const orderType =
+  document.getElementById("orderType");
+
+if (orderType) {
+
+  orderType.addEventListener("change", () => {
+
+    const deliveryFields =
+      document.getElementById("deliveryFields");
+
+    if (orderType.value === "delivery") {
+      deliveryFields.style.display = "block";
+    } else {
+      deliveryFields.style.display = "none";
+    }
+
+    updateCart();
+  });
+
+}
+
+/* -------------------
+   CHECKOUT
+------------------- */
+
+const cashButton =
+  document.getElementById("cashappButton");
+
+if (cashButton) {
+
+  cashButton.addEventListener("click", () => {
+
+    const name =
+      document.getElementById("customerName").value;
+
+    const phone =
+      document.getElementById("customerPhone").value;
+
+    const orderType =
+      document.getElementById("orderType").value;
+
+    if (!name.trim()) {
+      alert("Please enter your name.");
+      return;
+    }
+
+    if (!phone.trim()) {
+      alert("Please enter your phone number.");
+      return;
+    }
+
+    if (orderType === "delivery") {
+
+      const address =
+        document.getElementById("address").value;
+
+      const city =
+        document.getElementById("city").value;
+
+      const state =
+        document.getElementById("state").value;
+
+      const zip =
+        document.getElementById("zip").value;
+
+      if (
+        !address.trim() ||
+        !city.trim() ||
+        !state.trim() ||
+        !zip.trim()
+      ) {
+        alert(
+          "Please complete delivery information."
+        );
+        return;
+      }
+
+    }
+
+    if (cart.length === 0) {
+      alert("Your cart is empty.");
+      return;
+    }
+
+    const deposit =
+      calculateDeposit().toFixed(2);
+
+    alert(
+      "Deposit Due: $" +
+      deposit +
+      "\nCash App: $TommiGriffen"
+    );
+
+    // Optional Cash App link
+    window.open(
+      "https://cash.app/$TommiGriffen",
+      "_blank"
+    );
+
+  });
+
+}
+
+/* -------------------
+   STARTUP
+------------------- */
+
+window.onload = () => {
+
+  const deliveryFields =
+    document.getElementById("deliveryFields");
+
+  if (deliveryFields) {
+    deliveryFields.style.display = "none";
+  }
+
+  updateCart();
+
+};
